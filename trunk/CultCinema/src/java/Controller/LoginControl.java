@@ -4,6 +4,8 @@
  */
 package Controller;
 
+import Bean.CheckUser;
+import Bean.Member;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -12,6 +14,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+            
 
 /**
  *
@@ -30,21 +42,13 @@ public class LoginControl extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
-            String username = request.getParameter("j_username");
-            String password = request.getParameter("j_password");
+           doPost(request,response);
             
-            if (username.equals("super")) {
-                request.setAttribute("j_username", "super");
-                HttpSession session = request.getSession();
-                session.setAttribute("username", username);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-                dispatcher.forward(request, response);
-            }
         } finally {            
             out.close();
         }
@@ -63,7 +67,13 @@ public class LoginControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -78,7 +88,27 @@ public class LoginControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+            String username = request.getParameter("j_username");
+            String password = request.getParameter("j_password");
+
+            Member user=new Member();  
+        user.setMemberID(Integer.parseInt(username));  
+        user.setPassword(password);  
+        CheckUser cku=new CheckUser();  
+        boolean bool=cku.checkUser(user);  
+          
+        String forward;  
+        if(bool){  
+            forward="index.jsp";  
+              
+        }else{  
+            //forward="error.jsp";  
+        }  
+                
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+        dispatcher.forward(request, response);
+        
     }
 
     /**
