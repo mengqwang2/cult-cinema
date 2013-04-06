@@ -1,0 +1,61 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package cs4280.bean;
+
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+
+/**
+ *
+ * @author Zhang Yanlin
+ */
+public class Section {
+    private int sectionID;
+
+    public int getSectionID() {
+        return sectionID;
+    }
+
+    public void setSectionID(int sectionID) {
+        this.sectionID = sectionID;
+    }
+
+    public int getMovieID() {
+        return MovieID;
+    }
+
+    public void setMovieID(int MovieID) {
+        this.MovieID = MovieID;
+    }
+
+    public Timestamp getTime() {
+        return Time;
+    }
+
+    public void setTime(Timestamp Time) {
+        this.Time = Time;
+    }
+
+    public int getVenueID() {
+        return venueID;
+    }
+
+    public void setVenueID(int venueID) {
+        this.venueID = venueID;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+    private int MovieID;
+    private Timestamp Time;
+    private int venueID;
+    private BigDecimal price;
+    
+}
