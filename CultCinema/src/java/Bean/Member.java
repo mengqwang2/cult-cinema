@@ -72,5 +72,9 @@ public class Member {
     private String tel;
     private String gender;
     private String mail;
+
+    public void setUsername(int parseInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
