@@ -9,9 +9,26 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Cult Cinema Inc.</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <div id="header">
+            <h1>
+                Cult Cinema Inc
+            </h1>        
+            <div id="login">
+                <a href="WEB-INF/login.jsp">login</a>
+            </div>
+            </div>
+            <div id="navigation">
+                <ul>
+                    <li>Home</li>
+                    <li>Movies</li>
+                </ul>
+            </div>
+        <div id="body"></div>
+        <div id="footer">
+            © Copyright 2013 Cult Cinema Inc
+        </div>
     </body>
 </html>
