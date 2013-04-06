@@ -17,6 +17,6 @@ public class DB {
   public static DataSource getDataSource() throws NamingException {
     Context initCtx = new InitialContext();
     Context envCtx = (Context)initCtx.lookup("java:comp/env");
-    return (DataSource)envCtx.lookup("jdbc/cinema");
+    return (DataSource)envCtx.lookup("jdbc/CultCinema");
   }
 }
