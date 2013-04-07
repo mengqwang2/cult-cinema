@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 52165627
  */
-public class moviedisplay extends HttpServlet {
+public class MovieDisplay extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -33,7 +33,12 @@ public class moviedisplay extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       
+        PrintWriter out = response.getWriter();
+        try {
+            
+        } finally {            
+            out.close();
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -50,7 +55,6 @@ public class moviedisplay extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
     }
 
     /**
@@ -72,7 +76,6 @@ public class moviedisplay extends HttpServlet {
             request.getRequestDispatcher("movie.jsp").forward(request, response);
         } catch (SQLException e) {
         throw new ServletException("Cannot obtain products from DB", e);
-    }
     }
 
     /**
