@@ -4,8 +4,8 @@
  */
 package Controller;
 
-import Bean.CheckUser;
 import Bean.Member;
+import DAO.MemberDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -86,8 +86,8 @@ public class RegisterControl extends HttpServlet {
             user.setTel(tel);
             user.setMail(email);  
             
-        CheckUser cku=new CheckUser();  
-        boolean bool=cku.doUserReg(user);  
+        MemberDAO md=new MemberDAO();  
+        boolean bool=md.doUserReg(user);  
         
         String forward;  
         if(bool){  

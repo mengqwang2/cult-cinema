@@ -4,8 +4,8 @@
  */
 package Controller;
 
-import Bean.CheckUser;
 import Bean.Member;
+import DAO.MemberDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -94,8 +94,13 @@ public class LoginControl extends HttpServlet {
         Member user=new Member();  
         user.setMemberID(Integer.parseInt(username));
         user.setPassword(password);
-        CheckUser cku=new CheckUser();  
-        boolean bool=cku.checkUserLogin(user);  
+        MemberDAO md=new MemberDAO();  
+        boolean bool = false;  
+        try {
+            bool = md.checkUserLogin(user);
+        } catch (Exception ex) {
+            Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
           
         String forward;  
         if(bool){  
