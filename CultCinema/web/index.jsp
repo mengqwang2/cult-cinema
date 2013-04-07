@@ -61,7 +61,7 @@
             <div id="navigation">
                 <ul>
                     <li>Home</li>
-                    <li>Movies</li>
+                    <li><a href="moviedisplay">Movies</a></li>
                 </ul>
             </div>
         <div id="body"></div>

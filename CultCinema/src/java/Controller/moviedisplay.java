@@ -49,13 +49,7 @@ public class moviedisplay extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            List<Movie> movies = movieDAO.list();
-            request.setAttribute("movies", movies); // Will be available as ${products} in JSP
-            request.getRequestDispatcher("movie.jsp").forward(request, response);
-        } catch (SQLException e) {
-        throw new ServletException("Cannot obtain products from DB", e);
-    }
+        processRequest(request, response);
 
     }
 
@@ -71,7 +65,13 @@ public class moviedisplay extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+                try {
+            List<Movie> movies = DAO.movieDAO.getMovieList();
+            request.setAttribute("movies", movies); // Will be available as ${products} in JSP
+            request.getRequestDispatcher("movie.jsp").forward(request, response);
+        } catch (SQLException e) {
+        throw new ServletException("Cannot obtain products from DB", e);
+    }
     }
 
     /**

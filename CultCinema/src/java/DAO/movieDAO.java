@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package DAO;
 
 /**
  *
@@ -19,12 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class movieDAO {
-   public List<Movie> list() throws SQLException {   
-   DBConn db=new DBConn(); 
-   ResultSet rs=null;  
-   rs=db.doSelect("select * from [Movie] ORDER BY [NAME] ASC");  
+   public static List<Movie> getMovieList() throws SQLException {   
    List<Movie> movieList=new ArrayList<Movie>(); 
-   
+   DBConn db=new DBConn(); 
+   ResultSet rs = null;
+   rs=db.doSelect("SELECT * FROM [MOVIE]");  
+   rs.next();
     while(rs.next()){        
      int uid=rs.getInt("uid");
      String name=rs.getString("name");

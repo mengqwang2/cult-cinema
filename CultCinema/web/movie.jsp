@@ -8,7 +8,7 @@
 <%@page import="java.util.List"%>
 <%@page import="Bean.Movie"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="Controller.movielist"%>
+<%@page import="Controller.moviedisplay"%>
 
 <!DOCTYPE html>
 <html>
