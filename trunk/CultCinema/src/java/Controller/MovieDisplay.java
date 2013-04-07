@@ -70,14 +70,24 @@ public class MovieDisplay extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        java.lang.String action = request.getParameter("action");
+        java.lang.String movieID = request.getParameter("id");
+        int uid=0;
+        DAO.MovieDAO movieDAO = new DAO.MovieDAO();
         try {
-            int uid=1;
-            DAO.MovieDAO movieDAO = new DAO.MovieDAO();
+            if((action == null) || (action.length() < 1)){           
             List<Movie> movies = movieDAO.getMovieList();            
-            request.setAttribute("movies", movies); 
-            List<Section> sections = movieDAO.getSectionList(uid);
-            request.setAttribute("sections",sections);
+            request.setAttribute("movies", movies);             
             request.getRequestDispatcher("movie.jsp").forward(request, response);
+            }
+            else{
+                List<Section> sections = movieDAO.getSectionList(movieID);
+                request.setAttribute("sections",sections);
+                List<Movie> movies = (List<Movie>)request.getAttribute("movies"); 
+                Movie selectedMovie = movies.get(uid);
+                request.setAttribute("movie",selectedMovie);
+                request.getRequestDispatcher("movieInfo.jsp").forward(request, response);
+            }
         } catch (SQLException e) {
         throw new ServletException("Cannot obtain products from DB", e);
     }

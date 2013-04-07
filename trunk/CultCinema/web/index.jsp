@@ -57,7 +57,7 @@
            
                 </form>
                 
-                <form name ="frmRegister" action='MovieDisplay' method='POST'>
+                <form name ="frmMovieDisplay" action='MovieDisplay' method='POST'>
                     <input type="submit" name="submit" value="Show All" />
                     
                 </form>
