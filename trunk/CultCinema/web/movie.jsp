@@ -28,8 +28,12 @@
         <thead>Movies</thead>
         <tr>
             <td><img alt=""></td>
-            <td><%=movie.getName()%> Duration: <%=movie.getDuration()%> Minutes Director: <%=movie.getDirector()%></td>
+            <td><%=movie.getName()%> language <%=movie.getLanguage()%></td>
+            <td>
+        <select>
             
+        </select>
+            </td>
         <ul>
             
             <li></li>
