@@ -40,7 +40,7 @@ public class CheckUser {
             return false;
           
     }  
-    
+    /*
     public boolean doUserReg(Member user)
     { 
         DBConn db=new DBConn(); 
@@ -52,5 +52,5 @@ public class CheckUser {
         }
                
         return false;
-    }
+    }*/
 }

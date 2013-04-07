@@ -93,6 +93,7 @@ public class LoginControl extends HttpServlet {
 
         Member user=new Member();  
         user.setMemberID(Integer.parseInt(username));
+        user.setPassword(password);
         CheckUser cku=new CheckUser();  
         boolean bool=cku.checkUserLogin(user);  
           
