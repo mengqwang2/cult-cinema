@@ -49,7 +49,7 @@ public class MemberDAO {
         
         if((user.getName().equals("")||user.getName()!=null)&&(user.getPassword().equals("")||user.getPassword()!=null)&&(user.getAddress().equals("")||user.getAddress()!=null)&&(user.getGender().equals("")||user.getGender()!=null)&&(user.getTel().equals("")||user.getTel()!=null)&&(user.getMail().equals("")||user.getMail()!=null))   
         {
-            db.doUpdate("INSERT INTO [Member] VALUES ("+user.getPassword()+","+user.getName()+","+user.getAddress()+","+user.getTel()+","+user.getGender()+","+user.getMail()+")");
+            db.doUpdate("INSERT INTO [Member] VALUES ('"+user.getPassword()+"','"+user.getName()+"','"+user.getAddress()+"','"+user.getTel()+"','"+user.getGender()+"','"+user.getMail()+"')");
             db.close();
             return true;
         }
