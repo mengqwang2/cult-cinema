@@ -5,6 +5,7 @@
 package Controller;
 
 import Bean.Movie;
+import Bean.Section;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -70,9 +71,12 @@ public class MovieDisplay extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            int uid=1;
             DAO.MovieDAO movieDAO = new DAO.MovieDAO();
-            List<Movie> movies = movieDAO.getMovieList();
+            List<Movie> movies = movieDAO.getMovieList();            
             request.setAttribute("movies", movies); 
+            List<Section> sections = movieDAO.getSectionList(uid);
+            request.setAttribute("sections",sections);
             request.getRequestDispatcher("movie.jsp").forward(request, response);
         } catch (SQLException e) {
         throw new ServletException("Cannot obtain products from DB", e);
