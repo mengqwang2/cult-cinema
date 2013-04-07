@@ -9,6 +9,7 @@ package DAO;
  * @author 52165627
  */
 import Bean.Movie;
+import Bean.Section;
 import Utility.DBConn;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -50,8 +51,15 @@ public class MovieDAO {
        return movieList;
        }
 
-   public List<Section> getSectionList() throws SQLException {   
-       
+   public List<Section> getSectionList() throws SQLException {      
+        List<Section> sectionList=new ArrayList<Section>(); 
+        DBConn db=new DBConn(); 
+        ResultSet rs = null;
+        int uid=1;
+        rs=db.doSelect("SELECT * FROM [SECTION] where Movie_ID=" + uid);
+        
+        return sectionList;
    }
+   
    
 }
