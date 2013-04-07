@@ -4,9 +4,17 @@
         <servlet-name>LoginControl</servlet-name>
         <servlet-class>Controller.LoginControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisterControl</servlet-name>
+        <servlet-class>Controller.RegisterControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginControl</servlet-name>
-        <url-pattern>/j_security_check</url-pattern>
+        <url-pattern>/login_check</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterControl</servlet-name>
+        <url-pattern>/register_check</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
