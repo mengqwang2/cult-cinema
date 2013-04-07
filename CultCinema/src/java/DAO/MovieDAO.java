@@ -50,6 +50,8 @@ public class MovieDAO {
        return movieList;
        }
 
-   
+   public List<Section> getSectionList() throws SQLException {   
+       
+   }
    
 }
