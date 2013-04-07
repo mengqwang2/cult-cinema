@@ -17,7 +17,7 @@
                 Cult Cinema Inc
             </h1>        
             <div id="login">
-                <form name ="frmLogin" action='j_security_check' method='POST'>
+                <form name ="frmLogin" action='login_check' method='POST'>
 
             <fieldset>
                 <input type="hidden" name="todo" id="todo" value="" />
@@ -31,6 +31,29 @@
            
         </form>
             </div>
+            <div id="register">
+                <form name ="frmRegister" action='register_check' method='POST'>
+
+                    <fieldset>
+                        <input type="hidden" name="todo" id="todo" value="" />
+                        <label for="register-text">Name</label>
+                        <input type="text" name='name' id='name' />
+                        <label for="register-text">Password</label>
+                        <input type="password" name='password' id='password'/>
+                        <label for="register-text">Address</label>
+                        <input type="text" name='address' id='address'/>
+                        <label for="register-text">Tel</label>
+                        <input type="text" name='tel' id='tel'/>
+                        <label for="register-text">Gender</label>
+                        <input type="text" name='gender' id='gender'/>
+                        <label for="register-text">Email</label>
+                        <input type="text" name='email' id='email'/>
+                    </fieldset>
+
+                    <input type="submit" name="submit" value="Register" />
+           
+                </form>
+                
             </div>
             <div id="navigation">
                 <ul>

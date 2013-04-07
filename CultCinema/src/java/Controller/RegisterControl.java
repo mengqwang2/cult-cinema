@@ -13,23 +13,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-            
 
 /**
  *
  * @author mengqwang
  */
-public class LoginControl extends HttpServlet {
+public class RegisterControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -42,13 +31,12 @@ public class LoginControl extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
-           doPost(request,response);
-            
+            doPost(request,response);
         } finally {            
             out.close();
         }
@@ -67,13 +55,7 @@ public class LoginControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -88,14 +70,26 @@ public class LoginControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       String username = request.getParameter("j_username");
-       String password = request.getParameter("j_password");
+        
 
-        Member user=new Member();  
-        user.setMemberID(Integer.parseInt(username));
+            String name = request.getParameter("name");
+            String password = request.getParameter("password");
+            String address = request.getParameter("address");
+            String tel = request.getParameter("tel");
+            String gender = request.getParameter("gender");
+            String email = request.getParameter("email");
+            
+            Member user=new Member();  
+            user.setName(name);  
+            user.setPassword(password); 
+            user.setAddress(address);
+            user.setGender(gender);
+            user.setTel(tel);
+            user.setMail(email);  
+            
         CheckUser cku=new CheckUser();  
-        boolean bool=cku.checkUserLogin(user);  
-          
+        boolean bool=cku.doUserReg(user);  
+        
         String forward;  
         if(bool){  
             forward="index.jsp";  
@@ -106,7 +100,6 @@ public class LoginControl extends HttpServlet {
                 
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
-        
     }
 
     /**

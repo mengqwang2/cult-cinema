@@ -85,7 +85,7 @@ public class DBConn {
                 conn=DriverManager.getConnection(url,user,password);  
                 stmt = conn.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE,java.sql.ResultSet.CONCUR_READ_ONLY);       
                 rs = stmt.executeQuery(sql);   
-                System.out.println("取得结果集");  
+                System.out.println("Retrieve results");  
             } catch(SQLException sqlexception) {     
                 System.err.println("db.executeQuery: " + sqlexception.getMessage());     
             }     
