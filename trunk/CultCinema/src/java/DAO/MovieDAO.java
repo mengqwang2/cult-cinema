@@ -11,11 +11,13 @@ package DAO;
 import Bean.Movie;
 import Bean.Section;
 import Utility.DBConn;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,13 +53,21 @@ public class MovieDAO {
        return movieList;
        }
 
-   public List<Section> getSectionList() throws SQLException {      
+   public List<Section> getSectionList(int uid) throws SQLException {      
         List<Section> sectionList=new ArrayList<Section>(); 
         DBConn db=new DBConn(); 
         ResultSet rs = null;
-        int uid=1;
         rs=db.doSelect("SELECT * FROM [SECTION] where Movie_ID=" + uid);
-        
+        while(rs.next()){     
+            Timestamp time=rs.getTimestamp("Time");
+            BigDecimal price=rs.getBigDecimal("price");
+            int id=rs.getInt("Section_ID");
+            Section section = new Section();
+            section.setPrice(price);
+            section.setTime(time);
+            section.setSectionID(id);
+            sectionList.add(section);
+        } 
         return sectionList;
    }
    
