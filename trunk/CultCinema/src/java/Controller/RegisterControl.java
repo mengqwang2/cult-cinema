@@ -8,6 +8,9 @@ import Bean.Member;
 import DAO.MemberDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -87,7 +90,14 @@ public class RegisterControl extends HttpServlet {
             user.setMail(email);  
             
         MemberDAO md=new MemberDAO();  
-        boolean bool=md.doUserReg(user);  
+        boolean bool = false;  
+        try {
+            bool = md.doUserReg(user);
+        } catch (SQLException ex) {
+            Logger.getLogger(RegisterControl.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(RegisterControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         String forward;  
         if(bool){  

@@ -8,7 +8,7 @@
 <%@page import="java.util.List"%>
 <%@page import="Bean.Movie"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="Controller.moviedisplay"%>
+<%@page import="Controller.MovieDisplay"%>
 
 <!DOCTYPE html>
 <html>
@@ -17,16 +17,28 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
         <% List<Movie> movies = 
                 (List<Movie>)request.getAttribute("movies"); 
+        %>
+        <form name="movie">
+            <table id="movie_table">
+        <%
         for (Movie movie: movies ){
         %>
+        <thead>Movies</thead>
+        <tr>
+            <td><img alt=""></td>
+            <td><%=movie.getName()%> Duration: <%=movie.getDuration()%> Minutes Director: <%=movie.getDirector()%></td>
+            
         <ul>
-            <li><%=movie.getName()%></li>
-            <li><%=movie.getDuration()%></li>
-            <li><%=movie.getDirector()%></li>
+            
+            <li></li>
+            <li> </li>
+            <li></li>
+            
         </ul>
         <% } %>
+        </table>
+        </form>
     </body>
 </html>

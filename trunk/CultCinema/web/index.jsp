@@ -57,11 +57,16 @@
            
                 </form>
                 
+                <form name ="frmRegister" action='MovieDisplay' method='POST'>
+                    <input type="submit" name="submit" value="Show All" />
+                    
+                </form>
+                
             </div>
             <div id="navigation">
                 <ul>
                     <li>Home</li>
-                    <li><a href="moviedisplay">Movies</a></li>
+                    <li><a href="MovieDisplay">Movies</a></li>
                 </ul>
             </div>
         <div id="body"></div>
