@@ -45,7 +45,10 @@
                         <label for="register-text">Tel</label>
                         <input type="text" name='tel' id='tel'/>
                         <label for="register-text">Gender</label>
-                        <input type="text" name='gender' id='gender'/>
+                        <label for="register-text">Male</label>
+                        <input type="radio" name="gender" id="male" value="male"/>
+                        <label for="register-text">Female</label>
+                        <input type="radio" name="gender" id="female" value="female"/>
                         <label for="register-text">Email</label>
                         <input type="text" name='email' id='email'/>
                     </fieldset>
