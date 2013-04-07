@@ -70,7 +70,6 @@ public class RegisterControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
 
             String name = request.getParameter("name");
             String password = request.getParameter("password");

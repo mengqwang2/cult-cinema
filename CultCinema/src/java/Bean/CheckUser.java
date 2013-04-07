@@ -13,7 +13,7 @@ import java.sql.SQLException;
  * @author mengqwang
  */
 public class CheckUser {
-    public boolean checkUserLogin(Member user){  
+    public boolean checkUserLogin(Member user) throws Exception{  
             ResultSet rs=null;  
             DBConn db=new DBConn();  
               
@@ -26,6 +26,7 @@ public class CheckUser {
                         {
                             member2=rs.getInt(1);
                         }
+                        db.close(rs);
                     }
                     if(member1==member2)
                         return true;
@@ -40,7 +41,7 @@ public class CheckUser {
             return false;
           
     }  
-    /*
+    
     public boolean doUserReg(Member user)
     { 
         DBConn db=new DBConn(); 
@@ -52,5 +53,5 @@ public class CheckUser {
         }
                
         return false;
-    }*/
+    }
 }
