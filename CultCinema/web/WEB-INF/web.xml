@@ -5,20 +5,8 @@
         <servlet-class>Controller.LoginControl</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>displayMovie</servlet-name>
-        <servlet-class>Controller.displayMovie</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>moviedisplay</servlet-name>
-        <servlet-class>Controller.moviedisplay</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>RegisterControl</servlet-name>
         <servlet-class>Controller.RegisterControl</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>NewServlet</servlet-name>
-        <servlet-class>Controller.NewServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>MovieDisplay</servlet-name>
@@ -31,18 +19,6 @@
     <servlet-mapping>
         <servlet-name>RegisterControl</servlet-name>
         <url-pattern>/register_check</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>displayMovie</servlet-name>
-        <url-pattern>/displayMovie</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>moviedisplay</servlet-name>
-        <url-pattern>/moviedisplay</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>NewServlet</servlet-name>
-        <url-pattern>/NewServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MovieDisplay</servlet-name>
