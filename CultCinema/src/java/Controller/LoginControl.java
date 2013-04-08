@@ -106,8 +106,9 @@ public class LoginControl extends HttpServlet {
         if(bool){  
             forward="index.jsp";  
               
-        }else{  
-            //forward="error.jsp";  
+        }else{
+  
+            //forward="";  
         }  
                 
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");

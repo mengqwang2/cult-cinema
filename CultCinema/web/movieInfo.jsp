@@ -20,8 +20,7 @@
             <caption>Movies</caption>
             
             <tr>
-                <% Movie movie=(Movie)request.getAttribute("movie");
-                %>
+                <% Movie movie=(Movie)request.getAttribute("movie");%>
                 <td><img alt=""></td>
                 <td><%=movie.getName()%> language <%=movie.getLanguage()%></td>
             </tr>
