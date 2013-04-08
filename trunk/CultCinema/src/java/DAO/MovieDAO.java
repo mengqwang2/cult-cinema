@@ -27,9 +27,9 @@ public class MovieDAO {
     List<Movie> movieList=new ArrayList<Movie>(); 
     DBConn db=new DBConn(); 
     ResultSet rs = null;
-    rs=db.doSelect("SELECT * FROM [MOVIE]"); 
     int uid=0;
-        while(rs.next()){        
+    rs=db.doSelect("SELECT * FROM [MOVIE]"); 
+         while(rs.next()){        
          int movieID=rs.getInt("movie_id");
          String name=rs.getString("name");
          int duration=rs.getInt("duration");

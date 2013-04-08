@@ -37,7 +37,7 @@ public class MovieDisplay extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            
+            doPost(request,response);
         } finally {            
             out.close();
         }
@@ -56,7 +56,7 @@ public class MovieDisplay extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        doPost(request, response);
     }
 
     /**
@@ -71,17 +71,11 @@ public class MovieDisplay extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String action = request.getParameter("action");
-        Integer movieID = Integer.parseInt(request.getParameter("id"));
-
         MovieDAO movieDAO = new DAO.MovieDAO();
-        try {
-            if(action == "displayMovie"){           
+        try {                      
             List<Movie> movies = movieDAO.getMovieList();            
             request.setAttribute("movies", movies);             
             request.getRequestDispatcher("movie.jsp").forward(request, response);
-            }
             
         } catch (SQLException e) {
         throw new ServletException("Cannot obtain products from DB", e);

@@ -35,15 +35,7 @@ public class SectionDisplay extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet SectionDisplay</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SectionDisplay at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            doPost(request,response);
         } finally {            
             out.close();
         }
@@ -62,7 +54,7 @@ public class SectionDisplay extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        doPost(request, response);
     }
 
     /**
@@ -77,22 +69,20 @@ public class SectionDisplay extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                java.lang.String action = request.getParameter("action");
-                java.lang.Integer movieID = Integer.parseInt(request.getParameter("id"));
-                DAO.MovieDAO movieDAO = new DAO.MovieDAO();
-                try{
-                if(action=="displaySection")
-                {
-                    List<Section> sections = movieDAO.getSectionList(movieID);
-                    request.setAttribute("sections",sections);
-                    //List<Movie> movies = (List<Movie>)request.getAttribute("movies"); 
-                    //Movie selectedMovie = movies.get(uid);
-                    //request.setAttribute("movie",selectedMovie);
-                    request.getRequestDispatcher("movieInfo.jsp").forward(request, response);
-                }
-    }catch (SQLException e) {
+        Integer movieID = Integer.parseInt(request.getParameter("id"));
+        DAO.MovieDAO movieDAO = new DAO.MovieDAO();
+        try{
+
+                List<Section> sections = movieDAO.getSectionList(movieID);
+                request.setAttribute("sections",sections);
+                //List<Movie> movies = (List<Movie>)request.getAttribute("movies"); 
+                //Movie selectedMovie = movies.get(uid);
+                //request.setAttribute("movie",selectedMovie);
+                request.getRequestDispatcher("movieInfo.jsp").forward(request, response);
+
+        }catch (SQLException e) {
         throw new ServletException("Cannot obtain products from DB", e);
-    }
+        }
     }
 
     /**
