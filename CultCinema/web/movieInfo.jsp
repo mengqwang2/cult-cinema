@@ -18,7 +18,7 @@
         <form name="movie display">
         <table>
             <caption>Movies</caption>
-            <%--
+            
             <tr>
                 <% Movie movie=(Movie)request.getAttribute("movie");
                 %>
@@ -28,20 +28,24 @@
             <tr>
                 <td><%=movie.getDescription()%></td>
             <tr/>
-            --%>
+            
             <tr>
                 <td>
+                
                 <select>
+                     
                 <option>
+                   
                     <% List<Section> sections = (List<Section>)request.getAttribute("sections"); 
                         for (Section section: sections ){
                     %>
-                    <select>
                         <%=section.getTime()%> 
-                        <%=section.getPrice()%>
-                    </select>
+                        <%=section.getPrice()%>                
+                   
                 </option>
+                      
                 </select>
+               
                 </td>
             </tr>
                 
