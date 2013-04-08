@@ -29,7 +29,7 @@
         <tr>
             <td><img alt=""></td>
             <td><%=movie.getName()%> language <%=movie.getLanguage()%></td>
-            <td><a href="movieDisplay?action=displaySection&id=<%= movie.getUid()%>">Buy Tickets</a></td>
+            <td><a href="SectionDisplay?action=displaySection&id=<%= movie.getUid()%>">Buy Tickets</a></td>
         <% } %>
         </table>
         </form>
