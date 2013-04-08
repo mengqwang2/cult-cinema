@@ -19,22 +19,19 @@ public class MemberDAO {
             DBConn db=new DBConn();  
               
             try {  
-                    Integer member1=user.getMemberID();
-                    Integer member2=0;
-                    if(!user.getPassword().equals("")||user.getPassword()!=null){  
-                        rs=db.doSelect("select [Member_ID] from [Member] where [Password]="+user.getPassword());  
+                    String password=user.getPassword();
+                    String password2="";
+                    if(!user.getPassword().equals("")||user.getPassword()!=null){
+                        String sql="select [Password] from [Member] where [Member_ID]="+user.getMemberID();
+                        rs=db.doSelect(sql);  
                         if(rs.next())
                         {
-                            member2=rs.getInt(1);
+                            password2=rs.getString(1);
                         }
                         db.close(rs);
                     }
-                    if(member1==member2)
-                        return true;
-                    else
-                        return false;
-                        
-               
+                    boolean res=password.equals(password2);
+                    return (res);
             } catch (SQLException e) {  
                 e.printStackTrace();  
             }  
@@ -49,8 +46,8 @@ public class MemberDAO {
         
         if((!user.getName().equals("")||user.getName()!=null)&&(!user.getPassword().equals("")||user.getPassword()!=null)&&(!user.getAddress().equals("")||user.getAddress()!=null)&&(!user.getGender().equals("")||user.getGender()!=null)&&(!user.getTel().equals("")||user.getTel()!=null)&&(!user.getMail().equals("")||user.getMail()!=null))   
         {
-            //db.doUpdate("INSERT INTO [Member] VALUES ('"+user.getPassword()+"','"+user.getName()+"','"+user.getAddress()+"','"+user.getTel()+"','"+user.getGender()+"','"+user.getMail()+"')");
-            db.doUpdate("INSERT INTO [Member] VALUES ('1','2','3','4','5','6')");
+            db.doUpdate("INSERT INTO [Member] VALUES ('"+user.getPassword()+"','"+user.getName()+"','"+user.getAddress()+"','"+user.getTel()+"','"+user.getGender()+"','"+user.getMail()+"')");
+           
             db.close();
             return true;
         }
