@@ -6,6 +6,7 @@ package Controller;
 
 import Bean.Movie;
 import Bean.Section;
+import DAO.MovieDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -70,10 +71,10 @@ public class MovieDisplay extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        java.lang.String action = request.getParameter("action");
-        java.lang.String movieID = request.getParameter("id");
+        String action = request.getParameter("action");
+        Integer movieID = Integer.parseInt(request.getParameter("id"));
         int uid=0;
-        DAO.MovieDAO movieDAO = new DAO.MovieDAO();
+        MovieDAO movieDAO = new DAO.MovieDAO();
         try {
             if((action == null) || (action.length() < 1)){           
             List<Movie> movies = movieDAO.getMovieList();            

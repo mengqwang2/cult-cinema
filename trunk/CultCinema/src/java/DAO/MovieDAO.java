@@ -56,7 +56,7 @@ public class MovieDAO {
        return movieList;
        }
 
-   public List<Section> getSectionList(String movieID) throws SQLException {      
+   public List<Section> getSectionList(Integer movieID) throws SQLException {      
         List<Section> sectionList=new ArrayList<Section>(); 
         DBConn db=new DBConn(); 
         ResultSet rs = null;
