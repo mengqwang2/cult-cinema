@@ -24,19 +24,7 @@
             </ul>
         </div>
         <div id="body">
-            <form name ="frmLogin" action='j_security_check' method='POST'>
-
-            <fieldset>
-                <input type="hidden" name="todo" id="todo" value="" />
-                <label for="login-text">Username</label>
-                <input type="text" name='j_username' id='j_username' />
-                <label for="login-text">Password</label>
-                <input type="password" name='j_password' id='j_password'/>
-            </fieldset>
-
-            <input type="submit" name="submit" value="Login" />
-           
-        </form>
+            
             <a href="register.jsp">New User?</a>
         </div>
         <div id="footer">
