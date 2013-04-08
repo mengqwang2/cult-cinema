@@ -21,7 +21,7 @@ public class MemberDAO {
             try {  
                     Integer member1=user.getMemberID();
                     Integer member2=0;
-                    if(user.getPassword().equals("")||user.getPassword()!=null){  
+                    if(!user.getPassword().equals("")||user.getPassword()!=null){  
                         rs=db.doSelect("select [Member_ID] from [Member] where [Password]="+user.getPassword());  
                         if(rs.next())
                         {
@@ -47,9 +47,10 @@ public class MemberDAO {
     { 
         DBConn db=new DBConn(); 
         
-        if((user.getName().equals("")||user.getName()!=null)&&(user.getPassword().equals("")||user.getPassword()!=null)&&(user.getAddress().equals("")||user.getAddress()!=null)&&(user.getGender().equals("")||user.getGender()!=null)&&(user.getTel().equals("")||user.getTel()!=null)&&(user.getMail().equals("")||user.getMail()!=null))   
+        if((!user.getName().equals("")||user.getName()!=null)&&(!user.getPassword().equals("")||user.getPassword()!=null)&&(!user.getAddress().equals("")||user.getAddress()!=null)&&(!user.getGender().equals("")||user.getGender()!=null)&&(!user.getTel().equals("")||user.getTel()!=null)&&(!user.getMail().equals("")||user.getMail()!=null))   
         {
-            db.doUpdate("INSERT INTO [Member] VALUES ('"+user.getPassword()+"','"+user.getName()+"','"+user.getAddress()+"','"+user.getTel()+"','"+user.getGender()+"','"+user.getMail()+"')");
+            //db.doUpdate("INSERT INTO [Member] VALUES ('"+user.getPassword()+"','"+user.getName()+"','"+user.getAddress()+"','"+user.getTel()+"','"+user.getGender()+"','"+user.getMail()+"')");
+            db.doUpdate("INSERT INTO [Member] VALUES ('1','2','3','4','5','6')");
             db.close();
             return true;
         }
