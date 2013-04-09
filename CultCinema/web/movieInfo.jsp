@@ -15,37 +15,34 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form name="movie display">
-        <table>
-            <caption>Movies</caption>
-           <%--
-            <tr>
-                <% Movie movie=(Movie)request.getAttribute("movie");%>
-                <td><img alt=""></td> 
-                <td><%=movie.getName()%> language <%=movie.getLanguage()%></td>
-            </tr>
-            <tr>
-                <td><%=movie.getDescription()%></td>
-            <tr/>
-            --%>
-            <tr>
-                <td>
-                
+        <% Movie movie=(Movie)request.getAttribute("movie");%>
+        <ul>
+            <img alt=""> 
+        </ul>       
+        <ul>
+            <%=movie.getName()%>
+        </ul>
+        <ul>
+            <li>Language: <%=movie.getLanguage()%></li>
+            <li>Duration: <%=movie.getDuration()%></li>
+            <li>Director: <%=movie.getDirector()%></li>
+            <li>Category: <%=movie.getCategory()%></li>
+            <li>Cast: <%=movie.getCast()%></li>
+            <li>Description: <%=movie.getDescription()%></li>
+        </ul>
+        <ul>
+            <li>
                 <select>
-                  <% List<Section> sections = (List<Section>)request.getAttribute("sections"); 
-                        for (Section section: sections ){
-                    %>     
-                <option>
-                   Time: <%=section.getTime()%> 
-                   Price: $<%=section.getPrice()%>          
-                </option>
-                 <% } %>      
-                </select>
-               
-                </td>
-            </tr>
-                
-        </table>    
-        </form>
+                <% List<Section> sections = (List<Section>)request.getAttribute("sections"); 
+                      for (Section section: sections ){
+                  %>     
+                    <option>
+                       Time: <%=section.getTime()%> 
+                       Price: $<%=section.getPrice()%>          
+                    </option>
+                <% } %>      
+                </select> 
+            </li>
+        </ul>       
     </body>
 </html>

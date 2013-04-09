@@ -78,9 +78,10 @@ public class SectionDisplay extends HttpServlet {
         try{
                 List<Section> sections = movieDAO.getSectionList(movieID);
                 request.setAttribute("sections",sections);
-                //List<Movie> movies = (List<Movie>)request.getAttribute("movies"); 
-               // Movie selectedMovie = movies.get(id);
-               // request.setAttribute("movie",selectedMovie);
+                List<Movie> movies = movieDAO.getMovieList();            
+                //request.setAttribute("movies", movies);    
+                Movie selectedMovie = movies.get(id);
+                request.setAttribute("movie",selectedMovie);
                 request.getRequestDispatcher("movieInfo.jsp").forward(request, response);
 
         }catch (SQLException e) {
