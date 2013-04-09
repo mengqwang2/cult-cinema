@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Bean.Movie;
 import Bean.Section;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -54,7 +55,7 @@ public class SectionDisplay extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doPost(request, response);
+        doPost(request,response);
     }
 
     /**
@@ -69,15 +70,17 @@ public class SectionDisplay extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Integer movieID = Integer.parseInt(request.getParameter("id"));
+        java.lang.String idTemp = request.getParameter("id");
+        int id=Integer.parseInt(idTemp == null || "".equals(idTemp)?"0":idTemp);
+        java.lang.String movieIDtemp = request.getParameter("movieID");
+        int movieID=Integer.parseInt(movieIDtemp == null || "".equals(movieIDtemp)?"0":movieIDtemp);
         DAO.MovieDAO movieDAO = new DAO.MovieDAO();
         try{
-
                 List<Section> sections = movieDAO.getSectionList(movieID);
                 request.setAttribute("sections",sections);
                 //List<Movie> movies = (List<Movie>)request.getAttribute("movies"); 
-                //Movie selectedMovie = movies.get(uid);
-                //request.setAttribute("movie",selectedMovie);
+               // Movie selectedMovie = movies.get(id);
+               // request.setAttribute("movie",selectedMovie);
                 request.getRequestDispatcher("movieInfo.jsp").forward(request, response);
 
         }catch (SQLException e) {

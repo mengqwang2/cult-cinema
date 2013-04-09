@@ -18,31 +18,28 @@
         <form name="movie display">
         <table>
             <caption>Movies</caption>
-            
+           <%--
             <tr>
                 <% Movie movie=(Movie)request.getAttribute("movie");%>
-                <td><img alt=""></td>
+                <td><img alt=""></td> 
                 <td><%=movie.getName()%> language <%=movie.getLanguage()%></td>
             </tr>
             <tr>
                 <td><%=movie.getDescription()%></td>
             <tr/>
-            
+            --%>
             <tr>
                 <td>
                 
                 <select>
-                     
-                <option>
-                   
-                    <% List<Section> sections = (List<Section>)request.getAttribute("sections"); 
+                  <% List<Section> sections = (List<Section>)request.getAttribute("sections"); 
                         for (Section section: sections ){
-                    %>
-                        <%=section.getTime()%> 
-                        <%=section.getPrice()%>                
-                   
+                    %>     
+                <option>
+                   Time: <%=section.getTime()%> 
+                   Price: $<%=section.getPrice()%>          
                 </option>
-                      
+                 <% } %>      
                 </select>
                
                 </td>
