@@ -4,12 +4,18 @@
  */
 package Controller;
 
+import Bean.Booking;
 import Bean.Section;
 import Bean.Venue;
+import DAO.BookingDAO;
+import DAO.SectionDAO;
+import DAO.VenueDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -70,24 +76,48 @@ public class SeatDisplay extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        java.lang.String idTemp = request.getParameter("Venue");
-        int id=Integer.parseInt(idTemp == null || "".equals(idTemp)?"0":idTemp);
-        java.lang.String movieTemp = request.getParameter("Movie");
-        int movieUid=Integer.parseInt(movieTemp == null || "".equals(movieTemp)?"0":movieTemp);
+        String sectionSelect = request.getParameter("sectionSelect");
+        Section selectSection = new Section();
+        selectSection.setSectionID(Integer.parseInt(sectionSelect));
+        Venue selectVenue=new Venue();
+        SectionDAO secDAO=new SectionDAO();
         
-        DAO.MovieDAO movieDAO = new DAO.MovieDAO();
-        DAO.VenueDAO venueDAO = new DAO.VenueDAO();
-        try{
-            List<Section> sections = movieDAO.getSectionList(movieUid);              
-            Section selectedSection = sections.get(id);
-            Venue venue =venueDAO.getVenue(selectedSection.getVenueID());
-            request.setAttribute("venue",venue);
-            request.getRequestDispatcher("movieInfo.jsp").forward(request, response);
-
-        }catch (SQLException e) {
-        throw new ServletException("Cannot obtain products from DB", e);
+        
+        try {
+            selectVenue.setVenueID(secDAO.getSectionVenue(selectSection));
+        } catch (SQLException ex) {
+            Logger.getLogger(SeatDisplay.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
+        VenueDAO vdao=new VenueDAO();
+        
+        
+        try {
+            vdao.setVenueObj(selectVenue);
+        } catch (SQLException ex) {
+            Logger.getLogger(SeatDisplay.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        BookingDAO bkDAO=new BookingDAO();
+        List<Booking> lsBooking = null;
+        
+        try {
+            lsBooking=bkDAO.getBookingList(selectSection);
+        } catch (SQLException ex) {
+            Logger.getLogger(SeatDisplay.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        request.setAttribute("lsBooking", lsBooking);
+        request.setAttribute("selectVenue", selectVenue);
+        
+        request.getRequestDispatcher("seat.jsp").forward(request, response);
+        
     }
+        
+        
+       
     /**
      * Returns a short description of the servlet.
      *

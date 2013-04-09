@@ -11,24 +11,30 @@ import java.sql.SQLException;
 
 /**
  *
- * @author 52165627
+ * @author mengqwang
  */
 public class VenueDAO {
-    public Venue getVenue(int id)throws SQLException {
-        Venue venue = new Venue();
-        DBConn db=new DBConn(); 
-        ResultSet rs = null;
-        rs=db.doSelect("SELECT * FROM [Venue] where Venue_ID=" + id);
-        while(rs. next()){
-            int row=rs.getInt("Row");
-            int column=rs.getInt("Column");
-            String house = rs.getString("House");
-            int VenueID = rs.getInt("Venue_ID");            
-            venue.setRow(row);
-            venue.setColumn(column);
-            venue.setHouse(house);
-            venue.setVenueID(VenueID);
+    public void setVenueObj(Venue sv) throws SQLException
+    {
+        int vid=sv.getVenueID();
+        DBConn db=new DBConn();
+        ResultSet rs=null;
+        String sql="SELECT * FROM [VENUE] WHERE [Venue_ID]="+vid;
+        rs=db.doSelect(sql);
+        String house=null;
+        int row=0;
+        int col=0;
+        int seats=0;
+        if(rs.next())
+        {
+            house=rs.getString("House");
+            row=rs.getInt("RowNo");
+            col=rs.getInt("ColumnNo");
+            seats=rs.getInt("Seats");
         }
-        return venue;
+        sv.setColumn(col);
+        sv.setRow(row);
+        sv.setHouse(house);
+        sv.setSeats(seats);
     }
 }
