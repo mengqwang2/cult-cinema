@@ -39,20 +39,19 @@
             <li>Description: <%=movie.getDescription()%></li>
         </ul>
         <form action="SeatDisplay" method="Post">            
-                <select id="sectionSelect">
+                <select name="sectionSelect">
                 <% List<Section> sections = (List<Section>)request.getAttribute("sections"); 
                       for (Section section: sections ){
                   %>     
-                    <option>
+                  <option value="<%=section.getSectionID()%>">
                        Venue: House <%=section.getVenueID()%>
                        Time: <%=section.getTime()%> 
                        Price: $<%=section.getPrice()%>          
                     </option>
                 <% } %>      
                 </select> 
-                <input type="text" name="Venue" value="">
-                <input type="text" name="Movie" value="<%=movie.getUid()%>">
-                <input type="button" value="Purchase" onclick="getSection()">
+     
+                <input type="submit" value="Purchase">
         </form>
     </body>
 </html>

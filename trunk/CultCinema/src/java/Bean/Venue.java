@@ -45,4 +45,13 @@ public class Venue {
     private String house;
     private int row;
     private int column;
+    private int seats;
+
+    public int getSeats() {
+        return seats;
+    }
+
+    public void setSeats(int seats) {
+        this.seats = seats;
+    }
 }
