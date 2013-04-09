@@ -58,7 +58,7 @@ public class MovieDAO {
 
 
    public List<Section> getSectionList(int movieID) throws SQLException {      
-        
+        int uid=0;
         List<Section> sectionList=new ArrayList<Section>(); 
         DBConn db=new DBConn(); 
         ResultSet rs = null;
@@ -66,12 +66,14 @@ public class MovieDAO {
         while(rs.next()){     
             Timestamp time=rs.getTimestamp("Time");
             BigDecimal price=rs.getBigDecimal("price");
-            int id=rs.getInt("Section_ID");
+            int SectionID=rs.getInt("Section_ID");
             Section section = new Section();
             section.setPrice(price);
             section.setTime(time);
-            section.setSectionID(id);
+            section.setSectionID(SectionID);
+            section.setSectionID(uid);
             sectionList.add(section);
+            uid++;
         } 
         return sectionList;
    }

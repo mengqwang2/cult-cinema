@@ -13,6 +13,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <script type="text/javascript">
+            function getSection()
+              {
+                    Venue.value="id"; 
+                var id=document.getElementById("sectionSelect").selectedIndex;
+                         
+            }
+        </script>
     </head>
     <body>
         <% Movie movie=(Movie)request.getAttribute("movie");%>
@@ -30,9 +38,8 @@
             <li>Cast: <%=movie.getCast()%></li>
             <li>Description: <%=movie.getDescription()%></li>
         </ul>
-        <ul>
-            <li>
-                <select>
+        <form action="SeatDisplay" method="Post">            
+                <select id="sectionSelect">
                 <% List<Section> sections = (List<Section>)request.getAttribute("sections"); 
                       for (Section section: sections ){
                   %>     
@@ -42,7 +49,9 @@
                     </option>
                 <% } %>      
                 </select> 
-            </li>
-        </ul>       
+                <input type="text" name="Venue" value="">
+                <input type="text" name="Movie" value="<%=movie.getUid()%>">
+                <input type="button" value="Purchase" onclick="getSection()">
+        </form>
     </body>
 </html>

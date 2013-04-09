@@ -53,9 +53,16 @@ public class Section {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
+    public int getUid(){
+        return uid;
+    }
+    public void setUid(int uid){
+        this.uid=uid;
+    }
     private int MovieID;
     private Timestamp Time;
     private int venueID;
     private BigDecimal price;
+    private int uid;
     
 }

@@ -4,8 +4,8 @@
  */
 package Controller;
 
-import Bean.Movie;
 import Bean.Section;
+import Bean.Venue;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 52165627
  */
-public class SectionDisplay extends HttpServlet {
+public class SeatDisplay extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -70,24 +70,24 @@ public class SectionDisplay extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        java.lang.String idTemp = request.getParameter("id");
+        java.lang.String idTemp = request.getParameter("Venue");
         int id=Integer.parseInt(idTemp == null || "".equals(idTemp)?"0":idTemp);
-        java.lang.String movieIDtemp = request.getParameter("movieID");
-        int movieID=Integer.parseInt(movieIDtemp == null || "".equals(movieIDtemp)?"0":movieIDtemp);
+        java.lang.String movieTemp = request.getParameter("Movie");
+        int movieUid=Integer.parseInt(movieTemp == null || "".equals(movieTemp)?"0":movieTemp);
+        
         DAO.MovieDAO movieDAO = new DAO.MovieDAO();
+        DAO.VenueDAO venueDAO = new DAO.VenueDAO();
         try{
-                List<Section> sections = movieDAO.getSectionList(movieID);
-                request.setAttribute("sections",sections);
-                List<Movie> movies = movieDAO.getMovieList();              
-                Movie selectedMovie = movies.get(id);
-                request.setAttribute("movie",selectedMovie);
-                request.getRequestDispatcher("movieInfo.jsp").forward(request, response);
+            List<Section> sections = movieDAO.getSectionList(movieUid);              
+            Section selectedSection = sections.get(id);
+            Venue venue =venueDAO.getVenue(selectedSection.getVenueID());
+            request.setAttribute("venue",venue);
+            request.getRequestDispatcher("movieInfo.jsp").forward(request, response);
 
         }catch (SQLException e) {
         throw new ServletException("Cannot obtain products from DB", e);
         }
     }
-
     /**
      * Returns a short description of the servlet.
      *
