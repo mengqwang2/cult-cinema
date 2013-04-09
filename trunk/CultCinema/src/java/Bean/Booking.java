@@ -10,22 +10,23 @@ package Bean;
  */
 public class Booking {
     private int issueID;
-    private int movieID;
+    private int sectionID;
     private String seat;
     private boolean payment;
+    private String status;
     private int memberID;
-    
+    private int uid;
     public int getIssueID(){
     return this.issueID;
     }
     public void setIssueID(int issueID){
     this.issueID=issueID;
     }
-    public int getMovieID(){
-        return this.movieID;
+    public int getSectionID(){
+        return this.sectionID;
     }
-    public void setMovieID(int movieID){
-        this.movieID=movieID;
+    public void setSectionID(int movieID){
+        this.sectionID=movieID;
     }
     public String getSeat(){
         return this.seat;
@@ -45,4 +46,16 @@ public class Booking {
     public void setMemberID(int memberID){
         this.memberID=memberID;
     }   
+    public String getStatus(){
+        return this.status;
+    }
+    public void setStatus(String status){
+        this.status=status;
+    }
+    public int getUid(){
+        return this.uid;
+    }
+    public void setUid(int uid){
+        this.uid=uid;
+    }
 }
