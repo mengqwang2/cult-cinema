@@ -67,11 +67,13 @@ public class MovieDAO {
             Timestamp time=rs.getTimestamp("Time");
             BigDecimal price=rs.getBigDecimal("price");
             int SectionID=rs.getInt("Section_ID");
+            int VenueID=rs.getInt("Venue_ID");
             Section section = new Section();
             section.setPrice(price);
             section.setTime(time);
             section.setSectionID(SectionID);
             section.setSectionID(uid);
+            section.setVenueID(VenueID);
             sectionList.add(section);
             uid++;
         } 

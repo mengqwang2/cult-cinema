@@ -25,7 +25,7 @@
         </div>
         <div id="body">
             
-            <a href="register.jsp">New User?</a>
+            Login Successful!
         </div>
         <div id="footer">
             © Copyright 2013 Cult Cinema Inc
