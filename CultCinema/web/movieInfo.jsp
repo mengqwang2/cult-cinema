@@ -44,6 +44,7 @@
                       for (Section section: sections ){
                   %>     
                     <option>
+                       Venue: House <%=section.getVenueID()%>
                        Time: <%=section.getTime()%> 
                        Price: $<%=section.getPrice()%>          
                     </option>
