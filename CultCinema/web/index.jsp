@@ -64,7 +64,7 @@
                     <li>Home</li>
 
                     <li><a href="MovieDisplay">Movies</a></li>
-
+                    <li><a href="RefundControl">Refund</a>
                 </ul>
             </div>
         <div id="body"></div>
