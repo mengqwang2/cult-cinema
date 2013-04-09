@@ -27,22 +27,22 @@ public class Venue {
         this.house = house;
     }
 
-    public String getRoom() {
-        return room;
+    public int getRow() {
+        return row;
     }
 
-    public void setRoom(String room) {
-        this.room = room;
+    public void setRow(int row) {
+        this.row = row;
     }
 
-    public int getSeats() {
-        return seats;
+    public int getColumn() {
+        return column;
     }
 
-    public void setSeats(int seats) {
-        this.seats = seats;
+    public void setColumn(int column) {
+        this.column = column;
     }
     private String house;
-    private String room;
-    private int seats; 
+    private int row;
+    private int column;
 }

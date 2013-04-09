@@ -16,6 +16,10 @@
         <servlet-name>SectionDisplay</servlet-name>
         <servlet-class>Controller.SectionDisplay</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SeatDisplay</servlet-name>
+        <servlet-class>Controller.SeatDisplay</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginControl</servlet-name>
         <url-pattern>/login_check</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>SectionDisplay</servlet-name>
         <url-pattern>/SectionDisplay</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeatDisplay</servlet-name>
+        <url-pattern>/SeatDisplay</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
