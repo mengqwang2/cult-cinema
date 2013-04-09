@@ -57,10 +57,6 @@
            
                 </form>
                 
-                <form name ="frmMovieDisplay" action='MovieDisplay' method='POST'>
-                    <input type="submit" name="submit" value="Show All" />
-                    
-                </form>
                 
             </div>
             <div id="navigation">

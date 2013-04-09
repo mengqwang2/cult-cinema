@@ -22,15 +22,16 @@
         %>
         <form name="movie">
             <table id="movie_table">
+        <thead>Movies</thead>
         <%
         for (Movie movie: movies ){
         %>
-        <thead>Movies</thead>
+        
         <tr>
             <td><img alt=""></td>
             <td><%=movie.getName()%> language <%=movie.getLanguage()%></td>
            
-            <td><a href="SectionDisplay?&id=<%= movie.getUid()%>">Buy Tickets</a></td>
+            <td><a href="SectionDisplay?id=<%= movie.getUid()%>&movieID=<%= movie.getMovieID()%>">Buy Tickets</a></td>
         
         </tr>
         <% } %>
