@@ -9,6 +9,7 @@ import Bean.Movie;
 import Bean.Section;
 import Bean.Venue;
 import DAO.MovieDAO;
+import DAO.SectionDAO;
 import DAO.VenueDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -57,8 +58,11 @@ public class PurchaseControl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            Integer seatNo = (Integer) request.getAttribute("count");
-            Section selectSection= (Section) request.getAttribute("selectSection");
+            Integer seatNo = Integer.parseInt(request.getParameter("count"));
+            Integer sectionID=Integer.parseInt(request.getParameter("sectionID"));
+            Section selectSection=new Section();
+            SectionDAO sdao=new SectionDAO();
+            sdao.getSection(sectionID, selectSection);
             Booking bkInfo=new Booking();
             bkInfo.setSeat(seatNo);
             bkInfo.setSectionID(selectSection.getSectionID());
