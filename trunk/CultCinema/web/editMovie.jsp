@@ -4,6 +4,7 @@
     Author     : 52165627
 --%>
 
+<%@page import="Bean.Movie"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,25 +13,27 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <% Movie movie=(Movie)request.getAttribute("movie");%>
         <form action="EditMovie" method="post">
             <label>Name</label>
-            <input type="text" name="Name"><br/>
+            <input type="text" name="Name" value="<%=movie.getName()%>"><br/>
             <label>Duration (Minutes) </label>
-            <input type="text" name="Duration"><br/>
+            <input type="text" name="Duration" value="<%=movie.getDuration()%>"><br/>
             <label>Description</label>
-            <input type="text" name="Description"><br/>
+            <input type="text" name="Description" value="<%=movie.getDescription()%>"><br/>
             <label>Director</label>
-            <input type="text" name="Director"><br/>
+            <input type="text" name="Director" value="<%=movie.getDirector()%>"><br/>
             <label>Cast</label>
-            <input type="text" name="Cast"><br/>
+            <input type="text" name="Cast" value="<%=movie.getCast()%>"><br/>
             <label>Category</label>
-            <input type="text" name="Category"><br/>
+            <input type="text" name="Category" value="<%=movie.getCategory()%>"><br/>
             <label>Language</label>
-            <input type="text" name="Language"><br/>
+            <input type="text" name="Language" value="<%=movie.getLanguage()%>"><br/>
             <label>Poster</label>
-            <input type="text" name="Poster"><br/>
-            <input type="hidden" name="method" value="editMovie">
-            <input type="submit" value="Add Movie">
+            <input type="text" name="Poster" value="<%=movie.getPoster()%>"><br/>
+            <input type="hidden" name="action" value="editMovie">
+            <input type="hidden" name="movieID" value="<%=movie.getMovieID()%>">
+            <input type="submit" value="Edit Movie">
         </form>
         <a href="manageMovie.jsp">Return to movie Management site</a>
     </body>

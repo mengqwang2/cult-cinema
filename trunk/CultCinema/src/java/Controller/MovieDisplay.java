@@ -74,11 +74,13 @@ public class MovieDisplay extends HttpServlet {
             throws ServletException, IOException {
         MovieDAO movieDAO = new DAO.MovieDAO();
         java.lang.String action=request.getParameter("Action");
+        if (action==null)
+            action="";
         try {
             HttpSession session = request.getSession();
             List<Movie> movies = movieDAO.getMovieList();            
             session.setAttribute("movies", movies);
-            if(action.equals("MovieDisplay"))
+            if(action!=null & action.equals("MovieDisplay"))
                 request.getRequestDispatcher("movie.jsp").forward(request, response);
             else
                 request.getRequestDispatcher("manageMovie.jsp").forward(request, response);            
