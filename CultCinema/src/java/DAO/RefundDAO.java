@@ -26,7 +26,7 @@ public class RefundDAO {
          while(rs.next()){        
          int issueID=rs.getInt("Issue_ID");
          int sectionID=rs.getInt("Section_ID");
-         String seat=rs.getString("Seat");
+         int seat=rs.getInt("Seat");
          String payment=rs.getString("payment");
          int memberID=rs.getInt("member_ID");
 

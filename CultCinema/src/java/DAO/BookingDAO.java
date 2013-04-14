@@ -28,7 +28,7 @@ public class BookingDAO {
     rs=db.doSelect(sql); 
          while(rs.next()){        
          int sectionID=rs.getInt("Section_ID");
-         String seatNO=rs.getString("Seat");
+         int seatNO=rs.getInt("Seat");
          String payment=rs.getString("Payment");
          int member=rs.getInt("Member_ID");
          String status=rs.getString("Status");
