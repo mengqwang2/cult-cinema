@@ -11,7 +11,6 @@ package DAO;
 import Bean.Movie;
 import Bean.Section;
 import Utility.DBConn;
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -67,7 +66,7 @@ public class MovieDAO {
         rs=db.doSelect("SELECT * FROM [SECTION] where Movie_ID=" + movieID);
         while(rs.next()){     
             Timestamp time=rs.getTimestamp("Time");
-            BigDecimal price=rs.getBigDecimal("price");
+            int price=rs.getInt("price");
             int SectionID=rs.getInt("Section_ID");
             int VenueID=rs.getInt("Venue_ID");
             Section section = new Section();
@@ -107,9 +106,7 @@ public class MovieDAO {
        DBConn db=new DBConn(); 
        db.doUpdate("UPDATE [MOVIE] SET Name = '"+name+"', Duration ='"+duration+"',Description='"+description+"',Director='"+director+"',Cast='"+cast+"',Category='"+category+"',Language='"+language+"' WHERE Movie_Id="+movieID);
    }
-   public void addSection(int movieID) throws SQLException{
-       
-   }
+
    public void deleteMovie(int movieID) throws SQLException{
        DBConn db=new DBConn(); 
        db.doDelete("DELETE FROM [Movie] WHERE Movie_ID =" + movieID);

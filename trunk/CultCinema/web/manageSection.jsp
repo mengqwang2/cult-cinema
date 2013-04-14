@@ -37,13 +37,13 @@
                     <td><%=section.getVenueID()%></td>
                     <td><%=section.getTime()%> </td>
                     <td><%=section.getPrice()%></td>
-                    <td><a href="ManageSection?id=<%= movie.getUid()%>&movieID=<%= movie.getMovieID()%>&action=EditSection">Edit Sections</a></td>
-                    <td><a href="ManageSection?id=<%= movie.getUid()%>&movieID=<%= movie.getMovieID()%>&action=DeleteSection">Delete Sections</a></td>
+                    <td><a href="ManageSection?id=<%= section.getUid()%>&sectionID=<%= section.getSectionID()%>&action=EditSection">Edit Section</a></td>
+                    <td><a href="ManageSection?id=<%= section.getUid()%>&sectionID=<%= section.getSectionID()%>&action=DeleteSection">Delete Section</a></td>
                     </tr>
                 <% } %>  
                 
             </table>
-            <a href="ManageSection?action=addSection">Add Section</a><br/>
+            <a href="addSection.jsp?action=AddSection&movieID=<%= movie.getMovieID()%>&name=<%= movie.getName()%>&id=<%=movie.getUid()%>">Add Section</a><br/>
             <a href="manageMovie.jsp">Return to movie Management site</a>
     </body>
 </html>

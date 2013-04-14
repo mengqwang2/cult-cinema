@@ -100,11 +100,11 @@ public class ManageMovie extends HttpServlet {
                 movieDAO.deleteMovie(movieID); 
                 request.getRequestDispatcher("MovieDisplay").forward(request, response);
             }
-            else if(action.equals("addMovie")){
+            else if(action.equals("AddMovie")){
                 movieDAO.addMovie(movie); 
                 request.getRequestDispatcher("MovieDisplay").forward(request, response);
             }
-            else if(action.equals("editMovie")){
+            else if(action.equals("UpdateMovie")){
                 movieDAO.editMovie(movie); 
                 request.getRequestDispatcher("MovieDisplay").forward(request, response);            
             }
@@ -115,7 +115,7 @@ public class ManageMovie extends HttpServlet {
                 request.getRequestDispatcher("editMovie.jsp").forward(request, response);            
             }
         } catch (SQLException e) {
-        throw new ServletException("Cannot obtain products from DB", e);
+            throw new ServletException("Cannot obtain products from DB", e);
         }
     }
 

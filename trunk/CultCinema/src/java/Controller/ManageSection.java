@@ -4,8 +4,19 @@
  */
 package Controller;
 
+import Bean.Movie;
+import Bean.Section;
+import DAO.MovieDAO;
+import DAO.SectionDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -66,26 +77,57 @@ public class ManageSection extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         MovieDAO movieDAO = new DAO.MovieDAO();
+            MovieDAO movieDAO = new DAO.MovieDAO();
+            SectionDAO secDAO=new SectionDAO();
+       try {   
             java.lang.String idTemp = request.getParameter("id");
             int id=Integer.parseInt(idTemp == null || "".equals(idTemp)?"0":idTemp);
             java.lang.String movieIDtemp = request.getParameter("movieID");
             int movieID=Integer.parseInt(movieIDtemp == null || "".equals(movieIDtemp)?"0":movieIDtemp);
-            java.lang.String action=request.getParameter("action");            
-        try {      
-            if(action.equals("DeleteMovie")){
-                movieDAO.deleteMovie(movieID); 
-                request.getRequestDispatcher("MovieDisplay").forward(request, response);
+            java.lang.String sectionIDtemp = request.getParameter("sectionID");
+            int sectionID=Integer.parseInt(sectionIDtemp == null || "".equals(sectionIDtemp)?"0":sectionIDtemp);
+            java.lang.String action=request.getParameter("action");    
+            java.lang.String venueTemp = request.getParameter("venue");
+            int venue=Integer.parseInt(venueTemp == null || "".equals(venueTemp)?"0":venueTemp);
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy hh:mm");   
+            java.util.Date timeTemp = formatter.parse(request.getParameter("time"));           
+            Timestamp time = new Timestamp(timeTemp.getTime());
+        
+            java.lang.String priceTemp = request.getParameter("price");
+        
+            int price = Integer.parseInt(priceTemp == null || "".equals(priceTemp)?"0":priceTemp);
+            
+        
+            Section section =new Section();
+            section.setMovieID(movieID);
+            section.setPrice(price);           
+            section.setVenueID(venue);
+            section.setTime(time);
+     
+            if(action.equals("DeleteSection")){
+                secDAO.deleteSection(sectionID); 
+                request.getRequestDispatcher("SectionDisplay").forward(request, response);
+            }
+            else if(action.equals("AddSection")){
+                secDAO.addSection(section); 
+                request.getRequestDispatcher("SectionDisplay").forward(request, response);
+            }
+            else if(action.equals("UpdateSection")){
+                secDAO.editSection(section); 
+                request.getRequestDispatcher("SectionDisplay").forward(request, response);            
             }
             else{
+                List<Section> sections = movieDAO.getSectionList(movieID);
+                request.setAttribute("sections",sections);
                 List<Movie> movies = movieDAO.getMovieList();              
                 Movie selectedMovie = movies.get(id);
-                request.setAttribute("movie",selectedMovie);
-                request.getRequestDispatcher("editMovie.jsp").forward(request, response);            
+                request.setAttribute("movie",selectedMovie);   
             }
         } catch (SQLException e) {
-        throw new ServletException("Cannot obtain products from DB", e);
-        }
+            throw new ServletException("Cannot obtain products from DB", e);
+        }catch (ParseException ex) {
+            Logger.getLogger(ManageSection.class.getName()).log(Level.SEVERE, null, ex);
+        }  
     }
 
     /**
@@ -93,6 +135,7 @@ public class ManageSection extends HttpServlet {
      *
      * @return a String containing servlet description
      */
+    
     @Override
     public String getServletInfo() {
         return "Short description";

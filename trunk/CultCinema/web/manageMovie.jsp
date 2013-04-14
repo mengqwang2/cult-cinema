@@ -26,7 +26,7 @@
         
         <tr>
             <td><%=movie.getName()%></td>
-            <td><a href="SectionDisplay?id=<%= movie.getUid()%>&movieID=<%= movie.getMovieID()%>&action=ManageMovie">Manage Section</a></td>
+            <td><a href="SectionDisplay?id=<%= movie.getUid()%>&movieID=<%= movie.getMovieID()%>&action=ManageMovie">Manage Sections</a></td>
             <td><a href="ManageMovie?id=<%= movie.getUid()%>&movieID=<%= movie.getMovieID()%>&action=DeleteMovie">Delete Movie</a></td>
             <td><a href="ManageMovie?id=<%= movie.getUid()%>&movieID=<%= movie.getMovieID()%>&action=EditMovie">Edit Movie</a></td>
         </tr>
