@@ -11,7 +11,7 @@ package Bean;
 public class Booking {
     private int issueID;
     private int sectionID;
-    private String seat;
+    private int seat;
     private String payment;
     private String status;
     private int memberID;
@@ -28,10 +28,10 @@ public class Booking {
     public void setSectionID(int movieID){
         this.sectionID=movieID;
     }
-    public String getSeat(){
+    public int getSeat(){
         return this.seat;
     }
-    public void setSeat(String seat){
+    public void setSeat(int seat){
         this.seat=seat;
     }
     public String getPayment(){
