@@ -5,6 +5,10 @@
 package Controller;
 
 import Bean.Booking;
+import Bean.Movie;
+import Bean.Section;
+import DAO.BookingDAO;
+import DAO.MovieDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -49,8 +53,20 @@ public class PurchaseControl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Integer seatNo = (Integer) request.getAttribute("count");
-        Booking bk=new Booking();
-        bk.setSeat(seatNo);
+        Section selectSection= (Section) request.getAttribute("selectSection");
+        Booking bkInfo=new Booking();
+        bkInfo.setSeat(seatNo);
+        
+        MovieDAO mvdao=new MovieDAO();
+        Movie mvInfo=mvdao.getMovieInfo(selectSection.getMovieID());
+        
+        request.setAttribute("bookingInfo", bkInfo);
+        request.setAttribute("movieInfo", mvInfo);
+        
+            
+        request.getRequestDispatcher("seat.jsp").forward(request, response);
+        
+        
         
     }
 

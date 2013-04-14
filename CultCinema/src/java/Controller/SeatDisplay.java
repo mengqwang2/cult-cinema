@@ -97,6 +97,7 @@ public class SeatDisplay extends HttpServlet {
          
             request.setAttribute("lsBooking", lsBooking);
             request.setAttribute("selectVenue", selectVenue);
+            request.setAttribute("selectSection", selectSection);
             
             request.getRequestDispatcher("seat.jsp").forward(request, response);
         } catch (SQLException ex) {
