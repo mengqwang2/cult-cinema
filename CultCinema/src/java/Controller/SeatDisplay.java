@@ -76,43 +76,32 @@ public class SeatDisplay extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String sectionSelect = request.getParameter("sectionSelect");
-        Section selectSection = new Section();
-        selectSection.setSectionID(Integer.parseInt(sectionSelect));
-        Venue selectVenue=new Venue();
-        SectionDAO secDAO=new SectionDAO();
-        
-        
         try {
+            String sectionSelect = request.getParameter("sectionSelect");
+            Section selectSection = new Section();
+            selectSection.setSectionID(Integer.parseInt(sectionSelect));
+            Venue selectVenue=new Venue();
+            SectionDAO secDAO=new SectionDAO();
+            
+            
             selectVenue.setVenueID(secDAO.getSectionVenue(selectSection));
-        } catch (SQLException ex) {
-            Logger.getLogger(SeatDisplay.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        VenueDAO vdao=new VenueDAO();
-        
-        
-        try {
+            
+            
+            VenueDAO vdao=new VenueDAO();
+     
             vdao.setVenueObj(selectVenue);
-        } catch (SQLException ex) {
-            Logger.getLogger(SeatDisplay.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        BookingDAO bkDAO=new BookingDAO();
-        List<Booking> lsBooking = null;
-        
-        try {
+            BookingDAO bkDAO=new BookingDAO();
+            List<Booking> lsBooking = null;
+            
             lsBooking=bkDAO.getBookingList(selectSection);
+         
+            request.setAttribute("lsBooking", lsBooking);
+            request.setAttribute("selectVenue", selectVenue);
+            
+            request.getRequestDispatcher("seat.jsp").forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(SeatDisplay.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        request.setAttribute("lsBooking", lsBooking);
-        request.setAttribute("selectVenue", selectVenue);
-        
-        request.getRequestDispatcher("seat.jsp").forward(request, response);
         
     }
         

@@ -22,15 +22,19 @@
                 <%for (int i=0;i<v.getRow();i++) { %>
                 <tr>
                     <%for (int j=0;j<v.getColumn();j++) { %>
-                    <td>2222
-                      
-                        <%--  <% List<Booking> bkings = (List<Booking>)request.getAttribute("lsBooking"); 
+                    <td>
+                        <% boolean fd=false;List<Booking> bkings = (List<Booking>)request.getAttribute("lsBooking"); 
                       for (Booking bking: bkings ){  
-                         if(Integer.parseInt(bking.getSeat())==count)%>
-                             <%="1"%>
-                         <%else %>
-                             <%="0"%>
-                 --%>
+                         if(Integer.parseInt(bking.getSeat())==count)
+                         {
+                             out.println("X");
+                             fd=true;
+                             break;
+                         } 
+                      }
+                      if(fd==false)
+                          out.println("<a href='purchase'>O</a>");
+                        %>
                     </td>
                     <%count++;}%>
                 </tr>
