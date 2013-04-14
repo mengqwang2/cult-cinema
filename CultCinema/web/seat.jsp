@@ -14,6 +14,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Seat</title>
+        <script type="text/javascript">
+            function savePurchase()
+            {
+                document.getElementById('1').style.backgroundColor='#f3f3f3';
+            }
+        </script>
     </head>
     <body>
         <div id='mainContainer'>
@@ -25,7 +31,7 @@
                 <%for (int i=0;i<v.getRow();i++) { %>
                 <tr>
                     <%for (int j=0;j<v.getColumn();j++) { %>
-                    <td>
+                    <td id='<% out.println(count); %>'>
                         <% boolean fd=false;List<Booking> bkings = (List<Booking>)request.getAttribute("lsBooking"); 
                       for (Booking bking: bkings ){  
                          if(bking.getSeat()==count)
@@ -36,6 +42,7 @@
                          } 
                       }
                       if(fd==false)
+                          //out.println("<a href='javascript:savePurchase()'>O</a>");
                           out.println("<a href='purchase?count="+count+"&sectionID="+s.getSectionID()+"'>O</a>");
                         %>
                     </td>

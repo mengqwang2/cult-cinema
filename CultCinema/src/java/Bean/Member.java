@@ -66,12 +66,22 @@ public class Member {
     public void setMail(String mail) {
         this.mail = mail;
     }
+    
     private String password;
     private String name;
     private String address;
     private String tel;
     private String gender;
     private String mail;
+    private int loyalty;
+
+    public int getLoyalty() {
+        return loyalty;
+    }
+
+    public void setLoyalty(int loyalty) {
+        this.loyalty = loyalty;
+    }
 
     public void setUsername(int parseInt) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
