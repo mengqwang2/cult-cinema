@@ -20,6 +20,8 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MovieDAO {
    
@@ -72,12 +74,49 @@ public class MovieDAO {
             section.setPrice(price);
             section.setTime(time);
             section.setSectionID(SectionID);
-            section.setSectionID(uid);
+            //section.setSectionID(uid);
             section.setVenueID(VenueID);
             sectionList.add(section);
             uid++;
         } 
         return sectionList;
+   }
+   
+   public Movie getMovieInfo(int movieID)
+   {
+       Movie mv=null;
+        try {
+            
+            DBConn db=new DBConn();
+            ResultSet rs=null;
+            String sql="SELECT * FROM [MOVIE] WHERE Movie_ID="+movieID;
+            rs=db.doSelect(sql);
+            while(rs.next())
+            {
+                int mvID=rs.getInt("Movie_ID");
+                String mvName=rs.getString("Name");
+                int mvDur=rs.getInt("Duration");
+                String mvDes=rs.getString("Description");
+                //get image
+                String mvDir=rs.getString("Director");
+                String mvCast=rs.getString("Cast");
+                String mvCat=rs.getString("Category");
+                String mvLang=rs.getString("Language");
+                mv.setMovieID(mvID);
+                mv.setName(mvName);
+                mv.setDuration(mvDur);
+                mv.setDirector(mvDes);
+                mv.setDescription(mvDes);
+                mv.setLanguage(mvLang);
+                //mv.setPoster();
+                mv.setCategory(mvCat);
+                mv.setCast(mvCast);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return mv;
    }
    
    

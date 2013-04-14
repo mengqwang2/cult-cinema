@@ -4,6 +4,7 @@
     Author     : 52165627
 --%>
 
+<%@page import="Bean.Section"%>
 <%@page import="java.util.List"%>
 <%@page import="Bean.Booking"%>
 <%@page import="Bean.Venue"%>
@@ -17,7 +18,9 @@
     <body>
         <div id='mainContainer'>
             <table>
-                <%Venue v=(Venue)request.getAttribute("selectVenue"); int count=1;%>
+                <%Venue v=(Venue)request.getAttribute("selectVenue"); Section s=(Section) request.getAttribute("selectSection"); 
+                
+                int count=1;%>
                 <table border='1'>
                 <%for (int i=0;i<v.getRow();i++) { %>
                 <tr>
@@ -25,7 +28,7 @@
                     <td>
                         <% boolean fd=false;List<Booking> bkings = (List<Booking>)request.getAttribute("lsBooking"); 
                       for (Booking bking: bkings ){  
-                         if(Integer.parseInt(bking.getSeat())==count)
+                         if(bking.getSeat()==count)
                          {
                              out.println("X");
                              fd=true;
@@ -33,7 +36,7 @@
                          } 
                       }
                       if(fd==false)
-                          out.println("<a href='purchase?count="+count+"'>O</a>");
+                          out.println("<a href='purchase?count="+count+"&sections='"+s+"'>O</a>");
                         %>
                     </td>
                     <%count++;}%>
