@@ -43,7 +43,9 @@ public class SectionDAO {
             int mid=0;
             Timestamp time = null;
             int vid=0;
+
             int price=0;
+
             if(rs.next())
             {
                 mid=rs.getInt("Movie_ID");

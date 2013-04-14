@@ -8,6 +8,8 @@ import Bean.Member;
 import Utility.DBConn;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -53,5 +55,44 @@ public class MemberDAO {
         }
                
         return false;
+    }
+    
+    public void setMember(Member m)
+    {
+        try {
+            ResultSet rs=null;  
+            DBConn db=new DBConn(); 
+            String sql="SELECT * FROM [Member] where [Member_ID]="+m.getMemberID();
+            
+            int mid=m.getMemberID();
+            String pwd = null;
+            String name = null;
+            String adr = null;
+            String tel = null;
+            String gender = null;
+            String mail = null;
+            int loyalty=0;
+            rs=db.doSelect(sql);
+            if(rs.next())
+            {
+                pwd=rs.getString("Password");
+                name=rs.getString("Name");
+                adr=rs.getString("Address");
+                tel=rs.getString("Tel");
+                gender=rs.getString("Gender");
+                mail=rs.getString("Mail");
+                loyalty=rs.getInt("Loyalty");
+            }
+            m.setName(name);
+            m.setAddress(adr);
+            m.setGender(gender);
+            m.setPassword(pwd);
+            m.setMail(mail);
+            m.setTel(tel);
+            m.setLoyalty(loyalty);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MemberDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

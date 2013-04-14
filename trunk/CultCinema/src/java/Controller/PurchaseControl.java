@@ -5,9 +5,11 @@
 package Controller;
 
 import Bean.Booking;
+import Bean.Member;
 import Bean.Movie;
 import Bean.Section;
 import Bean.Venue;
+import DAO.MemberDAO;
 import DAO.MovieDAO;
 import DAO.SectionDAO;
 import DAO.VenueDAO;
@@ -20,7 +22,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 /**
  *
  * @author mengqwang
@@ -58,25 +60,37 @@ public class PurchaseControl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            HttpSession session=request.getSession();
             Integer seatNo = Integer.parseInt(request.getParameter("count"));
             Integer sectionID=Integer.parseInt(request.getParameter("sectionID"));
             Section selectSection=new Section();
             SectionDAO sdao=new SectionDAO();
             sdao.getSection(sectionID, selectSection);
+            
             Booking bkInfo=new Booking();
             bkInfo.setSeat(seatNo);
             bkInfo.setSectionID(selectSection.getSectionID());
+            
             MovieDAO mvdao=new MovieDAO();
             Movie mvInfo=mvdao.getMovieInfo(selectSection.getMovieID());
+            
             Venue vInfo=new Venue();
             vInfo.setVenueID(selectSection.getVenueID());
             VenueDAO vdao=new VenueDAO();
             vdao.setVenueObj(vInfo);
             
+            Member mInfo=new Member();
+            mInfo.setMemberID((Integer)session.getAttribute("memberID"));
+            //mInfo.setMemberID(session.getAttribute("memberID"));
+            MemberDAO mdao =new MemberDAO();
+            mdao.setMember(mInfo);
+            
+            
             request.setAttribute("bookingInfo", bkInfo);
             request.setAttribute("movieInfo", mvInfo);
             request.setAttribute("sectionInfo", selectSection);
             request.setAttribute("venueInfo", vInfo);
+            request.setAttribute("memberInfo", mInfo);
             request.getRequestDispatcher("purchase.jsp").forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(PurchaseControl.class.getName()).log(Level.SEVERE, null, ex);
