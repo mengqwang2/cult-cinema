@@ -4,7 +4,6 @@
  */
 package Bean;
 
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 /**
@@ -46,11 +45,11 @@ public class Section {
         this.venueID = venueID;
     }
 
-    public BigDecimal getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(int price) {
         this.price = price;
     }
     public int getUid(){
@@ -62,7 +61,7 @@ public class Section {
     private int MovieID;
     private Timestamp Time;
     private int venueID;
-    private BigDecimal price;
+    private int price;
     private int uid;
     
 }

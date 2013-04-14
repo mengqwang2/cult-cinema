@@ -6,7 +6,6 @@ package DAO;
 
 import Bean.Section;
 import Utility.DBConn;
-import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -44,13 +43,13 @@ public class SectionDAO {
             int mid=0;
             Timestamp time = null;
             int vid=0;
-            BigDecimal price = null;
+            int price=0;
             if(rs.next())
             {
                 mid=rs.getInt("Movie_ID");
                 time=rs.getTimestamp("Time");
                 vid=rs.getInt("Venue_ID");
-                price=rs.getBigDecimal("price");
+                price=rs.getInt("price");
             }
             s.setMovieID(mid);
             s.setSectionID(sid);
@@ -61,6 +60,23 @@ public class SectionDAO {
         } catch (SQLException ex) {
             Logger.getLogger(SectionDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+    }
+    public void deleteSection(int sectionID) throws SQLException{
+       DBConn db=new DBConn(); 
+       db.doDelete("DELETE FROM [Section] WHERE Section_ID =" + sectionID);
+   }
+    public void addSection(Section section) throws SQLException{
+       int movieID = section.getMovieID();
+       int venueID = section.getVenueID();
+       Timestamp time = section.getTime();
+       int price = section.getPrice();
+
+       DBConn db=new DBConn(); 
+       //db.doInsert("INSERT INTO [SECTION](Movie_ID,Time,Venue_ID,price) VALUES('"+movieID+"','"+time+"','"+venueID+"','"+price+"')");
+       db.doInsert("INSERT INTO [SECTION](Movie_ID,Venue_ID,price) VALUES('"+movieID+"','"+venueID+"','"+price+"')");
+    }
+    public void editSection(Section section) throws SQLException{
         
     }
 }

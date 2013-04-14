@@ -31,7 +31,7 @@
             <input type="text" name="Language" value="<%=movie.getLanguage()%>"><br/>
             <label>Poster</label>
             <input type="text" name="Poster" value="<%=movie.getPoster()%>"><br/>
-            <input type="hidden" name="action" value="editMovie">
+            <input type="hidden" name="action" value="UpdateMovie">
             <input type="hidden" name="movieID" value="<%=movie.getMovieID()%>">
             <input type="submit" value="Edit Movie">
         </form>

@@ -12,25 +12,20 @@
         <title>JSP Page</title>
     </head>
     <body>
-         <form action="EditMovie" method="POST">
+         <form action="ManageSection" method="POST">
             <label>Name</label>
-            <input type="text" name="Name"><br/>
-            <label>Duration (Minutes) </label>
-            <input type="text" name="Duration"><br/>
-            <label>Description</label>
-            <input type="text" name="Description"><br/>
-            <label>Director</label>
-            <input type="text" name="Director"><br/>
-            <label>Cast</label>
-            <input type="text" name="Cast"><br/>
-            <label>Category</label>
-            <input type="text" name="Category"><br/>
-            <label>Language</label>
-            <input type="text" name="Language"><br/>
-            <label>Poster</label>
-            <input type="text" name="Poster"><br/>
-            <input type="hidden" name="action" value="addMovie">
-            <input type="submit" value="Add Movie">
+            <input type="text" name="name" readonly="readonly" value="<%=request.getParameter("name")%>"><br/>
+            <label>Movie ID</label>
+            <input type="text" name="movieID" readonly="readonly" value="<%=request.getParameter("movieID")%>"><br/>
+            <label>Time</label>
+            <input type="text" name="time"><br/>
+            <label>Venue</label>
+            <input type="text" name="venue"><br/>
+            <label>Price $</label>
+            <input type="text" name="price"><br/>
+            <input type="hidden" name="action" value="AddSection">
+            <input type="hidden" name="id" value="<%=request.getParameter("id")%>">
+            <input type="submit" value="Add Section">
         </form>
         <a href="editMovie.jsp">Return to movie Management site</a>
     </body>
