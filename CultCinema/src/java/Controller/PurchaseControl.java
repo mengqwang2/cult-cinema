@@ -7,7 +7,6 @@ package Controller;
 import Bean.Booking;
 import Bean.Movie;
 import Bean.Section;
-import DAO.BookingDAO;
 import DAO.MovieDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -56,7 +55,7 @@ public class PurchaseControl extends HttpServlet {
         Section selectSection= (Section) request.getAttribute("selectSection");
         Booking bkInfo=new Booking();
         bkInfo.setSeat(seatNo);
-        
+        bkInfo.setSectionID(selectSection.getSectionID());
         MovieDAO mvdao=new MovieDAO();
         Movie mvInfo=mvdao.getMovieInfo(selectSection.getMovieID());
         
@@ -64,10 +63,8 @@ public class PurchaseControl extends HttpServlet {
         request.setAttribute("movieInfo", mvInfo);
         
             
-        request.getRequestDispatcher("seat.jsp").forward(request, response);
-        
-        
-        
+        request.getRequestDispatcher("purchase.jsp").forward(request, response);
+
     }
 
     /**
