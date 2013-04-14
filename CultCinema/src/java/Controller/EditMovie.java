@@ -9,6 +9,7 @@ import DAO.MovieDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -69,6 +70,10 @@ public class EditMovie extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        java.lang.String idTemp = request.getParameter("id");
+        int id=Integer.parseInt(idTemp == null || "".equals(idTemp)?"0":idTemp);
+        java.lang.String movieIdTemp = request.getParameter("movieID");
+        int movieId=Integer.parseInt(movieIdTemp == null || "".equals(movieIdTemp)?"0":movieIdTemp);
         java.lang.String name=request.getParameter("Name");
         java.lang.String durationTemp=request.getParameter("Duration");
         int duration=Integer.parseInt(durationTemp == null || "".equals(durationTemp)?"0":durationTemp);
@@ -77,7 +82,7 @@ public class EditMovie extends HttpServlet {
         java.lang.String cast=request.getParameter("Cast");
         java.lang.String category=request.getParameter("Category");
         java.lang.String language=request.getParameter("Language");
-        java.lang.String method=request.getParameter("method");
+        java.lang.String action=request.getParameter("action");
         //java.lang.String poster=request.getParameter("poster");
         MovieDAO movieDAO = new DAO.MovieDAO();
         Movie movie = new Movie();
@@ -88,15 +93,16 @@ public class EditMovie extends HttpServlet {
         movie.setLanguage(language);
         movie.setCast(cast);
         movie.setCategory(category);
+        movie.setMovieID(movieId);
                 
         try {      
-            if(method.equals("addMovie")){
+            if(action.equals("addMovie")){
                 movieDAO.addMovie(movie); 
-                request.getRequestDispatcher("manageMovie.jsp").forward(request, response);
+                request.getRequestDispatcher("MovieDisplay").forward(request, response);
             }
             else{
-                request.getRequestDispatcher("editMovie.jsp").forward(request, response);
-            
+                movieDAO.editMovie(movie); 
+                request.getRequestDispatcher("MovieDisplay").forward(request, response);            
             }
         }catch (SQLException e) {
         throw new ServletException("Cannot obtain products from DB", e);

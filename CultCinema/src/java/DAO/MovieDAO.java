@@ -92,8 +92,20 @@ public class MovieDAO {
        String category = movie.getCategory();
        String language = movie.getLanguage();
        
-       DBConn db=new DBConn();      
-       db.doInsert("INSERT INTO [MOVIE](Name,Duration,Description,Director,Cast,Category,Language) VALUE("+name+","+duration+","+description+","+director+","+cast+","+category+","+language+")");
+       DBConn db=new DBConn(); 
+       db.doInsert("INSERT INTO [MOVIE](Name,Duration,Description,Director,Cast,Category,Language) VALUES('"+name+"','"+duration+"','"+description+"','"+director+"','"+cast+"','"+category+"','"+language+"')");
+   }
+   public void editMovie (Movie movie) throws SQLException{
+       String name = movie.getName();
+       int duration = movie.getDuration();
+       String description = movie.getDescription();
+       String director = movie.getDirector();
+       String cast = movie.getCast();
+       String category = movie.getCategory();
+       String language = movie.getLanguage();
+       int movieID = movie.getMovieID();
+       DBConn db=new DBConn(); 
+       db.doUpdate("UPDATE [MOVIE] SET Name = '"+name+"', Duration ='"+duration+"',Description='"+description+"',Director='"+director+"',Cast='"+cast+"',Category='"+category+"',Language='"+language+"' WHERE Movie_Id="+movieID);
    }
    public void addSection(int movieID) throws SQLException{
        

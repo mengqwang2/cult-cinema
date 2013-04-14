@@ -16,17 +16,15 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form>
             <table>
                 <tr>
                     <td>Movie</td>                      
-                    <td>Value</td>
+                    <td>Section ID</td>
                     <td>House</td>
                     <td>Time</td>
                     <td>Price $</td>
                     <td>Edit</td>
                     <td>Delete</td>
-                    <td>Add</td>
                 </tr>    
                 
                 <% Movie movie=(Movie)request.getAttribute("movie");%>
@@ -41,12 +39,11 @@
                     <td><%=section.getPrice()%></td>
                     <td><a href="ManageSection?id=<%= movie.getUid()%>&movieID=<%= movie.getMovieID()%>&action=EditSection">Edit Sections</a></td>
                     <td><a href="ManageSection?id=<%= movie.getUid()%>&movieID=<%= movie.getMovieID()%>&action=DeleteSection">Delete Sections</a></td>
-                    <td><a href="ManageSection?id=<%= movie.getUid()%>&movieID=<%= movie.getMovieID()%>&action=AddSection">Add Sections</a></td>
                     </tr>
                 <% } %>  
                 
             </table>
-        </form> 
-           
+            <a href="ManageSection?action=addSection">Add Section</a><br/>
+            <a href="manageMovie.jsp">Return to movie Management site</a>
     </body>
 </html>
