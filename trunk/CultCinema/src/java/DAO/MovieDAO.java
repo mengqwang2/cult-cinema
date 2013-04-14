@@ -105,7 +105,7 @@ public class MovieDAO {
 
    public Movie getMovieInfo(int movieID)
    {
-       Movie mv=null;
+       Movie mv=new Movie();
         try {
             
             DBConn db=new DBConn();
