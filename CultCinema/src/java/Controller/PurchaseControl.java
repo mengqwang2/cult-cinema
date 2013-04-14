@@ -16,6 +16,8 @@ import DAO.VenueDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -43,7 +45,7 @@ public class PurchaseControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        doGet(request,response);
+        doPost(request,response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -59,18 +61,45 @@ public class PurchaseControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        doPost(request,response);
+    }
+
+    /**
+     * Handles the HTTP
+     * <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
         try {
             HttpSession session=request.getSession();
-            Integer seatNo = Integer.parseInt(request.getParameter("count"));
-            Integer sectionID=Integer.parseInt(request.getParameter("sectionID"));
+            int sectionID=Integer.parseInt(request.getParameter("sectionID"));
+            int nSeats=Integer.parseInt(request.getParameter("nSeats"));
+            int[] seatArr;
+            seatArr=new int[nSeats];
+            for(int i=0;i<nSeats;i++)
+            {
+                seatArr[i]=Integer.parseInt(request.getParameter("seatArray"+i));
+            }
             Section selectSection=new Section();
             SectionDAO sdao=new SectionDAO();
             sdao.getSection(sectionID, selectSection);
             
-            Booking bkInfo=new Booking();
-            bkInfo.setSeat(seatNo);
-            bkInfo.setSectionID(selectSection.getSectionID());
-            
+            Booking indibk=new Booking();
+            List<Booking> bkInfo=new ArrayList<Booking>();
+            for(int i=0;i<nSeats;i++)
+            {
+                indibk.setSeat(seatArr[i]);
+                indibk.setSectionID(selectSection.getSectionID());
+                bkInfo.add(indibk);
+            }
+   
             MovieDAO mvdao=new MovieDAO();
             Movie mvInfo=mvdao.getMovieInfo(selectSection.getMovieID());
             
@@ -96,22 +125,6 @@ public class PurchaseControl extends HttpServlet {
             Logger.getLogger(PurchaseControl.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }
-
-    /**
-     * Handles the HTTP
-     * <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        doGet(request, response);
         
     }
 

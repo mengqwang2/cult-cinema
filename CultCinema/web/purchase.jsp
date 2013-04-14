@@ -4,6 +4,7 @@
     Author     : mengqwang
 --%>
 
+<%@page import="java.util.List"%>
 <%@page import="Bean.Member"%>
 <%@page import="Bean.Section"%>
 <%@page import="Bean.Venue"%>
@@ -31,7 +32,7 @@
     </head>
     <body>
          <% Movie mv=(Movie)request.getAttribute("movieInfo");%>
-         <% Booking bk=(Booking)request.getAttribute("bookingInfo");%>
+         <% List<Booking> bk=(List<Booking>)request.getAttribute("bookingInfo");%>
          <% Venue v=(Venue)request.getAttribute("venueInfo");%>
          <% Section s=(Section)request.getAttribute("sectionInfo"); %>
          <% Member m=(Member)request.getAttribute("memberInfo"); %>
@@ -95,7 +96,12 @@
                             Seat
                         </td>
                         <td>
-                           <% out.println(bk.getSeat());%>
+                           <% 
+                           for(Booking bks:bk)
+                           {
+                               out.println(bks.getSeat());
+                           }
+                           %>
                         </td>
                     </tr>
                     
@@ -160,11 +166,11 @@
                         %>
                         
                         <form action='confirmPurchase' method='post'>
-                            <input type='hidden' name='seatNo' value='<% out.println(bk.getSeat());%>' />
+                            
                             <input type='hidden' name='memberID' value='<% out.println(m.getMemberID());%>'/>
                             <input type='hidden' name='sectionID' value='<% out.println(s.getSectionID());%>' />
                             <input type='hidden' name='loyaltyUse' value='<% out.println(luse);%>' />
-                            <input type='hidden' name='loyalthAdd' value='<% out.println(ladd);%>' />
+                            <input type='hidden' name='loyaltyAdd' value='<% out.println(ladd);%>' />
                             <input type='hidden' name='payment' value='<% out.println(payment);%>' />
                             <input type='submit' value='Purchase!' />
                         </form>
