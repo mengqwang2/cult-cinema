@@ -29,6 +29,18 @@
         <servlet-class>Controller.ConfirmRefund</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ManageMovie</servlet-name>
+        <servlet-class>Controller.ManageMovie</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageSection</servlet-name>
+        <servlet-class>Controller.ManageSection</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditMovie</servlet-name>
+        <servlet-class>Controller.EditMovie</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>PurchaseControl</servlet-name>
         <servlet-class>Controller.PurchaseControl</servlet-class>
     </servlet>
@@ -59,6 +71,18 @@
     <servlet-mapping>
         <servlet-name>ConfirmRefund</servlet-name>
         <url-pattern>/ConfirmRefund</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageMovie</servlet-name>
+        <url-pattern>/ManageMovie</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageSection</servlet-name>
+        <url-pattern>/ManageSection</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditMovie</servlet-name>
+        <url-pattern>/EditMovie</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PurchaseControl</servlet-name>
