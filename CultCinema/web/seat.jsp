@@ -36,7 +36,7 @@
                          } 
                       }
                       if(fd==false)
-                          out.println("<a href='purchase?count="+count+"&sections='"+s+"'>O</a>");
+                          out.println("<a href='purchase?count="+count+"&sections="+s+"'>O</a>");
                         %>
                     </td>
                     <%count++;}%>
