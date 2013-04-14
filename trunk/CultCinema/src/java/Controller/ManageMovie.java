@@ -71,16 +71,42 @@ public class ManageMovie extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            MovieDAO movieDAO = new DAO.MovieDAO();
-            java.lang.String idTemp = request.getParameter("id");
-            int id=Integer.parseInt(idTemp == null || "".equals(idTemp)?"0":idTemp);
-            java.lang.String movieIDtemp = request.getParameter("movieID");
-            int movieID=Integer.parseInt(movieIDtemp == null || "".equals(movieIDtemp)?"0":movieIDtemp);
-            java.lang.String action=request.getParameter("action");            
+        MovieDAO movieDAO = new DAO.MovieDAO();
+        java.lang.String idTemp = request.getParameter("id");
+        int id=Integer.parseInt(idTemp == null || "".equals(idTemp)?"0":idTemp);
+        java.lang.String movieIDtemp = request.getParameter("movieID");
+        int movieID=Integer.parseInt(movieIDtemp == null || "".equals(movieIDtemp)?"0":movieIDtemp);
+        java.lang.String action=request.getParameter("action"); 
+        java.lang.String name=request.getParameter("Name");
+        java.lang.String durationTemp=request.getParameter("Duration");
+        int duration=Integer.parseInt(durationTemp == null || "".equals(durationTemp)?"0":durationTemp);
+        java.lang.String description=request.getParameter("Description");
+        java.lang.String director=request.getParameter("Director");
+        java.lang.String cast=request.getParameter("Cast");
+        java.lang.String category=request.getParameter("Category");
+        java.lang.String language=request.getParameter("Language");
+        //java.lang.String poster=request.getParameter("poster");
+        Movie movie = new Movie();
+        movie.setName(name);
+        movie.setDuration(duration);
+        movie.setDescription(description);
+        movie.setDirector(director);
+        movie.setLanguage(language);
+        movie.setCast(cast);
+        movie.setCategory(category);
+        movie.setMovieID(movieID);
         try {      
             if(action.equals("DeleteMovie")){
                 movieDAO.deleteMovie(movieID); 
                 request.getRequestDispatcher("MovieDisplay").forward(request, response);
+            }
+            else if(action.equals("addMovie")){
+                movieDAO.addMovie(movie); 
+                request.getRequestDispatcher("MovieDisplay").forward(request, response);
+            }
+            else if(action.equals("editMovie")){
+                movieDAO.editMovie(movie); 
+                request.getRequestDispatcher("MovieDisplay").forward(request, response);            
             }
             else{
                 List<Movie> movies = movieDAO.getMovieList();              

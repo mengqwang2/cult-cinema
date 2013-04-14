@@ -1,6 +1,6 @@
 <%-- 
-    Document   : editMovie
-    Created on : Apr 14, 2013, 12:51:55 PM
+    Document   : addSection
+    Created on : Apr 14, 2013, 4:11:14 PM
     Author     : 52165627
 --%>
 
@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="ManageMovie" method="POST">
+         <form action="EditMovie" method="POST">
             <label>Name</label>
             <input type="text" name="Name"><br/>
             <label>Duration (Minutes) </label>
@@ -32,6 +32,6 @@
             <input type="hidden" name="action" value="addMovie">
             <input type="submit" value="Add Movie">
         </form>
-        <a href="manageMovie.jsp">Return to movie Management site</a>
+        <a href="editMovie.jsp">Return to movie Management site</a>
     </body>
 </html>

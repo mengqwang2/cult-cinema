@@ -14,7 +14,7 @@
     </head>
     <body>
         <% Movie movie=(Movie)request.getAttribute("movie");%>
-        <form action="EditMovie" method="post">
+        <form action="ManageMovie" method="post">
             <label>Name</label>
             <input type="text" name="Name" value="<%=movie.getName()%>"><br/>
             <label>Duration (Minutes) </label>
