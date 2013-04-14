@@ -69,14 +69,14 @@ public class EditMovie extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        java.lang.String name=request.getParameter("name");
-        java.lang.String durationTemp=request.getParameter("durationTemp");
+        java.lang.String name=request.getParameter("Name");
+        java.lang.String durationTemp=request.getParameter("Duration");
         int duration=Integer.parseInt(durationTemp == null || "".equals(durationTemp)?"0":durationTemp);
-        java.lang.String description=request.getParameter("description");
-        java.lang.String director=request.getParameter("director");
-        java.lang.String cast=request.getParameter("cast");
-        java.lang.String category=request.getParameter("category");
-        java.lang.String language=request.getParameter("language");
+        java.lang.String description=request.getParameter("Description");
+        java.lang.String director=request.getParameter("Director");
+        java.lang.String cast=request.getParameter("Cast");
+        java.lang.String category=request.getParameter("Category");
+        java.lang.String language=request.getParameter("Language");
         java.lang.String method=request.getParameter("method");
         //java.lang.String poster=request.getParameter("poster");
         MovieDAO movieDAO = new DAO.MovieDAO();
@@ -90,7 +90,7 @@ public class EditMovie extends HttpServlet {
         movie.setCategory(category);
                 
         try {      
-            if(method.equals("method")){
+            if(method.equals("addMovie")){
                 movieDAO.addMovie(movie); 
                 request.getRequestDispatcher("manageMovie.jsp").forward(request, response);
             }
