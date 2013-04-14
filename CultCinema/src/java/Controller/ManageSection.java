@@ -66,7 +66,26 @@ public class ManageSection extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+         MovieDAO movieDAO = new DAO.MovieDAO();
+            java.lang.String idTemp = request.getParameter("id");
+            int id=Integer.parseInt(idTemp == null || "".equals(idTemp)?"0":idTemp);
+            java.lang.String movieIDtemp = request.getParameter("movieID");
+            int movieID=Integer.parseInt(movieIDtemp == null || "".equals(movieIDtemp)?"0":movieIDtemp);
+            java.lang.String action=request.getParameter("action");            
+        try {      
+            if(action.equals("DeleteMovie")){
+                movieDAO.deleteMovie(movieID); 
+                request.getRequestDispatcher("MovieDisplay").forward(request, response);
+            }
+            else{
+                List<Movie> movies = movieDAO.getMovieList();              
+                Movie selectedMovie = movies.get(id);
+                request.setAttribute("movie",selectedMovie);
+                request.getRequestDispatcher("editMovie.jsp").forward(request, response);            
+            }
+        } catch (SQLException e) {
+        throw new ServletException("Cannot obtain products from DB", e);
+        }
     }
 
     /**
