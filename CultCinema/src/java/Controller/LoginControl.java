@@ -103,7 +103,8 @@ public class LoginControl extends HttpServlet {
         }
           
         String forward;  
-        if(bool){  
+        if(bool){ 
+            request.getSession().setAttribute("memberID",user.getMemberID());
             forward="index.jsp";  
               
         }else{
