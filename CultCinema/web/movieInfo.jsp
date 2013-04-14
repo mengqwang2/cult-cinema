@@ -17,7 +17,7 @@
             /*
             function getSection()
               {
-                    Venue.value="id"; 
+                Venue.value="id"; 
                 var id=document.getElementById("sectionSelect").selectedIndex;
                          
             }

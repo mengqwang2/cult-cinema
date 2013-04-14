@@ -63,8 +63,9 @@
                 <ul>
                     <li>Home</li>
 
-                    <li><a href="MovieDisplay">Movies</a></li>
+                    <li><a href="MovieDisplay?Action=MovieDisplay">Movies</a></li>
                     <li><a href="RefundControl">Refund</a>
+                    <li><a href="MovieDisplay?Action=ManageMovie">Manage</a>
                 </ul>
             </div>
         <div id="body"></div>

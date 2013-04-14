@@ -78,10 +78,31 @@ public class MovieDAO {
             section.setVenueID(VenueID);
             sectionList.add(section);
             uid++;
-        } 
-        return sectionList;
+       } 
+       return sectionList;
    }
    
+
+   public void addMovie (Movie movie) throws SQLException{
+       String name = movie.getName();
+       int duration = movie.getDuration();
+       String description = movie.getDescription();
+       String director = movie.getDirector();
+       String cast = movie.getCast();
+       String category = movie.getCategory();
+       String language = movie.getLanguage();
+       
+       DBConn db=new DBConn();      
+       db.doInsert("INSERT INTO [MOVIE](Name,Duration,Description,Director,Cast,Category,Language) VALUE("+name+","+duration+","+description+","+director+","+cast+","+category+","+language+")");
+   }
+   public void addSection(int movieID) throws SQLException{
+       
+   }
+   public void deleteMovie(int movieID) throws SQLException{
+       DBConn db=new DBConn(); 
+       db.doDelete("DELETE FROM [Movie] WHERE Movie_ID =" + movieID);
+   }
+
    public Movie getMovieInfo(int movieID)
    {
        Movie mv=null;
@@ -119,5 +140,5 @@ public class MovieDAO {
         return mv;
    }
    
-   
+
 }

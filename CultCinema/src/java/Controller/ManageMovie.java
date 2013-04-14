@@ -5,7 +5,7 @@
 package Controller;
 
 import Bean.Movie;
-import Bean.Section;
+import DAO.MovieDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -14,12 +14,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author 52165627
  */
-public class SectionDisplay extends HttpServlet {
+public class ManageMovie extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -36,7 +37,7 @@ public class SectionDisplay extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            doPost(request,response);
+            doPost(request, response);
         } finally {            
             out.close();
         }
@@ -55,7 +56,7 @@ public class SectionDisplay extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doPost(request,response);
+        doPost(request, response);
     }
 
     /**
@@ -70,23 +71,21 @@ public class SectionDisplay extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        java.lang.String idTemp = request.getParameter("id");
-        int id=Integer.parseInt(idTemp == null || "".equals(idTemp)?"0":idTemp);
-        java.lang.String movieIDtemp = request.getParameter("movieID");
-        int movieID=Integer.parseInt(movieIDtemp == null || "".equals(movieIDtemp)?"0":movieIDtemp);
-        java.lang.String action=request.getParameter("action");
-        DAO.MovieDAO movieDAO = new DAO.MovieDAO();
-        try{
-            List<Section> sections = movieDAO.getSectionList(movieID);
-            request.setAttribute("sections",sections);
-            List<Movie> movies = movieDAO.getMovieList();              
-            Movie selectedMovie = movies.get(id);
-            request.setAttribute("movie",selectedMovie);
-            if(action.equals("ViewSection"))
-                request.getRequestDispatcher("movieInfo.jsp").forward(request, response);
-            else
-                request.getRequestDispatcher("manageSection.jsp").forward(request, response);  
-        }catch (SQLException e) {
+            MovieDAO movieDAO = new DAO.MovieDAO();
+            java.lang.String idTemp = request.getParameter("id");
+            int id=Integer.parseInt(idTemp == null || "".equals(idTemp)?"0":idTemp);
+            java.lang.String movieIDtemp = request.getParameter("movieID");
+            int movieID=Integer.parseInt(movieIDtemp == null || "".equals(movieIDtemp)?"0":movieIDtemp);
+            java.lang.String action=request.getParameter("action");            
+        try {      
+            if(action.equals("DeleteMovie")){
+                movieDAO.deleteMovie(movieID); 
+                request.getRequestDispatcher("manageMovie.jsp").forward(request, response);
+            }
+            else{
+                request.getRequestDispatcher("editMovie.jsp").forward(request, response);
+            }
+        } catch (SQLException e) {
         throw new ServletException("Cannot obtain products from DB", e);
         }
     }

@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -72,11 +73,15 @@ public class MovieDisplay extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         MovieDAO movieDAO = new DAO.MovieDAO();
-        try {                      
+        java.lang.String action=request.getParameter("Action");
+        try {
+            HttpSession session = request.getSession();
             List<Movie> movies = movieDAO.getMovieList();            
-            request.setAttribute("movies", movies);             
-            request.getRequestDispatcher("movie.jsp").forward(request, response);
-            
+            session.setAttribute("movies", movies);
+            if(action.equals("MovieDisplay"))
+                request.getRequestDispatcher("movie.jsp").forward(request, response);
+            else
+                request.getRequestDispatcher("manageMovie.jsp").forward(request, response);            
         } catch (SQLException e) {
         throw new ServletException("Cannot obtain products from DB", e);
     }

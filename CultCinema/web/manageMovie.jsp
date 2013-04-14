@@ -1,15 +1,12 @@
 <%-- 
-    Document   : movie
-    Created on : Apr 7, 2013, 2:34:23 PM
+    Document   : manager
+    Created on : Apr 14, 2013, 11:15:19 AM
     Author     : 52165627
 --%>
 
-
-<%@page import="java.util.List"%>
 <%@page import="Bean.Movie"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="Controller.MovieDisplay"%>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,13 +25,15 @@
         %>
         
         <tr>
-            <td><img alt=""></td>
-            <td><%=movie.getName()%> language <%=movie.getLanguage()%></td>
-           
-            <td><a href="SectionDisplay?id=<%= movie.getUid()%>&movieID=<%= movie.getMovieID()%>&action=ViewSection">Buy Tickets</a></td>
-        
+            <td><%=movie.getName()%></td>
+            <td><a href="SectionDisplay?id=<%= movie.getUid()%>&movieID=<%= movie.getMovieID()%>&action=ManageMovie">Manage Section</a></td>
+            <td><a href="ManageMovie?id=<%= movie.getUid()%>&movieID=<%= movie.getMovieID()%>&action=DeleteMovie">Delete Movie</a></td>
+            <td><a href="ManageMovie?id=<%= movie.getUid()%>&movieID=<%= movie.getMovieID()%>&action=EditMovie">Edit Movie</a></td>
         </tr>
         <% } %>
+        <tr>
+            <td><a href="addMovie.jsp">Add movie</a></td>
+        </tr>
         </table>
         </form>
     </body>
