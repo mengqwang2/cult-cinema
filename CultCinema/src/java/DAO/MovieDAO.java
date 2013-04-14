@@ -126,7 +126,7 @@ public class MovieDAO {
                 mv.setMovieID(mvID);
                 mv.setName(mvName);
                 mv.setDuration(mvDur);
-                mv.setDirector(mvDes);
+                mv.setDirector(mvDir);
                 mv.setDescription(mvDes);
                 mv.setLanguage(mvLang);
                 //mv.setPoster();
