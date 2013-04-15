@@ -36,6 +36,7 @@
          <% Venue v=(Venue)request.getAttribute("venueInfo");%>
          <% Section s=(Section)request.getAttribute("sectionInfo"); %>
          <% Member m=(Member)request.getAttribute("memberInfo"); %>
+         <% Integer nSeats=(Integer)request.getAttribute("nSeats"); %>
         <div id="mainContainer">
             <table border="1">
                 <caption>Ticket Information</caption>
@@ -96,12 +97,13 @@
                             Seat
                         </td>
                         <td>
+                       
                            <% 
                            for(Booking bks:bk)
                            {
                                out.println(bks.getSeat());
                            }
-                           %>
+                           %>  
                         </td>
                     </tr>
                     
@@ -119,7 +121,8 @@
                             Total 
                         </td>
                         <td id='toPay'>
-                            <% out.println(s.getPrice());%>
+                            <% int toPay=s.getPrice()*nSeats;%>
+                            <% out.println(toPay);%>
                         </td>
                     </tr>
                     
@@ -137,7 +140,7 @@
                                 </option>
                             </select>
                             <br/>
-                            <input type='checkbox' name='loyalty' id='loyalty' onclick='checkToPay(<%out.println(s.getPrice()); %>,<%out.println(m.getLoyalty());%>)'/>Use Loyalty Point
+                            <input type='checkbox' name='loyalty' id='loyalty' onclick='checkToPay(<%out.println(toPay); %>,<%out.println(m.getLoyalty());%>)'/>Use Loyalty Point
                         </td>
                     </tr>
                     
