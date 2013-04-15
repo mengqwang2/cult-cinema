@@ -17,6 +17,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Seat</title>
         <script type="text/javascript">
+            var seatBuy=new Array();
+            for(var i=0;i<500;i++)
+            {
+                seatBuy[i]=0;
+            }
             function savePurchase(current,id)
             {
                 if(current==0)
@@ -30,19 +35,24 @@
                     seatBuy[id-1]=0;
                 }
             }
+            
+            function finalPurchase(count)
+            {
+                var seatNo="";
+                for(var i=0;i<count;i++)
+                {
+                    if(seatBuy[i]==1)
+                        seatNo=seatNo+i+",";
+                }
+                document.getElementById('seats').value=seatNo;
+            }
         </script>
     </head>
     <body>
         <div id='mainContainer'>
             <table>
                 <%Venue v=(Venue)request.getAttribute("selectVenue"); Section s=(Section) request.getAttribute("selectSection"); 
-                int[] seatBuy;
-                seatBuy=new int[v.getSeats()];
-                for(int i=0;i<v.getSeats();i++)
-                {
-                    seatBuy[i]=0;
-                }
-                Vector seatArray=new Vector(100,2);
+                
                 int count=1;%>
                 <table border='1'>
                 <%for (int i=0;i<v.getRow();i++) { %>
@@ -67,24 +77,12 @@
                 </tr>
                 <%}%>
             </table>
-            <% for(int i=0;i<v.getSeats();i++)
-            {
-                if(seatBuy[i]==1)
-                    seatArray.addElement(new Integer(i));
-            }
-            %>
+           
             <form action="purchase" method="post">
+                <input type="button" value="Select!" onclick="finalPurchase(<%out.print(count-1);%>);" />
                 <input type='hidden' name='sectionID' value='<% out.print(s.getSectionID()); %>' />
-                <input type='hidden' name='nSeats' value='<% out.print(seatArray.size()); %>' />
-                <%int ct=0; 
-                Enumeration e=seatArray.elements(); %>
-                <% while (e.hasMoreElements())
-                { %>
-                <input type='hidden' name='seatArray<% out.print(ct);%>' value='
-                       <% out.print(e.nextElement());%>
-                  ' />
-                    
-                <% }%>
+                <input type='hidden' name='seats' id="seats" value='' />
+                
                 <input type='submit' value='Preview' />
             </form>
         </div>

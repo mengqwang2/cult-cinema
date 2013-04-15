@@ -80,21 +80,26 @@ public class PurchaseControl extends HttpServlet {
         try {
             HttpSession session=request.getSession();
             int sectionID=Integer.parseInt(request.getParameter("sectionID"));
-            int nSeats=Integer.parseInt(request.getParameter("nSeats"));
+            String seats=request.getParameter("seats");
+            int nSeats=0;
+            //split seats string
+            String[] indiSeats=seats.split(",");
+            nSeats=indiSeats.length;
             int[] seatArr;
             seatArr=new int[nSeats];
             for(int i=0;i<nSeats;i++)
             {
-                seatArr[i]=Integer.parseInt(request.getParameter("seatArray"+i));
+                seatArr[i]=Integer.parseInt(indiSeats[i]);
             }
             Section selectSection=new Section();
             SectionDAO sdao=new SectionDAO();
             sdao.getSection(sectionID, selectSection);
             
-            Booking indibk=new Booking();
+           
             List<Booking> bkInfo=new ArrayList<Booking>();
             for(int i=0;i<nSeats;i++)
             {
+                Booking indibk=new Booking();
                 indibk.setSeat(seatArr[i]);
                 indibk.setSectionID(selectSection.getSectionID());
                 bkInfo.add(indibk);
@@ -120,6 +125,7 @@ public class PurchaseControl extends HttpServlet {
             request.setAttribute("sectionInfo", selectSection);
             request.setAttribute("venueInfo", vInfo);
             request.setAttribute("memberInfo", mInfo);
+            request.setAttribute("nSeats", nSeats);
             request.getRequestDispatcher("purchase.jsp").forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(PurchaseControl.class.getName()).log(Level.SEVERE, null, ex);
