@@ -70,7 +70,7 @@
                       }
                       if(fd==false)
                           out.println("<a href=\"javascript:savePurchase(0,"+count+")\">O</a>");
-                          //out.println("<a href='purchase?count="+count+"&sectionID="+s.getSectionID()+"'>O</a>");
+                          
                         %>
                     </td>
                     <%count++;}%>

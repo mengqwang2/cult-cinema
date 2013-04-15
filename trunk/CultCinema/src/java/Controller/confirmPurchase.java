@@ -6,30 +6,23 @@ package Controller;
 
 import Bean.Booking;
 import Bean.Member;
-import Bean.Movie;
-import Bean.Section;
-import Bean.Venue;
+import DAO.BookingDAO;
 import DAO.MemberDAO;
-import DAO.MovieDAO;
-import DAO.SectionDAO;
-import DAO.VenueDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 /**
  *
  * @author mengqwang
  */
-public class PurchaseControl extends HttpServlet {
+public class confirmPurchase extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -43,9 +36,7 @@ public class PurchaseControl extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        doPost(request,response);
+       doPost(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -61,7 +52,7 @@ public class PurchaseControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doPost(request,response);
+        doPost(request, response);
     }
 
     /**
@@ -76,14 +67,18 @@ public class PurchaseControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+         response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
         try {
             HttpSession session=request.getSession();
+            int memberID=(Integer)session.getAttribute("memberID");
             int sectionID=Integer.parseInt(request.getParameter("sectionID"));
-            String seats=request.getParameter("seats");
+            int loyaltyUse=Integer.parseInt(request.getParameter("loyaltyUse"));
+            int loyaltyAdd=Integer.parseInt(request.getParameter("loyaltyAdd"));
+            int payment=Integer.parseInt(request.getParameter("payment"));
+            String seatNo=request.getParameter("seatNo");
             int nSeats=0;
-            //split seats string
-            String[] indiSeats=seats.split(",");
+            String[] indiSeats=seatNo.split(",");
             nSeats=indiSeats.length;
             int[] seatArr;
             seatArr=new int[nSeats];
@@ -91,48 +86,35 @@ public class PurchaseControl extends HttpServlet {
             {
                 seatArr[i]=Integer.parseInt(indiSeats[i]);
             }
-            Section selectSection=new Section();
-            SectionDAO sdao=new SectionDAO();
-            sdao.getSection(sectionID, selectSection);
-            
-           
             List<Booking> bkInfo=new ArrayList<Booking>();
             for(int i=0;i<nSeats;i++)
             {
                 Booking indibk=new Booking();
                 indibk.setSeat(seatArr[i]);
-                indibk.setSectionID(selectSection.getSectionID());
+                indibk.setSectionID(sectionID);
+                indibk.setMemberID(memberID);
+                indibk.setStatus("RP");
+                indibk.setPayment(payment);
                 bkInfo.add(indibk);
             }
-   
-            MovieDAO mvdao=new MovieDAO();
-            Movie mvInfo=mvdao.getMovieInfo(selectSection.getMovieID());
+            //update booking info
+            for(Booking bk:bkInfo)
+            {
+                BookingDAO bkdao=new BookingDAO();
+                bkdao.addBkRecord(bk);
+            }
             
-            Venue vInfo=new Venue();
-            vInfo.setVenueID(selectSection.getVenueID());
-            VenueDAO vdao=new VenueDAO();
-            vdao.setVenueObj(vInfo);
-            
-            Member mInfo=new Member();
-            mInfo.setMemberID((Integer)session.getAttribute("memberID"));
-            //mInfo.setMemberID(session.getAttribute("memberID"));
-            MemberDAO mdao =new MemberDAO();
-            mdao.getMember(mInfo);
+            //update user loyalty
+            Member m=new Member();
+            m.setMemberID(memberID);
+            MemberDAO mdao=new MemberDAO();
+            mdao.getMember(m);
+            mdao.setMember(m,m.getPassword(),m.getName(),m.getAddress(),m.getTel(),m.getGender(),m.getMail(),m.getLoyalty()-loyaltyUse+loyaltyAdd);
             
             
-            request.setAttribute("bookingInfo", bkInfo);
-            request.setAttribute("movieInfo", mvInfo);
-            request.setAttribute("sectionInfo", selectSection);
-            request.setAttribute("venueInfo", vInfo);
-            request.setAttribute("memberInfo", mInfo);
-            request.setAttribute("nSeats", nSeats);
-            request.setAttribute("seats", seats);
-            request.getRequestDispatcher("purchase.jsp").forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(PurchaseControl.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {            
+            out.close();
         }
-
-        
     }
 
     /**

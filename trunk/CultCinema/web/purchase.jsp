@@ -37,6 +37,7 @@
          <% Section s=(Section)request.getAttribute("sectionInfo"); %>
          <% Member m=(Member)request.getAttribute("memberInfo"); %>
          <% Integer nSeats=(Integer)request.getAttribute("nSeats"); %>
+         <% String seatNo=(String)request.getAttribute("seats");%>
         <div id="mainContainer">
             <table border="1">
                 <caption>Ticket Information</caption>
@@ -168,13 +169,12 @@
  
                         %>
                         
-                        <form action='confirmPurchase' method='post'>
-                            
-                            <input type='hidden' name='memberID' value='<% out.println(m.getMemberID());%>'/>
-                            <input type='hidden' name='sectionID' value='<% out.println(s.getSectionID());%>' />
-                            <input type='hidden' name='loyaltyUse' value='<% out.println(luse);%>' />
-                            <input type='hidden' name='loyaltyAdd' value='<% out.println(ladd);%>' />
-                            <input type='hidden' name='payment' value='<% out.println(payment);%>' />
+                        <form action='confirmPurchase' method='post'>                           
+                            <input type='hidden' name='sectionID' value='<% out.print(s.getSectionID());%>' />
+                            <input type='hidden' name='loyaltyUse' value='<% out.print(luse);%>' />
+                            <input type='hidden' name='loyaltyAdd' value='<% out.print(ladd);%>' />
+                            <input type='hidden' name='payment' value='<% out.print(payment);%>' />
+                            <input type="hidden" name="seatNo" value="<% out.print(seatNo);%>">
                             <input type='submit' value='Purchase!' />
                         </form>
         </div>
