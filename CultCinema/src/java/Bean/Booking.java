@@ -12,7 +12,7 @@ public class Booking {
     private int issueID;
     private int sectionID;
     private int seat;
-    private String payment;
+    private int payment;
     private String status;
     private int memberID;
     private int uid;
@@ -34,10 +34,10 @@ public class Booking {
     public void setSeat(int seat){
         this.seat=seat;
     }
-    public String getPayment(){
+    public int getPayment(){
         return this.payment;
     }
-    public void setPayment(String payment){
+    public void setPayment(int payment){
         this.payment=payment;
     }
     public int getMemberID(){

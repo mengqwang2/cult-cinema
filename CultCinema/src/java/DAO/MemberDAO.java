@@ -57,14 +57,13 @@ public class MemberDAO {
         return false;
     }
     
-    public void setMember(Member m)
+    public void getMember(Member m)
     {
         try {
             ResultSet rs=null;  
             DBConn db=new DBConn(); 
             String sql="SELECT * FROM [Member] where [Member_ID]="+m.getMemberID();
             
-            int mid=m.getMemberID();
             String pwd = null;
             String name = null;
             String adr = null;
@@ -95,4 +94,19 @@ public class MemberDAO {
             Logger.getLogger(MemberDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void setMember(Member m,String pwd,String name,String adr,String tel,String gender,String mail,int loyalty)
+    {
+        try {
+            DBConn db=new DBConn(); 
+            String sql="UPDATE [MEMBER] SET [Password]='"+pwd+"',[Name]='"+name+"',[Address]='"+adr+"',[Tel]='"+tel+"',[Gender]='"+gender+"',[Mail]='"+mail+"',[Loyalty]="+loyalty+" WHERE [Member_ID]="+m.getMemberID();
+            db.doUpdate(sql);
+            db.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(MemberDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(MemberDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 }

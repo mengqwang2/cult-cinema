@@ -27,7 +27,7 @@ public class RefundDAO {
          int issueID=rs.getInt("Issue_ID");
          int sectionID=rs.getInt("Section_ID");
          int seat=rs.getInt("Seat");
-         String payment=rs.getString("payment");
+         int payment=rs.getInt("payment");
          int memberID=rs.getInt("member_ID");
 
          Booking booking=new Booking();
