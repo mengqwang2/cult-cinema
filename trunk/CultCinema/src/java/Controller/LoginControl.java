@@ -95,7 +95,9 @@ public class LoginControl extends HttpServlet {
        String username = request.getParameter("j_username");
        String password = request.getParameter("j_password");
        String user_type= request.getParameter("user_type");
-       if(user_type=="member")
+       try
+       {
+       if(user_type.equals("member"))
        {
             Member user=new Member();  
             user.setMemberID(Integer.parseInt(username));
@@ -113,7 +115,7 @@ public class LoginControl extends HttpServlet {
               
             }    
        }
-       else if(user_type=="manager")
+       else if(user_type.equals("manager"))
        {
            Manager user=new Manager();
            user.setManagerID(username);
@@ -131,7 +133,7 @@ public class LoginControl extends HttpServlet {
               
             }    
        }
-       else if(user_type=="officer")
+       else if(user_type.equals("officer"))
        {
            Officer user=new Officer();
            user.setOfficerID(username);
@@ -149,6 +151,11 @@ public class LoginControl extends HttpServlet {
               
             }   
            
+       }
+       }catch(Exception e)
+       {
+           request.getSession().invalidate(); 
+           RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
        }
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
