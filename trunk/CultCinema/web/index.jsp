@@ -17,9 +17,19 @@
             <h1>
                 Cult Cinema Inc
             </h1>  
+            <% Opt opt=new Opt();
+                if (session.isNew())
+                {
+                    out.println(opt.showNotLoginNav());
+                }
+            else
+                {
+                int memberID=(Integer)session.getAttribute("memberID");
+                out.println(opt.showLoginNav(memberID));
+                }
+            %>
             
-            <% Opt opt=new Opt();%>
-            <% out.println(opt.showNotLoginNav());%>
+            
         </div>
         <div id="body">
              

@@ -111,7 +111,7 @@ public class LoginControl extends HttpServlet {
             //forward="";  
         }  
                 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
         
     }

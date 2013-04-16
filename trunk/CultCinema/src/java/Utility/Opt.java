@@ -18,4 +18,10 @@ public class Opt {
         return opt;
     }
     
+    public String showLoginNav(int memberID)
+    {
+        String opt="Logged in as "+memberID;
+        return opt;
+    }
+    
 }
