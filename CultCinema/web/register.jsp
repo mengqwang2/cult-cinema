@@ -4,6 +4,7 @@
     Author     : 52165627
 --%>
 
+<%@page import="Utility.Opt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,12 +14,50 @@
     </head>
     <body>
         <div id="header">
-            <h1>
-                Cult Cinema Inc
-            </h1>        
+            <% Opt opt=new Opt();  
+            out.println(opt.showHeader());
+            %>
+        </div>
+        <div id='loginNav'>
+            <% 
+                String type="";
+                if (session.isNew())
+                {
+                    out.println(opt.showNotLoginNav());
+                }
+                else if(session.getAttribute("memberID")==null&&session.getAttribute("managerID")==null&&session.getAttribute("officerID")==null)
+                {
+                    out.println(opt.showNotLoginNav());
+                }
+                else if(session.getAttribute("memberID")!=null)
+                {
+                    int memberID=(Integer)session.getAttribute("memberID");
+                    out.println(opt.showLoginNav(memberID));
+                    type="member";
+                }
+                else if(session.getAttribute("managerID")!=null)
+                {
+                    String managerID=(String)session.getAttribute("managerID");
+                    out.println(opt.showLoginNav(managerID));
+                    type="manager";
+                }
+                else if(session.getAttribute("officerID")!=null)
+                {
+                    String officerID=(String)session.getAttribute("officerID");
+                    out.println(opt.showLoginNav(officerID));
+                    type="officer";
+                }
+            %>
         </div>
         
-        <div id="body">
+        <div id="navigation">
+                
+                <% 
+                    out.println(opt.showItem(type));
+                %>
+        </div>
+        
+        <div id="mainContainer">
             <h2>Register</h2>
             <div id="register">
                 <form name ="frmRegister" action='register_check' method='POST'>
@@ -51,7 +90,9 @@
             
         </div>
         <div id="footer">
-            © Copyright 2013 Cult Cinema Inc
+            <%  
+            out.println(opt.showFooter());
+            %>
         </div>
     </body>
 </html>

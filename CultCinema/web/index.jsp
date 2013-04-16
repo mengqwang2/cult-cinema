@@ -14,12 +14,19 @@
     </head>
     <body>
         <div id="header">
-            <h1>
-                Cult Cinema Inc
-            </h1>  
-            <% Opt opt=new Opt();
+            <% Opt opt=new Opt();  
+            out.println(opt.showHeader());
+            %>
+            
+        </div>
+            <div id='loginNav'>
+            <% 
                 String type="";
                 if (session.isNew())
+                {
+                    out.println(opt.showNotLoginNav());
+                }
+                else if(session.getAttribute("memberID")==null&&session.getAttribute("managerID")==null&&session.getAttribute("officerID")==null)
                 {
                     out.println(opt.showNotLoginNav());
                 }
@@ -43,9 +50,7 @@
                 }
             %>
             
-            
-        </div>
-        <div id="body">
+            </div>
              
             
             <div id="navigation">
@@ -54,10 +59,11 @@
                     out.println(opt.showItem(type));
                 %>
             </div>
-            
-        </div>
+           
         <div id="footer">
-            © Copyright 2013 Cult Cinema Inc
+            <%  
+            out.println(opt.showFooter());
+            %>
         </div>
     </body>
 </html>
