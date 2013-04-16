@@ -102,10 +102,9 @@ public class LoginControl extends HttpServlet {
             Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
         }
           
-        String forward;  
+         
         if(bool){ 
             request.getSession().setAttribute("memberID",user.getMemberID());
-            forward="index.jsp";  
               
         }else{
   
