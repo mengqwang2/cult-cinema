@@ -18,14 +18,28 @@
                 Cult Cinema Inc
             </h1>  
             <% Opt opt=new Opt();
+                String type="";
                 if (session.isNew())
                 {
                     out.println(opt.showNotLoginNav());
                 }
-                else
+                else if(session.getAttribute("memberID")!=null)
                 {
                     int memberID=(Integer)session.getAttribute("memberID");
                     out.println(opt.showLoginNav(memberID));
+                    type="member";
+                }
+                else if(session.getAttribute("managerID")!=null)
+                {
+                    String managerID=(String)session.getAttribute("managerID");
+                    out.println(opt.showLoginNav(managerID));
+                    type="manager";
+                }
+                else if(session.getAttribute("officerID")!=null)
+                {
+                    String officerID=(String)session.getAttribute("officerID");
+                    out.println(opt.showLoginNav(officerID));
+                    type="officer";
                 }
             %>
             
@@ -35,13 +49,10 @@
              
             
             <div id="navigation">
-                <ul>
-                    <li>Home</li>
-
-                    <li><a href="MovieDisplay?Action=MovieDisplay">Movies</a></li>
-                    <li><a href="RefundControl">Refund</a>
-                    <li><a href="MovieDisplay?Action=ManageMovie">Manage</a>
-                </ul>
+                
+                <% 
+                    out.println(opt.showItem(type));
+                %>
             </div>
             
         </div>

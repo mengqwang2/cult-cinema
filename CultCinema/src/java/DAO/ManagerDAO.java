@@ -24,7 +24,7 @@ public class ManagerDAO {
                     String password=user.getPassword();
                     String password2="";
                     if(!user.getPassword().equals("")||user.getPassword()!=null){
-                        String sql="select [Password] from [MANAGER] where [Manager_ID]="+user.getManagerID();
+                        String sql="select [Password] from [MANAGER] where [Manager_ID]='"+user.getManagerID()+"'";
                         rs=db.doSelect(sql);  
                         if(rs.next())
                         {

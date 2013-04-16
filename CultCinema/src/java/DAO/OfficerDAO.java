@@ -22,7 +22,7 @@ public class OfficerDAO {
                     String password=user.getPassword();
                     String password2="";
                     if(!user.getPassword().equals("")||user.getPassword()!=null){
-                        String sql="select [Password] from [OFFICER] where [Officer_ID]="+user.getOfficerID();
+                        String sql="select [Password] from [OFFICER] where [Officer_ID]='"+user.getOfficerID()+"'";
                         rs=db.doSelect(sql);  
                         if(rs.next())
                         {
