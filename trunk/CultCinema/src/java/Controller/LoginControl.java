@@ -4,8 +4,12 @@
  */
 package Controller;
 
+import Bean.Manager;
 import Bean.Member;
+import Bean.Officer;
+import DAO.ManagerDAO;
 import DAO.MemberDAO;
+import DAO.OfficerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -90,22 +94,62 @@ public class LoginControl extends HttpServlet {
             throws ServletException, IOException {
        String username = request.getParameter("j_username");
        String password = request.getParameter("j_password");
-
-        Member user=new Member();  
-        user.setMemberID(Integer.parseInt(username));
-        user.setPassword(password);
-        MemberDAO md=new MemberDAO();  
-        boolean bool = false;  
-        try {
-            bool = md.checkUserLogin(user);
-        } catch (Exception ex) {
-            Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       String user_type= request.getParameter("user_type");
+       if(user_type=="member")
+       {
+            Member user=new Member();  
+            user.setMemberID(Integer.parseInt(username));
+            user.setPassword(password);
+            MemberDAO md=new MemberDAO();  
+            boolean bool = false;  
+            try {
+                bool = md.checkUserLogin(user);
+            } catch (Exception ex) {
+                Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
+            }
  
-        if(bool){ 
-            request.getSession().setAttribute("memberID",user.getMemberID());
+            if(bool){ 
+                request.getSession().setAttribute("memberID",user.getMemberID());
               
-        }     
+            }    
+       }
+       else if(user_type=="manager")
+       {
+           Manager user=new Manager();
+           user.setManagerID(username);
+           user.setPassword(password);
+           ManagerDAO md=new ManagerDAO();
+           boolean bool = false;  
+            try {
+                bool = md.checkUserLogin(user);
+            } catch (Exception ex) {
+                Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+ 
+            if(bool){ 
+                request.getSession().setAttribute("managerID",user.getManagerID());
+              
+            }    
+       }
+       else if(user_type=="officer")
+       {
+           Officer user=new Officer();
+           user.setOfficerID(username);
+           user.setPassword(password);
+           OfficerDAO od=new OfficerDAO();
+           boolean bool = false;  
+            try {
+                bool = od.checkUserLogin(user);
+            } catch (Exception ex) {
+                Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+ 
+            if(bool){ 
+                request.getSession().setAttribute("officerID",user.getOfficerID());
+              
+            }   
+           
+       }
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
         

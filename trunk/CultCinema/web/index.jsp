@@ -22,7 +22,7 @@
                 {
                     out.println(opt.showNotLoginNav());
                 }
-            else
+                else
                 {
                     int memberID=(Integer)session.getAttribute("memberID");
                     out.println(opt.showLoginNav(memberID));
