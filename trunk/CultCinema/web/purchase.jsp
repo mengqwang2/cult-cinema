@@ -4,6 +4,7 @@
     Author     : mengqwang
 --%>
 
+<%@page import="Utility.Opt"%>
 <%@page import="java.util.List"%>
 <%@page import="Bean.Member"%>
 <%@page import="Bean.Section"%>
@@ -38,6 +39,52 @@
          <% Member m=(Member)request.getAttribute("memberInfo"); %>
          <% Integer nSeats=(Integer)request.getAttribute("nSeats"); %>
          <% String seatNo=(String)request.getAttribute("seats");%>
+         
+         
+         <div id="header">
+            <% Opt opt=new Opt();  
+            out.println(opt.showHeader());
+            %>
+        </div>
+        <div id='loginNav'>
+            <% 
+                String type="";
+                if (session.isNew())
+                {
+                    out.println(opt.showNotLoginNav());
+                }
+                else if(session.getAttribute("memberID")==null&&session.getAttribute("managerID")==null&&session.getAttribute("officerID")==null)
+                {
+                    out.println(opt.showNotLoginNav());
+                }
+                else if(session.getAttribute("memberID")!=null)
+                {
+                    int memberID=(Integer)session.getAttribute("memberID");
+                    out.println(opt.showLoginNav(memberID));
+                    type="member";
+                }
+                else if(session.getAttribute("managerID")!=null)
+                {
+                    String managerID=(String)session.getAttribute("managerID");
+                    out.println(opt.showLoginNav(managerID));
+                    type="manager";
+                }
+                else if(session.getAttribute("officerID")!=null)
+                {
+                    String officerID=(String)session.getAttribute("officerID");
+                    out.println(opt.showLoginNav(officerID));
+                    type="officer";
+                }
+            %>
+        </div>
+        
+        <div id="navigation">
+                
+                <% 
+                    out.println(opt.showItem(type));
+                %>
+        </div>
+        
         <div id="mainContainer">
             <table border="1">
                 <caption>Ticket Information</caption>
@@ -113,7 +160,7 @@
                             Amount
                         </td>
                         <td>
-                           1
+                           <% out.println(nSeats);%>
                         </td>
                     </tr>
                     
@@ -177,6 +224,13 @@
                             <input type="hidden" name="seatNo" value="<% out.print(seatNo);%>">
                             <input type='submit' value='Purchase!' />
                         </form>
+        </div>
+                            
+                            
+         <div id="footer">
+            <%  
+            out.println(opt.showFooter());
+            %>
         </div>
     </body>
 </html>

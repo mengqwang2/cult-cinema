@@ -4,24 +4,19 @@
  */
 package Controller;
 
-import Bean.Member;
-import DAO.MemberDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author mengqwang
  */
-public class RegisterControl extends HttpServlet {
+public class logoffControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -35,14 +30,7 @@ public class RegisterControl extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            doPost(request,response);
-        } finally {            
-            out.close();
-        }
+        doGet(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -58,7 +46,17 @@ public class RegisterControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        try {
+            /* TODO output your page here. You may use following sample code. */
+            HttpSession session=request.getSession();
+            session.invalidate();
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+            
+        } finally {            
+            out.close();
+        }
     }
 
     /**
@@ -73,38 +71,7 @@ public class RegisterControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-            String name = request.getParameter("name");
-            String password = request.getParameter("password");
-            String address = request.getParameter("address");
-            String tel = request.getParameter("tel");
-            String gender = request.getParameter("gender");
-            String email = request.getParameter("email");
-            
-            Member user=new Member();  
-            user.setName(name);  
-            user.setPassword(password); 
-            user.setAddress(address);
-            user.setGender(gender);
-            user.setTel(tel);
-            user.setMail(email);  
-            
-        MemberDAO md=new MemberDAO();  
-        boolean bool = false;  
-        try {
-            bool = md.doUserReg(user);
-        } catch (SQLException ex) {
-            Logger.getLogger(RegisterControl.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(RegisterControl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        if(bool)  
-        {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-            dispatcher.forward(request, response);
-        }
-        
+        doGet(request, response);
     }
 
     /**
