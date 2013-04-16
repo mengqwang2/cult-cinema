@@ -101,16 +101,11 @@ public class LoginControl extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
         }
-          
-         
+ 
         if(bool){ 
             request.getSession().setAttribute("memberID",user.getMemberID());
               
-        }else{
-  
-            //forward="";  
-        }  
-                
+        }     
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
         
