@@ -32,6 +32,7 @@
                     <input type="text" name='j_username' id='j_username' />
                     <label for="login-text">Password</label>
                     <input type="password" name='j_password' id='j_password'/>
+                    <input type='hidden' name='user_type' value='officer' />
                 </fieldset>
 
                 <input type="submit" name="submit" value="Login" />
