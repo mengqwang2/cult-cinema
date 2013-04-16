@@ -24,8 +24,8 @@
                 }
             else
                 {
-                int memberID=(Integer)session.getAttribute("memberID");
-                out.println(opt.showLoginNav(memberID));
+                    int memberID=(Integer)session.getAttribute("memberID");
+                    out.println(opt.showLoginNav(memberID));
                 }
             %>
             

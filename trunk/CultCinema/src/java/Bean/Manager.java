@@ -8,15 +8,16 @@ package Bean;
  *
  * @author Zhang Yanlin
  */
-public class Officer {
-    private String officerID;
+public class Manager {
+    
+    private String managerID;
 
-    public String getOfficerID() {
-        return officerID;
+    public String getManagerID() {
+        return managerID;
     }
 
-    public void setOfficerID(String officerID) {
-        this.officerID = officerID;
+    public void setManagerID(String managerID) {
+        this.managerID = managerID;
     }
 
     public String getPassword() {
@@ -26,10 +27,6 @@ public class Officer {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    
     private String password;
-    
-    
     
 }
