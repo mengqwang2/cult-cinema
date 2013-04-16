@@ -4,6 +4,7 @@
     Author     : 52165627
 --%>
 
+<%@page import="Bean.Reserve"%>
 <%@page import="Utility.Opt"%>
 <%@page import="java.util.Enumeration"%>
 <%@page import="java.util.Vector"%>
@@ -12,6 +13,7 @@
 <%@page import="Bean.Booking"%>
 <%@page import="Bean.Venue"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%int memberID=(Integer)session.getAttribute("memberID");%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -43,9 +45,18 @@
                 for(var i=0;i<count;i++)
                 {
                     if(seatBuy[i]==1)
+                    {
                         seatNo=seatNo+i+",";
+                        <%
+                            Reserve r=new Reserve();
+                            r.setMemberID(memberID);
+                            r.setSeat(seatBuy[i]);
+                        %>
+                    }
+                    
                 }
                 document.getElementById('seats').value=seatNo;
+                
             }
         </script>
     </head>
@@ -53,7 +64,7 @@
         
         <div id="header">
             <% Opt opt=new Opt();  
-            out.println(opt.showHeader());
+                out.println(opt.showHeader());
             %>
         </div>
         <div id='loginNav'>
@@ -127,14 +138,14 @@
                 <input type="button" value="Select!" onclick="finalPurchase(<%out.print(count-1);%>);" />
                 <input type='hidden' name='sectionID' value='<% out.print(s.getSectionID()); %>' />
                 <input type='hidden' name='seats' id="seats" value='' />
-                
                 <input type='submit' value='Preview' />
             </form>
+            <a href="movie.jsp">Back to view other movies!</a>
         </div>
                 
          <div id="footer">
             <%  
-            out.println(opt.showFooter());
+                out.println(opt.showFooter());
             %>
         </div>
     </body>

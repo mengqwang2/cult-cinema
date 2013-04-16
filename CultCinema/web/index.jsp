@@ -59,6 +59,13 @@
                     out.println(opt.showItem(type));
                 %>
             </div>
+            
+            
+            <div id="mainContainer">
+                <p>
+                    Movie Information to be displayed here! :)
+                </p>
+            </div>
            
         <div id="footer">
             <%  
