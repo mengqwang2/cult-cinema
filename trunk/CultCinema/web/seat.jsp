@@ -46,17 +46,12 @@
                 {
                     if(seatBuy[i]==1)
                     {
-                        seatNo=seatNo+i+",";
-                        <%
-                            Reserve r=new Reserve();
-                            r.setMemberID(memberID);
-                            r.setSeat(seatBuy[i]);
-                        %>
+                        seatNo=seatNo+(i+1)+",";
                     }
                     
                 }
                 document.getElementById('seats').value=seatNo;
-                
+                document.getElementById('seat').value=seatNo;
             }
         </script>
     </head>
@@ -80,7 +75,7 @@
                 }
                 else if(session.getAttribute("memberID")!=null)
                 {
-                    int memberID=(Integer)session.getAttribute("memberID");
+                    memberID=(Integer)session.getAttribute("memberID");
                     out.println(opt.showLoginNav(memberID));
                     type="member";
                 }
@@ -107,17 +102,27 @@
         </div>
         <div id='mainContainer'>
             <table>
-                <%Venue v=(Venue)request.getAttribute("selectVenue"); Section s=(Section) request.getAttribute("selectSection"); 
-                
+                <%Venue v=(Venue)request.getAttribute("selectVenue"); 
+                Section s=(Section) request.getAttribute("selectSection"); 
                 int count=1;%>
                 <table border='1'>
                 <%for (int i=0;i<v.getRow();i++) { %>
                 <tr>
                     <%for (int j=0;j<v.getColumn();j++) { %>
                     <td id='t<% out.print(count); %>'>
-                        <% boolean fd=false;List<Booking> bkings = (List<Booking>)request.getAttribute("lsBooking"); 
+                        <% boolean fd=false;
+                        List<Booking> bkings = (List<Booking>)request.getAttribute("lsBooking");
+                        List<Reserve> rvs= (List<Reserve>)request.getAttribute("lsReserve");
                       for (Booking bking: bkings ){  
                          if(bking.getSeat()==count)
+                         {
+                             out.println("X");
+                             fd=true;
+                             break;
+                         } 
+                      }
+                      for (Reserve rv: rvs ){  
+                         if(rv.getSeat()==count)
                          {
                              out.println("X");
                              fd=true;
@@ -133,9 +138,19 @@
                 </tr>
                 <%}%>
             </table>
-           
+   
+            <input type="button" value="Select!" onclick="finalPurchase(<%out.print(count-1);%>);" />
+            
+            <input type='hidden' name='sectionID' value='<% out.print(s.getSectionID()); %>' />
+            <input type='hidden' name='seats' id="seats" value='' />
+            
+            <form action="reserve" method="post">
+               <input type='hidden' name='SectionID' value='<% out.print(s.getSectionID()); %>' />
+               <input type='hidden' name='seat' id="seat" value='' />
+               <input type="submit" value="Add to shopping cart!" />
+            </form>
+            
             <form action="purchase" method="post">
-                <input type="button" value="Select!" onclick="finalPurchase(<%out.print(count-1);%>);" />
                 <input type='hidden' name='sectionID' value='<% out.print(s.getSectionID()); %>' />
                 <input type='hidden' name='seats' id="seats" value='' />
                 <input type='submit' value='Preview' />
