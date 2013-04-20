@@ -83,7 +83,7 @@
                     <td><%=section.getVenueID()%></td>
                     <td><%=section.getTime()%> </td>
                     <td><%=section.getPrice()%></td>
-                    <td><a href="ManageSection?name=<%= movie.getName()%>&venue=<%= section.getSectionID()%>&time=<%=section.getTime()%>&price=<%=section.getPrice()%>&action=EditSection">Edit Section</a></td>
+                    <td><a href="ManageSection?name=<%= movie.getName()%>&sectionID=<%= section.getSectionID()%>&venue=<%= section.getSectionID()%>&time=<%=section.getTime()%>&price=<%=section.getPrice()%>&action=EditSection">Edit Section</a></td>
                     <td><a href="ManageSection?id=<%= section.getUid()%>&sectionID=<%= section.getSectionID()%>&action=DeleteSection">Delete Section</a></td>
                     </tr>
                 <% } %>  

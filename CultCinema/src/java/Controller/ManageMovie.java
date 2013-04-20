@@ -104,6 +104,10 @@ public class ManageMovie extends HttpServlet {
                 movieDAO.addMovie(movie); 
                 request.getRequestDispatcher("MovieDisplay").forward(request, response);
             }
+            else if(action.equals("UpdateMovie")){
+                movieDAO.editMovie(movie); 
+                request.getRequestDispatcher("MovieDisplay").forward(request, response);            
+            }
             else{
                 List<Movie> movies = movieDAO.getMovieList();              
                 Movie selectedMovie = movies.get(id);

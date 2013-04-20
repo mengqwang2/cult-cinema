@@ -79,6 +79,11 @@ public class SectionDAO {
        db.doInsert("INSERT INTO [SECTION](Movie_ID,Venue_ID,price) VALUES('"+movieID+"','"+venueID+"','"+price+"')");
     }
     public void editSection(Section section) throws SQLException{
-        
+       int venue = section.getVenueID();
+       int price = section.getPrice();
+       int sectionID=section.getSectionID();
+       // time!!!
+       DBConn db=new DBConn(); 
+       db.doUpdate("UPDATE [Section] SET VenueID = '"+venue+"', Price ='"+price+"'WHERE Section_id="+sectionID);
     }
 }
