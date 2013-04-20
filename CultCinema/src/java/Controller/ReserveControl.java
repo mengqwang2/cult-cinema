@@ -4,30 +4,21 @@
  */
 package Controller;
 
-import Bean.Booking;
 import Bean.Reserve;
-import Bean.Section;
-import Bean.Venue;
-import DAO.BookingDAO;
 import DAO.ReserveDAO;
-import DAO.SectionDAO;
-import DAO.VenueDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author 52165627
+ * @author 52209388
  */
-public class SeatDisplay extends HttpServlet {
+public class ReserveControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -41,13 +32,7 @@ public class SeatDisplay extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            doPost(request,response);
-        } finally {            
-            out.close();
-        }
+       doPost(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -63,7 +48,7 @@ public class SeatDisplay extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doPost(request,response);
+        doPost(request, response);
     }
 
     /**
@@ -78,42 +63,39 @@ public class SeatDisplay extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
         try {
-            String sectionSelect = request.getParameter("sectionSelect");
-            Section selectSection = new Section();
-            selectSection.setSectionID(Integer.parseInt(sectionSelect));
-            Venue selectVenue=new Venue();
-            SectionDAO secDAO=new SectionDAO();
+            HttpSession session=request.getSession();
+            int memberID=(Integer)session.getAttribute("memberID");
+            int sectionID=Integer.parseInt(request.getParameter("SectionID"));
+            String seats=request.getParameter("seat");
+            int nSeats=0;
+            //split seats string
+            String[] indiSeats=seats.split(",");
+            nSeats=indiSeats.length;
+            int[] seatArr;
+            seatArr=new int[nSeats];
+            for(int i=0;i<nSeats;i++)
+            {
+                seatArr[i]=Integer.parseInt(indiSeats[i]);
+            }
+            for(int i=0;i<nSeats;i++)
+            {
+                Reserve r=new Reserve();
+                r.setMemberID(memberID);
+                r.setSeat(seatArr[i]);
+                r.setSectionID(sectionID);
+                ReserveDAO rd=new ReserveDAO();
+                rd.setReserve(r);
+            }
+            request.getRequestDispatcher("movie.jsp").forward(request, response);
             
-            
-            selectVenue.setVenueID(secDAO.getSectionVenue(selectSection));
-            
-            
-            VenueDAO vdao=new VenueDAO();
-     
-            vdao.setVenueObj(selectVenue);
-            BookingDAO bkDAO=new BookingDAO();
-            ReserveDAO rvDAO=new ReserveDAO();
-            List<Booking> lsBooking = null;
-            List<Reserve> rvBooking = null;
-            Reserve v = new Reserve();
-            v.setSectionID(selectSection.getSectionID());
-            
-            lsBooking=bkDAO.getBookingList(selectSection);
-            rvBooking=rvDAO.getReserveList(v);
-            request.setAttribute("lsBooking", lsBooking);
-            request.setAttribute("lsReserve", rvBooking);
-            request.setAttribute("selectVenue", selectVenue);
-            request.setAttribute("selectSection", selectSection);
-            
-            request.getRequestDispatcher("seat.jsp").forward(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(SeatDisplay.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        } finally {            
+            out.close();
+        }
     }
-        
-        
-       
+
     /**
      * Returns a short description of the servlet.
      *
