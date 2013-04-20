@@ -89,6 +89,9 @@ public class ManageSection extends HttpServlet {
             java.lang.String action=request.getParameter("action");    
             java.lang.String venueTemp = request.getParameter("venue");
             int venue=Integer.parseInt(venueTemp == null || "".equals(venueTemp)?"0":venueTemp);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            java.util.Date timeTemp = sdf.parse(request.getParameter("time"));           
+            Timestamp time = new Timestamp(timeTemp.getTime());
             //SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy hh:mm");   
             //java.util.Date timeTemp = formatter.parse(request.getParameter("time"));           
             //Timestamp time = new Timestamp(timeTemp.getTime());
@@ -102,7 +105,7 @@ public class ManageSection extends HttpServlet {
             section.setPrice(price);           
             section.setVenueID(venue);
             section.setSectionID(sectionID);
-            //section.setTime(time);
+            section.setTime(time);
 
             if(action.equals("DeleteSection")){
                 secDAO.deleteSection(sectionID); 
@@ -123,8 +126,8 @@ public class ManageSection extends HttpServlet {
             }
         } catch (SQLException e) {
             throw new ServletException("Cannot obtain products from DB", e);
-        //}catch (ParseException ex) {
-        //    Logger.getLogger(ManageSection.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (ParseException ex) {
+            Logger.getLogger(ManageSection.class.getName()).log(Level.SEVERE, null, ex);
         }  
     }
 

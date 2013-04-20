@@ -9,6 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script language="javascript" type="text/javascript" src="js/WdatePicker.js"></script>
         <title>JSP Page</title>
     </head>
     <body>
@@ -18,7 +19,7 @@
             <label>Movie ID</label>
             <input type="text" name="movieID" readonly="readonly" value="<%=request.getParameter("movieID")%>"><br/>
             <label>Time</label>
-            <input type="text" name="time"><br/>
+            <input type="text" name="time" onFocus="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:00',alwaysUseStartDate:true})"/><br/>
             <label>Venue</label>
             <input type="text" name="venue"><br/>
             <label>Price $</label>

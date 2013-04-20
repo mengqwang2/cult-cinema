@@ -9,6 +9,7 @@ import Utility.DBConn;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -72,11 +73,14 @@ public class SectionDAO {
        int movieID = section.getMovieID();
        int venueID = section.getVenueID();
        Timestamp time = section.getTime();
+       SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
        int price = section.getPrice();
 
        DBConn db=new DBConn(); 
-       //db.doInsert("INSERT INTO [SECTION](Movie_ID,Time,Venue_ID,price) VALUES('"+movieID+"','"+time+"','"+venueID+"','"+price+"')");
-       db.doInsert("INSERT INTO [SECTION](Movie_ID,Venue_ID,price) VALUES('"+movieID+"','"+venueID+"','"+price+"')");
+       String StrTime=sdf.format(time);
+       String sql="INSERT INTO [SECTION](Movie_ID,Time,Venue_ID,price) VALUES('"+movieID+"','"+StrTime+"','"+venueID+"','"+price+"')";
+       db.doInsert(sql);
+       //db.doInsert("INSERT INTO [SECTION](Movie_ID,Venue_ID,price) VALUES('"+movieID+"','"+venueID+"','"+price+"')");
     }
     public void editSection(Section section) throws SQLException{
        int venue = section.getVenueID();
