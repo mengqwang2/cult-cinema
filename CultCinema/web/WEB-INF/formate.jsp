@@ -4,9 +4,6 @@
     Author     : 52165627
 --%>
 
-<%@page import="Bean.Section"%>
-<%@page import="Bean.Movie"%>
-<%@page import="Utility.Opt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,7 +11,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-        <% Section s=(Section)request.getAttribute("section"); %>
         <body>
         <div id="header">
             <% Opt opt=new Opt();  
@@ -61,17 +57,6 @@
         </div>
         <div id="mainContainer">
             
-            <form>
-                <label>Movie name</label>
-                <input name="movieName" value="<%=request.getAttribute("name")%>"><br/>    
-                <label>Time</label>
-                <input name="time" value="<%=s.getTime()%>"><br/>    
-                <label>Venue</label>
-                <input name="venue" value="<%=s.getVenueID()%>"><br/>    
-                <label>Price $</label>
-                <input name="price" value="<%=s.getPrice()%>"><br/>    
-            </form>
-            <a href="MovieDisplay">Return to movie management site</a>
         </div>
         <div id="footer">
             <%  

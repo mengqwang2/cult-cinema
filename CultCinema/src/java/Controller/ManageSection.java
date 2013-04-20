@@ -89,12 +89,11 @@ public class ManageSection extends HttpServlet {
             java.lang.String action=request.getParameter("action");    
             java.lang.String venueTemp = request.getParameter("venue");
             int venue=Integer.parseInt(venueTemp == null || "".equals(venueTemp)?"0":venueTemp);
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy hh:mm");   
-            java.util.Date timeTemp = formatter.parse(request.getParameter("time"));           
-            Timestamp time = new Timestamp(timeTemp.getTime());
+            //SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy hh:mm");   
+            //java.util.Date timeTemp = formatter.parse(request.getParameter("time"));           
+            //Timestamp time = new Timestamp(timeTemp.getTime());
         
-            java.lang.String priceTemp = request.getParameter("price");
-        
+            java.lang.String priceTemp = request.getParameter("price");        
             int price = Integer.parseInt(priceTemp == null || "".equals(priceTemp)?"0":priceTemp);
             
         
@@ -102,7 +101,7 @@ public class ManageSection extends HttpServlet {
             section.setMovieID(movieID);
             section.setPrice(price);           
             section.setVenueID(venue);
-            section.setTime(time);
+            //section.setTime(time);
      
             if(action.equals("DeleteSection")){
                 secDAO.deleteSection(sectionID); 
@@ -112,21 +111,16 @@ public class ManageSection extends HttpServlet {
                 secDAO.addSection(section); 
                 request.getRequestDispatcher("SectionDisplay").forward(request, response);
             }
-            else if(action.equals("UpdateSection")){
-                secDAO.editSection(section); 
-                request.getRequestDispatcher("SectionDisplay").forward(request, response);            
-            }
             else{
-                List<Section> sections = movieDAO.getSectionList(movieID);
-                request.setAttribute("sections",sections);
-                List<Movie> movies = movieDAO.getMovieList();              
-                Movie selectedMovie = movies.get(id);
-                request.setAttribute("movie",selectedMovie);   
+                java.lang.String name = request.getParameter("name");                
+                request.setAttribute("section",section);   
+                request.setAttribute("name",name);
+                request.getRequestDispatcher("editSection.jsp").forward(request, response);
             }
         } catch (SQLException e) {
             throw new ServletException("Cannot obtain products from DB", e);
-        }catch (ParseException ex) {
-            Logger.getLogger(ManageSection.class.getName()).log(Level.SEVERE, null, ex);
+        //}catch (ParseException ex) {
+        //    Logger.getLogger(ManageSection.class.getName()).log(Level.SEVERE, null, ex);
         }  
     }
 

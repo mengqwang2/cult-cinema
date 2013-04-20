@@ -27,6 +27,6 @@
             <input type="hidden" name="id" value="<%=request.getParameter("id")%>">
             <input type="submit" value="Add Section">
         </form>
-        <a href="editMovie.jsp">Return to movie Management site</a>
+        <a href="MovieDisplay">Return to movie Management site</a>
     </body>
 </html>

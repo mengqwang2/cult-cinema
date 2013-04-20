@@ -73,7 +73,7 @@ public class MovieDAO {
             section.setPrice(price);
             section.setTime(time);
             section.setSectionID(SectionID);
-            //section.setSectionID(uid);
+            section.setUid(uid);
             section.setVenueID(VenueID);
             sectionList.add(section);
             uid++;
