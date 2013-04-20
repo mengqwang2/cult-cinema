@@ -84,6 +84,6 @@ public class SectionDAO {
        int sectionID=section.getSectionID();
        // time!!!
        DBConn db=new DBConn(); 
-       db.doUpdate("UPDATE [Section] SET VenueID = '"+venue+"', Price ='"+price+"'WHERE Section_id="+sectionID);
+       db.doUpdate("UPDATE [Section] SET Venue_ID = '"+venue+"', Price ='"+price+"' WHERE Section_id="+sectionID);
     }
 }

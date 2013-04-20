@@ -72,6 +72,8 @@
                 <input name="price" value="<%=s.getPrice()%>"><br/>   
                 <input type="hidden" name="action" value="UpdateSection">
                 <input type="hidden" name="sectionID" value="<%=s.getSectionID()%>">
+                <input type="hidden" name="movieID" value="<%=s.getMovieID()%>">
+                <input type="hidden" name="id" value="<%=request.getParameter("id")%>">
                 <input type="submit" value="Edit section">
             </form>
             <a href="MovieDisplay">Return to movie management site</a>

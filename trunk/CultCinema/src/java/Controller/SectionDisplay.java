@@ -82,6 +82,7 @@ public class SectionDisplay extends HttpServlet {
             List<Movie> movies = movieDAO.getMovieList();              
             Movie selectedMovie = movies.get(id);
             request.setAttribute("movie",selectedMovie);
+            request.setAttribute("id", id);
             if(action.equals("ViewSection"))
                 request.getRequestDispatcher("movieInfo.jsp").forward(request, response);
             else
