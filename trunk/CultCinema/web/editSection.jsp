@@ -61,7 +61,7 @@
         </div>
         <div id="mainContainer">
             
-            <form>
+            <form action="ManageSection" method="POST">
                 <label>Movie name</label>
                 <input name="movieName" value="<%=request.getAttribute("name")%>"><br/>    
                 <label>Time</label>
@@ -69,7 +69,10 @@
                 <label>Venue</label>
                 <input name="venue" value="<%=s.getVenueID()%>"><br/>    
                 <label>Price $</label>
-                <input name="price" value="<%=s.getPrice()%>"><br/>    
+                <input name="price" value="<%=s.getPrice()%>"><br/>   
+                <input type="hidden" name="action" value="UpdateSection">
+                <input type="hidden" name="sectionID" value="<%=s.getSectionID()%>">
+                <input type="submit" value="Edit section">
             </form>
             <a href="MovieDisplay">Return to movie management site</a>
         </div>
