@@ -222,8 +222,10 @@
                             <input type='hidden' name='loyaltyAdd' value='<% out.print(ladd);%>' />
                             <input type='hidden' name='payment' value='<% out.print(payment);%>' />
                             <input type="hidden" name="seatNo" value="<% out.print(seatNo);%>">
-                            <input type='submit' value='Purchase!' />
+                            <input type='submit' value='Go to Shopping Cart to Purchase!' />
+                            
                         </form>
+                        <a href="movie.jsp">View Other Movies!</a>
         </div>
                             
                             

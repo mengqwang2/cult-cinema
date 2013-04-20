@@ -46,7 +46,8 @@
                 {
                     if(seatBuy[i]==1)
                     {
-                        seatNo=seatNo+(i+1)+",";
+                        var num=i+1;
+                        seatNo=seatNo+num+",";
                     }
                     
                 }
@@ -141,9 +142,7 @@
    
             <input type="button" value="Select!" onclick="finalPurchase(<%out.print(count-1);%>);" />
             
-            <input type='hidden' name='sectionID' value='<% out.print(s.getSectionID()); %>' />
-            <input type='hidden' name='seats' id="seats" value='' />
-            
+           
             <form action="reserve" method="post">
                <input type='hidden' name='SectionID' value='<% out.print(s.getSectionID()); %>' />
                <input type='hidden' name='seat' id="seat" value='' />
@@ -152,7 +151,7 @@
             
             <form action="purchase" method="post">
                 <input type='hidden' name='sectionID' value='<% out.print(s.getSectionID()); %>' />
-                <input type='hidden' name='seats' id="seats" value='' />
+                <input type='hidden' name="seats" id="seats" value='' />
                 <input type='submit' value='Preview' />
             </form>
             <a href="movie.jsp">Back to view other movies!</a>

@@ -91,6 +91,7 @@ public class ReserveControl extends HttpServlet {
             }
             request.getRequestDispatcher("movie.jsp").forward(request, response);
             
+            
         } finally {            
             out.close();
         }
