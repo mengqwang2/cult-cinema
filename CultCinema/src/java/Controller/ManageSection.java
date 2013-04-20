@@ -103,18 +103,18 @@ public class ManageSection extends HttpServlet {
             section.setVenueID(venue);
             section.setSectionID(sectionID);
             //section.setTime(time);
-     
+
             if(action.equals("DeleteSection")){
                 secDAO.deleteSection(sectionID); 
-                request.getRequestDispatcher("SectionDisplay").forward(request, response);
+                request.getRequestDispatcher("SectionDisplay?id="+id+"&movieID="+movieID).forward(request, response);
             }
             else if(action.equals("AddSection")){
                 secDAO.addSection(section); 
-                request.getRequestDispatcher("SectionDisplay").forward(request, response);
+                request.getRequestDispatcher("SectionDisplay?id="+id+"&movieID="+movieID).forward(request, response);
             }
             else if(action.equals("UpdateSection")){
                 secDAO.editSection(section); 
-                request.getRequestDispatcher("SectionDisplay").forward(request, response);            
+                request.getRequestDispatcher("SectionDisplay?id="+id+"&movieID="+movieID).forward(request, response);            
             }else{
                 java.lang.String name = request.getParameter("name");                
                 request.setAttribute("section",section);   
