@@ -74,6 +74,7 @@ public class CartRetrieve extends HttpServlet {
             List<Section> section = new ArrayList<Section>();
             List<Venue> venue = new ArrayList<Venue>();
             List<Booking> bk = new ArrayList<Booking>();
+            boolean []refundSec=new boolean[9999];
             v.setMemberID(memberID);
             v.setSectionID(0);
             bking.setMemberID(memberID);
@@ -125,6 +126,7 @@ public class CartRetrieve extends HttpServlet {
             }
             else if(action.equals("bkRecord"))
             {
+                int count=0;
                 for(Booking bks:bk)
                 {
                 //var declaration
@@ -134,7 +136,7 @@ public class CartRetrieve extends HttpServlet {
                 //section info
                 Section selectSection=new Section();
                 SectionDAO sdao=new SectionDAO();
-            
+                
                 //movie info
                 MovieDAO mvdao=new MovieDAO();
             
@@ -144,6 +146,11 @@ public class CartRetrieve extends HttpServlet {
                 sectionID=bks.getSectionID();
                 seat=bks.getSeat();
                 sdao.getSection(sectionID, selectSection);
+                if(sdao.isRefundSection(selectSection))
+                    refundSec[count]=true;
+                else
+                    refundSec[count]=false;
+                
                 Movie mvInfo=mvdao.getMovieInfo(selectSection.getMovieID());
                 vInfo.setVenueID(selectSection.getVenueID());
                 vdao.setVenueObj(vInfo);
@@ -151,7 +158,8 @@ public class CartRetrieve extends HttpServlet {
                 movie.add(mvInfo);
                 venue.add(vInfo);
                 section.add(selectSection);
-
+                
+                count++;
                 }
             }
             
@@ -162,6 +170,7 @@ public class CartRetrieve extends HttpServlet {
             request.setAttribute("memberInfo", mInfo);
             request.setAttribute("bookingInfo", bk);
             request.setAttribute("lsReserve", rvBooking);
+            request.setAttribute("refundSec", refundSec);
             if(action.equals("editInfor"))
                 request.getRequestDispatcher("editInfor.jsp").forward(request, response);
             else if(action.equals("confirmInfor"))
