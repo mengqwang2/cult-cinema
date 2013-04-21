@@ -12,6 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <
     </head>
         <body>
         <div id="header">
@@ -84,7 +85,7 @@
                     <input type="radio" name="gender" id="female" <%if (g.equals("female")){%> checked="checked" <%}%>/><br/>
                     <label >Email</label>
                     <input type="text" name='email' id='email' value="<%=member.getMail()%>"/><br/>
-                    <input type="submit" value="Confirm Change"/>
+                    <input type="submit" value="Confirm Change" onsubmit=""/>
                 </fieldset>
             </form>
         </div>
