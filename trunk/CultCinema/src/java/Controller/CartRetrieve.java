@@ -4,10 +4,19 @@
  */
 package Controller;
 
+import Bean.Member;
+import Bean.Movie;
 import Bean.Reserve;
+import Bean.Section;
+import Bean.Venue;
+import DAO.MemberDAO;
+import DAO.MovieDAO;
 import DAO.ReserveDAO;
+import DAO.SectionDAO;
+import DAO.VenueDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -57,19 +66,53 @@ public class CartRetrieve extends HttpServlet {
             HttpSession session=request.getSession();
             int memberID=(Integer)session.getAttribute("memberID");
             Reserve v = new Reserve();
-            List<Reserve> rvBooking = null;
+            List<Reserve> rvBooking = new ArrayList<Reserve>();
+            List<Movie> movie = new ArrayList<Movie>();
+            List<Section> section = new ArrayList<Section>();
+            List<Venue> venue = new ArrayList<Venue>();
             v.setMemberID(memberID);
             v.setSectionID(0);
             ReserveDAO rvdao=new ReserveDAO();
             rvBooking=rvdao.getReserveList(v);
+            
+           
+            //member info
+            Member mInfo=new Member();
+            mInfo.setMemberID(memberID);
+            MemberDAO mdao =new MemberDAO();
+            mdao.getMember(mInfo);
+            
+            for(Reserve rvb:rvBooking)
+            {
+                //var declaration
+            int sectionID;
+            int seat;
+            //section info
+            Section selectSection=new Section();
+            SectionDAO sdao=new SectionDAO();
+            
+            //movie info
+            MovieDAO mvdao=new MovieDAO();
+            
+            //venue info
+            Venue vInfo=new Venue();
+            VenueDAO vdao=new VenueDAO();
+                sectionID=rvb.getSectionID();
+                seat=rvb.getSeat();
+                sdao.getSection(sectionID, selectSection);
+                Movie mvInfo=mvdao.getMovieInfo(selectSection.getMovieID());
+                vInfo.setVenueID(selectSection.getVenueID());
+                vdao.setVenueObj(vInfo);
+                movie.add(mvInfo);
+                venue.add(vInfo);
+                section.add(selectSection);
+            }
+            
+            request.setAttribute("movieInfo", movie);
+            request.setAttribute("sectionInfo", section);
+            request.setAttribute("venueInfo", venue);
+            request.setAttribute("memberInfo", mInfo);
             request.setAttribute("lsReserve", rvBooking);
-            
-            
-            
-            
-            
-            
-            
             
             request.getRequestDispatcher("cart.jsp").forward(request, response);
             

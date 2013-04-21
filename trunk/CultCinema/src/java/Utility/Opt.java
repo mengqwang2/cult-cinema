@@ -36,7 +36,7 @@ public class Opt {
         String opt="";
         if(type.equals("member"))
         {
-            opt+="<ul><li><a href='MovieDisplay?Action=MovieDisplay'>Movie</a></li><li><a href=''>Booking Records</a></li><li><a href=''>Loyalty Point</a></li><li><a href=''>Personal Information</a></li><li><a href=''>Shopping Cart</a></li><li><a href='logoffControl'>Log off</a></li></ul>";
+            opt+="<ul><li><a href='MovieDisplay?Action=MovieDisplay'>Movie</a></li><li><a href=''>Booking Records</a></li><li><a href=''>Loyalty Point</a></li><li><a href=''>Personal Information</a></li><li><a href='CartRetrieve'>Shopping Cart</a></li><li><a href='logoffControl'>Log off</a></li></ul>";
         }
         else if(type.equals("manager"))
         {
