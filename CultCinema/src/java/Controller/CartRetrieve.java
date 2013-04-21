@@ -115,6 +115,10 @@ public class CartRetrieve extends HttpServlet {
             request.setAttribute("lsReserve", rvBooking);
             if(action.equals("personalInfo"))
                 request.getRequestDispatcher("personalInfor.jsp").forward(request, response);
+            else if(action.equals("loyalty"))
+                request.getRequestDispatcher("loyaltyEnq.jsp").forward(request, response);
+            else if(action.equals("bkRecord"))
+                request.getRequestDispatcher("bkRecord.jsp").forward(request, response);
             else
                 request.getRequestDispatcher("cart.jsp").forward(request, response);
             
