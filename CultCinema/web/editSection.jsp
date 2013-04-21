@@ -13,6 +13,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+         <script language="javascript" type="text/javascript" src="js/WdatePicker.js"></script>
     </head>
         <% Section s=(Section)request.getAttribute("section"); %>
         <body>
@@ -63,13 +64,13 @@
             
             <form action="ManageSection" method="POST">
                 <label>Movie name</label>
-                <input name="movieName" value="<%=request.getAttribute("name")%>"><br/>    
+                <input type="text" name="movieName" value="<%=request.getAttribute("name")%>"><br/>    
                 <label>Time</label>
-                <input name="time" value="<%=s.getTime()%>"><br/>    
+                <input type="text" name="time" value="<%=s.getTime()%>" onFocus="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:00',alwaysUseStartDate:true})"><br/>    
                 <label>Venue</label>
-                <input name="venue" value="<%=s.getVenueID()%>"><br/>    
+                <input type="text" name="venue" value="<%=s.getVenueID()%>"><br/>    
                 <label>Price $</label>
-                <input name="price" value="<%=s.getPrice()%>"><br/>   
+                <input type="text" name="price" value="<%=s.getPrice()%>"><br/>   
                 <input type="hidden" name="action" value="UpdateSection">
                 <input type="hidden" name="sectionID" value="<%=s.getSectionID()%>">
                 <input type="hidden" name="movieID" value="<%=s.getMovieID()%>">

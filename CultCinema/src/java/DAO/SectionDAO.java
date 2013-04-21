@@ -86,8 +86,11 @@ public class SectionDAO {
        int venue = section.getVenueID();
        int price = section.getPrice();
        int sectionID=section.getSectionID();
-       // time!!!
+       Timestamp time = section.getTime();
+       SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+       String StrTime=sdf.format(time);
+       
        DBConn db=new DBConn(); 
-       db.doUpdate("UPDATE [Section] SET Venue_ID = '"+venue+"', Price ='"+price+"' WHERE Section_id="+sectionID);
+       db.doUpdate("UPDATE [Section] SET Venue_ID = '"+venue+"', Price ='"+price+"', Time = '"+StrTime+"' WHERE Section_id="+sectionID);
     }
 }
