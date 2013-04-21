@@ -68,6 +68,10 @@
         <servlet-name>changeInfor</servlet-name>
         <servlet-class>Controller.changeInfor</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>memberRefund</servlet-name>
+        <servlet-class>Controller.memberRefund</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginControl</servlet-name>
         <url-pattern>/login_check</url-pattern>
@@ -135,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>changeInfor</servlet-name>
         <url-pattern>/changeInfor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>memberRefund</servlet-name>
+        <url-pattern>/memberRefund</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -49,6 +49,34 @@ public class BookingDAO {
        return bookRecord;
        }
      
+     public List<Booking> getBookingList(int memberID) throws SQLException
+     {
+         List<Booking> bookRecord=new ArrayList<Booking>(); 
+        DBConn db=new DBConn(); 
+        ResultSet rs = null;
+        String sql="SELECT * FROM [BOOKING] WHERE Member_ID="+memberID;
+        rs=db.doSelect(sql); 
+         while(rs.next()){        
+         int seatNO=rs.getInt("Seat");
+         int payment=rs.getInt("Payment");
+         int sectionID=rs.getInt("Section_ID");
+         String status=rs.getString("Status");
+         int issueID=rs.getInt("Issue_ID");
+         
+         Booking bk=new Booking();
+         bk.setMemberID(memberID);
+         bk.setPayment(payment);
+         bk.setSeat(seatNO);
+         bk.setSectionID(sectionID);
+         bk.setStatus(status);
+         bk.setIssueID(issueID);
+                 
+         bookRecord.add(bk);
+         
+        }   
+       return bookRecord;
+       }
+     
        public void addBkRecord(Booking bk)
        {
          try {
@@ -67,6 +95,29 @@ public class BookingDAO {
              Logger.getLogger(BookingDAO.class.getName()).log(Level.SEVERE, null, ex);
          }
            
+       }
+       
+       public void changeRefundStatus(Booking bk)
+       {
+        try {
+            DBConn db=new DBConn(); 
+            String sql="SELECT [Status] FROM [BOOKING] WHERE [Issue_ID]="+bk.getIssueID();
+            ResultSet rs;
+            rs=db.doSelect(sql);
+            String status = null;
+            if(rs.next())
+            {
+                status=rs.getString("Status");
+                if(status.equals("P"))
+                    status="RP";
+                else if(status.equals("RP"))
+                    status="P";
+            }
+            sql="UPDATE [BOOKING] SET [Status]='"+status+"' WHERE [Issue_ID]="+bk.getIssueID();
+            db.doUpdate(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(BookingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
        }
 }
 
