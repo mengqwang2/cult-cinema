@@ -84,7 +84,7 @@ public class SeatDisplay extends HttpServlet {
             selectSection.setSectionID(Integer.parseInt(sectionSelect));
             Venue selectVenue=new Venue();
             SectionDAO secDAO=new SectionDAO();
-            
+            String action = request.getParameter("action");
             
             selectVenue.setVenueID(secDAO.getSectionVenue(selectSection));
             
@@ -106,7 +106,10 @@ public class SeatDisplay extends HttpServlet {
             request.setAttribute("selectVenue", selectVenue);
             request.setAttribute("selectSection", selectSection);
             
-            request.getRequestDispatcher("seat.jsp").forward(request, response);
+            if(action.equals("purchase"))
+                request.getRequestDispatcher("seat.jsp").forward(request, response);
+            else
+                request.getRequestDispatcher("manageSeat.jsp").forward(request, response);
         } catch (Exception ex) {
             Logger.getLogger(SeatDisplay.class.getName()).log(Level.SEVERE, null, ex);
         } 

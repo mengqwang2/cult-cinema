@@ -83,7 +83,7 @@ public class MovieDisplay extends HttpServlet {
             if(action!=null & action.equals("MovieDisplay"))
                 request.getRequestDispatcher("movie.jsp").forward(request, response);
             else if(action!=null & action.equals("ManageSeat")){
-                request.setAttribute("selectMovie", "none");
+                request.setAttribute("action", "selectMovie");
                 request.getRequestDispatcher("manageSeat.jsp").forward(request, response);
             }else
                 request.getRequestDispatcher("manageMovie.jsp").forward(request, response);            
