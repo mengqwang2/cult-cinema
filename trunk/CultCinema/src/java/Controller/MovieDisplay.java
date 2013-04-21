@@ -82,9 +82,10 @@ public class MovieDisplay extends HttpServlet {
             session.setAttribute("movies", movies);
             if(action!=null & action.equals("MovieDisplay"))
                 request.getRequestDispatcher("movie.jsp").forward(request, response);
-            else if(action!=null & action.equals("ManageSeat"))
+            else if(action!=null & action.equals("ManageSeat")){
+                request.setAttribute("selectMovie", "none");
                 request.getRequestDispatcher("manageSeat.jsp").forward(request, response);
-            else
+            }else
                 request.getRequestDispatcher("manageMovie.jsp").forward(request, response);            
         } catch (SQLException e) {
         throw new ServletException("Cannot obtain products from DB", e);

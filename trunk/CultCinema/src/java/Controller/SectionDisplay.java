@@ -85,7 +85,10 @@ public class SectionDisplay extends HttpServlet {
             request.setAttribute("id", id);
             if(action.equals("ViewSection"))
                 request.getRequestDispatcher("movieInfo.jsp").forward(request, response);
-            else
+            else if(action.equals("selectMovie")){
+                request.setAttribute("selectMovie", "selectMovie");
+                request.getRequestDispatcher("manageSeat.jsp").forward(request, response);
+            }else
                 request.getRequestDispatcher("manageSection.jsp").forward(request, response);  
         }catch (SQLException e) {
         throw new ServletException("Cannot obtain products from DB", e);
