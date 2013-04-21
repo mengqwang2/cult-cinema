@@ -16,7 +16,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cult Cinema Inc.</title>
+        <title>Booking Record</title>
     </head>
     <body>
         
@@ -252,14 +252,9 @@
 
                 
             </table>
-              <% if(bks.getStatus().equals("P"))    
-              { %>
-                <form action="memberRefund?action=reqRefund" method="post">
-              <% }  %>
-              <% else if(bks.getStatus().equals("RP"))    
-              { %>
-                <form action="refund?action=rvRefund" method="post">
-              <% }  %>
+              
+            <form action="memberRefund" method="post">
+              
                     <input type="hidden" name="issueID" value="<% out.print(bks.getIssueID());%>" />
             <% if(bks.getStatus().equals("P"))
                { %>
