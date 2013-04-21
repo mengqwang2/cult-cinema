@@ -4,11 +4,13 @@
  */
 package Controller;
 
+import Bean.Booking;
 import Bean.Member;
 import Bean.Movie;
 import Bean.Reserve;
 import Bean.Section;
 import Bean.Venue;
+import DAO.BookingDAO;
 import DAO.MemberDAO;
 import DAO.MovieDAO;
 import DAO.ReserveDAO;
@@ -66,14 +68,22 @@ public class CartRetrieve extends HttpServlet {
             HttpSession session=request.getSession();
             int memberID=(Integer)session.getAttribute("memberID");
             Reserve v = new Reserve();
+            Booking bking=new Booking();
             List<Reserve> rvBooking = new ArrayList<Reserve>();
             List<Movie> movie = new ArrayList<Movie>();
             List<Section> section = new ArrayList<Section>();
             List<Venue> venue = new ArrayList<Venue>();
+            List<Booking> bk = new ArrayList<Booking>();
             v.setMemberID(memberID);
             v.setSectionID(0);
+            bking.setMemberID(memberID);
+            
             ReserveDAO rvdao=new ReserveDAO();
             rvBooking=rvdao.getReserveList(v);
+            //booking info
+            BookingDAO bkdao=new BookingDAO();
+            bk=bkdao.getBookingList(memberID);
+            
             String action = request.getParameter("action");
            
             //member info
@@ -82,36 +92,75 @@ public class CartRetrieve extends HttpServlet {
             MemberDAO mdao =new MemberDAO();
             mdao.getMember(mInfo);
             
+            if(action.equals("shoppingCart"))
+            {
             for(Reserve rvb:rvBooking)
             {
                 //var declaration
-            int sectionID;
-            int seat;
-            //section info
-            Section selectSection=new Section();
-            SectionDAO sdao=new SectionDAO();
+                int sectionID;
+                int seat;
+                
+                //section info
+                Section selectSection=new Section();
+                SectionDAO sdao=new SectionDAO();
             
-            //movie info
-            MovieDAO mvdao=new MovieDAO();
+                //movie info
+                MovieDAO mvdao=new MovieDAO();
             
-            //venue info
-            Venue vInfo=new Venue();
-            VenueDAO vdao=new VenueDAO();
+                //venue info
+                Venue vInfo=new Venue();
+                VenueDAO vdao=new VenueDAO();
                 sectionID=rvb.getSectionID();
                 seat=rvb.getSeat();
                 sdao.getSection(sectionID, selectSection);
                 Movie mvInfo=mvdao.getMovieInfo(selectSection.getMovieID());
                 vInfo.setVenueID(selectSection.getVenueID());
                 vdao.setVenueObj(vInfo);
+             
                 movie.add(mvInfo);
                 venue.add(vInfo);
                 section.add(selectSection);
+
             }
+            }
+            else if(action.equals("bkRecord"))
+            {
+                for(Booking bks:bk)
+                {
+                //var declaration
+                int sectionID;
+                int seat;
+                
+                //section info
+                Section selectSection=new Section();
+                SectionDAO sdao=new SectionDAO();
+            
+                //movie info
+                MovieDAO mvdao=new MovieDAO();
+            
+                //venue info
+                Venue vInfo=new Venue();
+                VenueDAO vdao=new VenueDAO();
+                sectionID=bks.getSectionID();
+                seat=bks.getSeat();
+                sdao.getSection(sectionID, selectSection);
+                Movie mvInfo=mvdao.getMovieInfo(selectSection.getMovieID());
+                vInfo.setVenueID(selectSection.getVenueID());
+                vdao.setVenueObj(vInfo);
+             
+                movie.add(mvInfo);
+                venue.add(vInfo);
+                section.add(selectSection);
+
+                }
+            }
+            
             request.setAttribute("memberInfo",mInfo);
             request.setAttribute("movieInfo", movie);
             request.setAttribute("sectionInfo", section);
             request.setAttribute("venueInfo", venue);
             request.setAttribute("memberInfo", mInfo);
+            request.setAttribute("bookingInfo", bk);
             request.setAttribute("lsReserve", rvBooking);
             if(action.equals("editInfor"))
                 request.getRequestDispatcher("editInfor.jsp").forward(request, response);

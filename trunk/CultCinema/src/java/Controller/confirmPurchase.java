@@ -116,7 +116,7 @@ public class confirmPurchase extends HttpServlet {
                 indibk.setSeat(seatArr[i]);
                 indibk.setSectionID(sectionArr[i]);
                 indibk.setMemberID(memberID);
-                indibk.setStatus("RP");
+                indibk.setStatus("P");
                 indibk.setPayment(priceArr[i]-loyaltyUse/100/nSeats);
                 bkInfo.add(indibk);
                 //remove reserve
