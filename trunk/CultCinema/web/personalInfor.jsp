@@ -12,7 +12,22 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <
+        <% Member member = (Member)request.getAttribute("memberInfo");%>
+        <script type="text/javascript">
+            function validate_form(thisform){
+                with(thisform){
+                if (document.getElementById("password").innerHTML!=document.getElementById("pword").innerHTML){
+                    document.getElementById('passwordX').style.display = "";
+                    return false;
+                }
+                if(document.getElementById("newPassword").innerHTML!=document.getElementById("confirmedPassword").innerHTML){
+                    document.getElementById('newPwordX').style.display = "";
+                    return false;
+                }
+                return true;
+            }   
+        }
+        </script>
     </head>
         <body>
         <div id="header">
@@ -59,20 +74,23 @@
                 %>
         </div>
         <div id="mainContainer">
-            <% Member member = (Member)request.getAttribute("memberInfo");%>
-            <form>
+            
+            <form onsubmit="return validate_form(this);" method="post" >
                 <fieldset>
                     <input type="hidden" name="todo" id="todo" value="" />
-                    <label >Member ID</label>
+                    <input type="hidden" name="pword" id="pword" value="<%=member.getPassword()%>"/>
+                    <label>Member ID</label>
                     <input type="text" name="userID" id="userID" value="<%=member.getMemberID()%>"/><br/>
                     <label >Name</label>
                     <input type="text" name='name' id='name' value="<%=member.getName()%>"/><br/>
                     <label >Old Password</label>
-                    <input type="password" name='password' id='password'/><br/>
+                    <input type="password" name='password' id='password'/>
+                    <span id="passwordX" style="display: none">Wrong Password</span><br/>
                     <label>New Password</label>
                     <input type="password" name='newPassword' id='newPassword'/><br/>
                     <label>Confirmed Password</label>
-                    <input type="password" name='confirmedPassword' id='confirmedPassword'/><br/>
+                    <input type="password" name='confirmedPassword' id='confirmedPassword'/>
+                    <span id="newPwordX" style="display: none">Password doesn't match</span><br/>
                     <label >Address</label>
                     <input type="text" name='address' id='address' value="<%=member.getAddress()%>"/><br/>
                     <label >Tel</label>
@@ -85,7 +103,7 @@
                     <input type="radio" name="gender" id="female" <%if (g.equals("female")){%> checked="checked" <%}%>/><br/>
                     <label >Email</label>
                     <input type="text" name='email' id='email' value="<%=member.getMail()%>"/><br/>
-                    <input type="submit" value="Confirm Change" onsubmit=""/>
+                    <input type="submit" value="Confirm Change" />
                 </fieldset>
             </form>
         </div>
