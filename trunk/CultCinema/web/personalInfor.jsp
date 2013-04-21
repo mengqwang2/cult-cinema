@@ -4,6 +4,8 @@
     Author     : 52165627
 --%>
 
+<%@page import="Bean.Member"%>
+<%@page import="Utility.Opt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -56,24 +58,33 @@
                 %>
         </div>
         <div id="mainContainer">
+            <% Member member = (Member)request.getAttribute("memberInfo");%>
             <form>
                 <fieldset>
                     <input type="hidden" name="todo" id="todo" value="" />
-                    <label for="register-text">Name</label>
-                    <input type="text" name='name' id='name' />
-                    <label for="register-text">Password</label>
-                    <input type="password" name='password' id='password'/>
-                    <label for="register-text">Address</label>
-                    <input type="text" name='address' id='address'/>
-                    <label for="register-text">Tel</label>
-                    <input type="text" name='tel' id='tel'/>
-                    <label for="register-text">Gender</label>
-                    <label for="register-text">Male</label>
-                    <input type="radio" name="gender" id="male" value="male"/>
-                    <label for="register-text">Female</label>
-                    <input type="radio" name="gender" id="female" value="female"/>
-                    <label for="register-text">Email</label>
-                    <input type="text" name='email' id='email'/>
+                    <label >Member ID</label>
+                    <input type="text" name="userID" id="userID" value="<%=member.getMemberID()%>"/><br/>
+                    <label >Name</label>
+                    <input type="text" name='name' id='name' value="<%=member.getName()%>"/><br/>
+                    <label >Old Password</label>
+                    <input type="password" name='password' id='password'/><br/>
+                    <label>New Password</label>
+                    <input type="password" name='newPassword' id='newPassword'/><br/>
+                    <label>Confirmed Password</label>
+                    <input type="password" name='confirmedPassword' id='confirmedPassword'/><br/>
+                    <label >Address</label>
+                    <input type="text" name='address' id='address' value="<%=member.getAddress()%>"/><br/>
+                    <label >Tel</label>
+                    <input type="text" name='tel' id='tel' value="<%=member.getTel()%>"/><br/>
+                    <label >Gender</label>
+                    <%String g=member.getGender();%>
+                    <label >Male</label>
+                    <input type="radio" name="gender" id="male" <%if (g.equals("male")){%> checked="checked" <%}%>/>
+                    <label >Female</label>
+                    <input type="radio" name="gender" id="female" <%if (g.equals("female")){%> checked="checked" <%}%>/><br/>
+                    <label >Email</label>
+                    <input type="text" name='email' id='email' value="<%=member.getMail()%>"/><br/>
+                    <input type="submit" value="Confirm Change"/>
                 </fieldset>
             </form>
         </div>
