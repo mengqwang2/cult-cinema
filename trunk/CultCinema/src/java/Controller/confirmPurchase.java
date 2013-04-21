@@ -6,8 +6,10 @@ package Controller;
 
 import Bean.Booking;
 import Bean.Member;
+import Bean.Reserve;
 import DAO.BookingDAO;
 import DAO.MemberDAO;
+import DAO.ReserveDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -107,6 +109,7 @@ public class confirmPurchase extends HttpServlet {
             }
             
             List<Booking> bkInfo=new ArrayList<Booking>();
+            
             for(int i=0;i<nSeats;i++)
             {
                 Booking indibk=new Booking();
@@ -116,12 +119,21 @@ public class confirmPurchase extends HttpServlet {
                 indibk.setStatus("RP");
                 indibk.setPayment(priceArr[i]-loyaltyUse/100/nSeats);
                 bkInfo.add(indibk);
+                //remove reserve
+                Reserve r=new Reserve();
+                r.setMemberID(memberID);
+                r.setSeat(seatArr[i]);
+                r.setSectionID(sectionArr[i]);
+                ReserveDAO rdao=new ReserveDAO();
+                rdao.removeReserve(r);
+                
             }
             //update booking info
             for(Booking bk:bkInfo)
             {
                 BookingDAO bkdao=new BookingDAO();
                 bkdao.addBkRecord(bk);
+    
             }
             
             //update user loyalty
@@ -131,7 +143,8 @@ public class confirmPurchase extends HttpServlet {
             mdao.getMember(m);
             mdao.setMember(m,m.getPassword(),m.getName(),m.getAddress(),m.getTel(),m.getGender(),m.getMail(),m.getLoyalty()-loyaltyUse+loyaltyAdd);
             
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            
+            request.getRequestDispatcher("CartRetrieve?action=shoppingCart").forward(request, response);
             
         } finally {            
             out.close();
