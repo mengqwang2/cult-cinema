@@ -15,17 +15,21 @@
         <% Member member = (Member)request.getAttribute("memberInfo");%>
         <script type="text/javascript">
             function validate_form(thisform){
-                with(thisform){
-                if (document.getElementById("password").innerHTML!=document.getElementById("pword").innerHTML){
+               // with(thisform){
+              
+                if (document.getElementById("password").value!=document.getElementById("pword").value){
                     document.getElementById('passwordX').style.display = "";
+                     if(document.getElementById("newPassword").value!=document.getElementById("confirmedPassword").value){
+                        document.getElementById('newPwordX').style.display = "";
+                     }
                     return false;
                 }
-                if(document.getElementById("newPassword").innerHTML!=document.getElementById("confirmedPassword").innerHTML){
+                if(document.getElementById("newPassword").value!=document.getElementById("confirmedPassword").value){
                     document.getElementById('newPwordX').style.display = "";
                     return false;
                 }
                 return true;
-            }   
+           // }   
         }
         </script>
     </head>

@@ -31,7 +31,6 @@
             <input type="file" name="Poster"><br/>
             <input type="hidden" name="action" value="AddMovie">
             <input type="submit" value="Add Movie">
-
         </form>
         <a href="manageMovie.jsp">Return to movie Management site</a>
     </body>

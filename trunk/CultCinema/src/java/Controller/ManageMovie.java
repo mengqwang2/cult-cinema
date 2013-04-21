@@ -34,7 +34,7 @@ public class ManageMovie extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        
         PrintWriter out = response.getWriter();
         try {
             doPost(request, response);
@@ -72,6 +72,12 @@ public class ManageMovie extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         MovieDAO movieDAO = new DAO.MovieDAO();
+        //////////////////////////////////////////////////////////
+
+        
+        
+        
+        //////////////////////////////////////////////////////////
         java.lang.String idTemp = request.getParameter("id");
         int id=Integer.parseInt(idTemp == null || "".equals(idTemp)?"0":idTemp);
         java.lang.String movieIDtemp = request.getParameter("movieID");
