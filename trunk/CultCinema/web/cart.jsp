@@ -171,7 +171,11 @@
 
         <div id="mainContainer">
 
-            <% int count=0; %>
+            <% int count=0; 
+            String sectionStr="";
+            String seatStr="";
+            String payStr="";
+            %>
  
             <% for (Reserve rvb:rvBooking)
 
@@ -325,7 +329,11 @@
 
                 </tbody>
 
-                <% total+=s.get(count).getPrice(); %>
+                <% total+=s.get(count).getPrice(); 
+                seatStr=seatStr+rvb.getSeat()+",";
+                sectionStr=sectionStr+s.get(count).getSectionID()+",";
+                payStr=payStr+s.get(count).getPrice()+",";
+                %>
 
                 
 
@@ -336,7 +344,7 @@
                     <input type="hidden" name="sectionID" value="<% out.print(s.get(count).getSectionID());%>" />
 
                     <input type="hidden" name="seat" value="<% out.print(rvb.getSeat());%>" />
- 
+
                     <input type="submit" value="Remove" />
 
                 </form>
@@ -351,18 +359,42 @@
 
             <p>Total Price: 
 
-                <span id="total"><% out.println(total); %></span>
+                <span id="total"><% out.print(total); %></span>
 
             </p>
 
             <p>To Pay:
  
-                <span id="toPay"><% out.println(total); %></span>
+                <span id="toPay"><% out.print(total); %></span>
 
             </p>
 
-            <input type='checkbox' name='loyalty' id='loyalty' onclick='checkToPay(<%out.println(total); %>,<%out.println(m.getLoyalty());%>)'/>Use Loyalty Point
- 
+            <input type='checkbox' name='loyalty' id='loyalty' onclick='checkToPay(<%out.print(total); %>,<%out.print(m.getLoyalty());%>)'/>Use Loyalty Point
+            
+            <% int lpts=m.getLoyalty(); 
+          
+                        int luse=0;
+                        int ladd=0;
+                        if(total>=lpts/100)
+                        {
+                            luse=lpts;
+                            ladd=(total-lpts/100)*10;
+                        }
+                        else
+                        {
+                            luse=total*100;
+                            ladd=0;
+                        }
+                        %>
+                        
+            <form action="confirmPurchase" method="post">
+                <input type='hidden' name='SectionID' value='<% out.print(sectionStr);%>' />
+                <input type='hidden' name='loyaltyUse' value='<% out.print(luse);%>' />
+                <input type='hidden' name='loyaltyAdd' value='<% out.print(ladd);%>' />
+                <input type="hidden" name="seat" value="<% out.print(seatStr);%>" />
+                <input type="hidden" name="price" value="<% out.print(payStr);%>" />
+                <input type="submit" value="Purchase!" />
+            </form>
             
 
             

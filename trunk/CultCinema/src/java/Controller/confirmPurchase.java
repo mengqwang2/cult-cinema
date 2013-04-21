@@ -72,29 +72,49 @@ public class confirmPurchase extends HttpServlet {
         try {
             HttpSession session=request.getSession();
             int memberID=(Integer)session.getAttribute("memberID");
-            int sectionID=Integer.parseInt(request.getParameter("sectionID"));
+            String sectionID=request.getParameter("SectionID");
             int loyaltyUse=Integer.parseInt(request.getParameter("loyaltyUse"));
             int loyaltyAdd=Integer.parseInt(request.getParameter("loyaltyAdd"));
-            int payment=Integer.parseInt(request.getParameter("payment"));
-            String seatNo=request.getParameter("seatNo");
+            
+            String seatNo=request.getParameter("seat");
+            String price=request.getParameter("price");
             int nSeats=0;
             String[] indiSeats=seatNo.split(",");
             nSeats=indiSeats.length;
+            //seat
             int[] seatArr;
             seatArr=new int[nSeats];
             for(int i=0;i<nSeats;i++)
             {
                 seatArr[i]=Integer.parseInt(indiSeats[i]);
             }
+            //section
+            int[] sectionArr;
+            String[] indiSection=sectionID.split(",");
+            sectionArr=new int[nSeats];
+            for(int i=0;i<nSeats;i++)
+            {
+                sectionArr[i]=Integer.parseInt(indiSection[i]);
+            }
+            //price
+            int[] priceArr;
+            String[] indiPrice=price.split(",");
+            priceArr=new int[nSeats];
+            
+            for(int i=0;i<nSeats;i++)
+            {
+                priceArr[i]=Integer.parseInt(indiPrice[i]);
+            }
+            
             List<Booking> bkInfo=new ArrayList<Booking>();
             for(int i=0;i<nSeats;i++)
             {
                 Booking indibk=new Booking();
                 indibk.setSeat(seatArr[i]);
-                indibk.setSectionID(sectionID);
+                indibk.setSectionID(sectionArr[i]);
                 indibk.setMemberID(memberID);
                 indibk.setStatus("RP");
-                indibk.setPayment(payment);
+                indibk.setPayment(priceArr[i]-loyaltyUse/100/nSeats);
                 bkInfo.add(indibk);
             }
             //update booking info
@@ -111,6 +131,7 @@ public class confirmPurchase extends HttpServlet {
             mdao.getMember(m);
             mdao.setMember(m,m.getPassword(),m.getName(),m.getAddress(),m.getTel(),m.getGender(),m.getMail(),m.getLoyalty()-loyaltyUse+loyaltyAdd);
             
+            request.getRequestDispatcher("index.jsp").forward(request, response);
             
         } finally {            
             out.close();

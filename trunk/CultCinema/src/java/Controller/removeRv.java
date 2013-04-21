@@ -163,7 +163,7 @@ public class removeRv extends HttpServlet {
  
             
 
-            request.getRequestDispatcher("CartRetrieve").forward(request, response);
+            request.getRequestDispatcher("CartRetrieve?action=shoppingCart").forward(request, response);
 
             
 
