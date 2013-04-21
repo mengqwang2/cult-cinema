@@ -71,7 +71,7 @@ public class SectionDAO {
         try {
             DBConn db=new DBConn();
             ResultSet rs;
-            String sql="SELECT DATEDIFF(hour,GETDATE(),"+s.getTime()+") AS DiffDate";
+            String sql="SELECT DATEDIFF(hour,GETDATE(),'"+s.getTime()+"') AS DiffDate";
             rs=db.doSelect(sql);
             if(rs.next())
             {
