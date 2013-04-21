@@ -79,12 +79,13 @@
         </div>
         <div id="mainContainer">
             
-            <form onsubmit="return validate_form(this);" method="post" >
+            <form onsubmit="return validate_form(this);" method="post" action="changeInfor">
                 <fieldset>
                     <input type="hidden" name="todo" id="todo" value="" />
                     <input type="hidden" name="pword" id="pword" value="<%=member.getPassword()%>"/>
+                    <input type="hidden" name="action" id="action" value="confirmInfor"/>
                     <label>Member ID</label>
-                    <input type="text" name="userID" id="userID" value="<%=member.getMemberID()%>"/><br/>
+                    <input type="text" name="userID" id="userID" value="<%=member.getMemberID()%>" readonly="readonly"/><br/>
                     <label >Name</label>
                     <input type="text" name='name' id='name' value="<%=member.getName()%>"/><br/>
                     <label >Old Password</label>
@@ -102,11 +103,13 @@
                     <label >Gender</label>
                     <%String g=member.getGender();%>
                     <label >Male</label>
-                    <input type="radio" name="gender" id="male" <%if (g.equals("male")){%> checked="checked" <%}%>/>
+                    <input type="radio" name="gender" value="male" id="male" <%if (g.equals("male")){%> checked="checked" <%}%>/>
                     <label >Female</label>
-                    <input type="radio" name="gender" id="female" <%if (g.equals("female")){%> checked="checked" <%}%>/><br/>
+                    <input type="radio" name="gender" value="male" id="female" <%if (g.equals("female")){%> checked="checked" <%}%>/><br/>
                     <label >Email</label>
                     <input type="text" name='email' id='email' value="<%=member.getMail()%>"/><br/>
+                    <label>Loyalty</label>
+                    <input type="text" name="loyalty" id="loyalty" value="<%=member.getLoyalty()%>" readonly="readonly"/><br/>
                     <input type="submit" value="Confirm Change" />
                 </fieldset>
             </form>
