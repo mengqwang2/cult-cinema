@@ -89,7 +89,7 @@ public class ReserveControl extends HttpServlet {
                 ReserveDAO rd=new ReserveDAO();
                 rd.setReserve(r);
             }
-            request.getRequestDispatcher("movie.jsp").forward(request, response);
+            request.getRequestDispatcher("CartRetrieve").forward(request, response);
             
             
         } finally {            
