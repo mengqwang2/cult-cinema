@@ -74,7 +74,7 @@ public class CartRetrieve extends HttpServlet {
             v.setSectionID(0);
             ReserveDAO rvdao=new ReserveDAO();
             rvBooking=rvdao.getReserveList(v);
-            
+            String action = request.getParameter("action");
            
             //member info
             Member mInfo=new Member();
@@ -107,14 +107,16 @@ public class CartRetrieve extends HttpServlet {
                 venue.add(vInfo);
                 section.add(selectSection);
             }
-            
+            request.setAttribute("memberInfo",mInfo);
             request.setAttribute("movieInfo", movie);
             request.setAttribute("sectionInfo", section);
             request.setAttribute("venueInfo", venue);
             request.setAttribute("memberInfo", mInfo);
             request.setAttribute("lsReserve", rvBooking);
-            
-            request.getRequestDispatcher("cart.jsp").forward(request, response);
+            if(action.equals("personalInfo"))
+                request.getRequestDispatcher("personalInfor.jsp").forward(request, response);
+            else
+                request.getRequestDispatcher("cart.jsp").forward(request, response);
             
         } catch (Exception ex) {
             Logger.getLogger(CartRetrieve.class.getName()).log(Level.SEVERE, null, ex);
