@@ -40,7 +40,7 @@ public class Opt {
         }
         else if(type.equals("manager"))
         {
-            opt+="<ul><li><a href='MovieDisplay?Action=MovieDisplay'>Movie</a></li><li><a href='MovieDisplay?Action=ManageMovie'>Manage Movie</a></li><li><a href=''>Manage seats</a></li><li><a href=''>View Statistics</a></li><li><a href='logoffControl'>Log off</a></li></ul>";
+            opt+="<ul><li><a href='MovieDisplay?Action=MovieDisplay'>Movie</a></li><li><a href='MovieDisplay?Action=ManageMovie'>Manage Movie</a></li><li><a href='MovieDisplay?Action=ManageSeat'>Manage seats</a></li><li><a href=''>View Statistics</a></li><li><a href='logoffControl'>Log off</a></li></ul>";
         }
         else if(type.equals("officer"))
         {

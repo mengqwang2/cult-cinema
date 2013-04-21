@@ -73,23 +73,23 @@
                     <td>Delete</td>
                 </tr>    
                 
-                <% Movie movie=(Movie)request.getAttribute("movie");%>
+                
                 <% List<Section> sections = (List<Section>)request.getAttribute("sections"); 
                  for (Section section: sections ){
                 %>
                     <tr>
-                    <td><%=movie.getName()%></td>
+                    <td>${movie.name}</td>
 
                     <td><%=section.getVenueID()%></td>
                     <td><%=section.getTime()%> </td>
                     <td><%=section.getPrice()%></td>
-                    <td><a href="ManageSection?name=<%= movie.getName()%>&movieID=<%=movie.getMovieID()%>&sectionID=<%= section.getSectionID()%>&venue=<%= section.getVenueID()%>&time=<%=section.getTime()%>&price=<%=section.getPrice()%>&action=EditSection&id=<%=request.getAttribute("id")%>">Edit Section</a></td>
-                    <td><a href="ManageSection?id=<%=request.getAttribute("id")%>&sectionID=<%= section.getSectionID()%>&action=DeleteSection&movieID=<%= movie.getMovieID()%>">Delete Section</a></td>
+                    <td><a href="ManageSection?name=${movie.name}&movieID=${movie.movieID}&sectionID=<%= section.getSectionID()%>&venue=<%= section.getVenueID()%>&time=<%=section.getTime()%>&price=<%=section.getPrice()%>&action=EditSection&id=<%=request.getAttribute("id")%>">Edit Section</a></td>
+                    <td><a href="ManageSection?id=<%=request.getAttribute("id")%>&sectionID=<%= section.getSectionID()%>&action=DeleteSection&movieID=${movie.movieID}">Delete Section</a></td>
                     </tr>
                 <% } %>  
                 
             </table>
-            <a href="addSection.jsp?action=AddSection&movieID=<%= movie.getMovieID()%>&name=<%= movie.getName()%>&id=<%=movie.getUid()%>">Add Section</a><br/>
+            <a href="addSection.jsp?action=AddSection&movieID=${movie.movieID}&name=${movie.name}&id=${movie.uid}">Add Section</a><br/>
             <a href="MovieDisplay">Return to movie management site</a>
         </div>
         <div id="footer">

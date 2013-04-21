@@ -82,6 +82,8 @@ public class MovieDisplay extends HttpServlet {
             session.setAttribute("movies", movies);
             if(action!=null & action.equals("MovieDisplay"))
                 request.getRequestDispatcher("movie.jsp").forward(request, response);
+            else if(action!=null & action.equals("ManageSeat"))
+                request.getRequestDispatcher("manageSeat.jsp").forward(request, response);
             else
                 request.getRequestDispatcher("manageMovie.jsp").forward(request, response);            
         } catch (SQLException e) {
