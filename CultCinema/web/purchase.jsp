@@ -174,23 +174,7 @@
                         </td>
                     </tr>
                     
-                    <tr>
-                        <td>
-                            Payment
-                        </td>
-                        <td>
-                            <select>
-                                <option>
-                                    Cash
-                                </option>
-                                <option>
-                                    Credit Card
-                                </option>
-                            </select>
-                            <br/>
-                            <input type='checkbox' name='loyalty' id='loyalty' onclick='checkToPay(<%out.println(toPay); %>,<%out.println(m.getLoyalty());%>)'/>Use Loyalty Point
-                        </td>
-                    </tr>
+                   
                     
                     
                 </tbody>
@@ -216,12 +200,9 @@
  
                         %>
                         
-                        <form action='confirmPurchase' method='post'>                           
-                            <input type='hidden' name='sectionID' value='<% out.print(s.getSectionID());%>' />
-                            <input type='hidden' name='loyaltyUse' value='<% out.print(luse);%>' />
-                            <input type='hidden' name='loyaltyAdd' value='<% out.print(ladd);%>' />
-                            <input type='hidden' name='payment' value='<% out.print(payment);%>' />
-                            <input type="hidden" name="seatNo" value="<% out.print(seatNo);%>">
+                        <form action='reserve' method='post'>                           
+                            <input type='hidden' name='SectionID' value='<% out.print(s.getSectionID());%>' />
+                            <input type="hidden" name="seat" value="<% out.print(seatNo);%>">
                             <input type='submit' value='Go to Shopping Cart to Purchase!' />
                             
                         </form>
