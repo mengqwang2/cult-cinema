@@ -29,6 +29,8 @@
          <% Member m=(Member)request.getAttribute("memberInfo"); %>
 
          <% List<Booking> bk=(List<Booking>)request.getAttribute("bookingInfo"); %>
+         
+         <% boolean []refundSec=(boolean [])request.getAttribute("refundSec"); %>
         <div id="header">
             <% Opt opt=new Opt();  
             out.println(opt.showHeader());
@@ -255,15 +257,15 @@
               
             <form action="memberRefund" method="post">
               
-                    <input type="hidden" name="issueID" value="<% out.print(bks.getIssueID());%>" />
-            <% if(bks.getStatus().equals("P"))
+            <input type="hidden" name="issueID" value="<% out.print(bks.getIssueID());%>" />
+            <% if(bks.getStatus().equals("P")&&bks.getPayment()>0&&refundSec[count]==true)
                { %>
                     <input type="submit" value="Ask Refund!" />
                <% } 
             else if(bks.getStatus().equals("RP")) 
                { %>
                <p>Refund request has been submitted!</p>     
-                    <input type="submit" value="Cancel Request for Refund!" />
+               <input type="submit" value="Cancel Request for Refund!" />
 
                <% } %>
                </form>

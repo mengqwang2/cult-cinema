@@ -65,6 +65,28 @@ public class SectionDAO {
         }
         
     }
+    
+    public boolean isRefundSection(Section s)
+    {
+        try {
+            DBConn db=new DBConn();
+            ResultSet rs;
+            String sql="SELECT DATEDIFF(hour,GETDATE(),"+s.getTime()+") AS DiffDate";
+            rs=db.doSelect(sql);
+            if(rs.next())
+            {
+                int diff=rs.getInt("DiffDate");
+                if(diff>=3)
+                    return true;
+            }
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(SectionDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    
     public void deleteSection(int sectionID) throws SQLException{
        DBConn db=new DBConn(); 
        db.doDelete("DELETE FROM [Section] WHERE Section_ID =" + sectionID);
