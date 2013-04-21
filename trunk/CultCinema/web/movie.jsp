@@ -19,12 +19,10 @@
     </head>
     <body>
         <div id="header">
-            <% Opt opt=new Opt();  
-            out.println(opt.showHeader());
-            %>
+            <%@include file="/header.jsp" %>         
         </div>
         <div id='loginNav'>
-            <% 
+            <% Opt opt=new Opt();  
                 String type="";
                 if (session.isNew())
                 {

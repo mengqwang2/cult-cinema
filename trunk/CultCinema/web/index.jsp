@@ -7,20 +7,17 @@
 <%@page import="Utility.Opt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html>   
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cult Cinema Inc.</title>
     </head>
     <body>
         <div id="header">
-            <% Opt opt=new Opt();  
-            out.println(opt.showHeader());
-            %>
-            
+            <%@include file="/header.jsp" %>           
         </div>
             <div id='loginNav'>
-            <% 
+            <% Opt opt=new Opt();
                 String type="";
                 if (session.isNew())
                 {
@@ -51,8 +48,7 @@
             %>
             
             </div>
-             
-            
+                        
             <div id="navigation">
                 
                 <% 
@@ -68,9 +64,7 @@
             </div>
            
         <div id="footer">
-            <%  
-            out.println(opt.showFooter());
-            %>
+            <%@include file="/footer.jsp" %>
         </div>
     </body>
 </html>

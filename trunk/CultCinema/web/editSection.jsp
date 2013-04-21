@@ -18,12 +18,11 @@
         <% Section s=(Section)request.getAttribute("section"); %>
         <body>
         <div id="header">
-            <% Opt opt=new Opt();  
-            out.println(opt.showHeader());
-            %>
+            <%@include file="/header.jsp" %>   
         </div>
         <div id='loginNav'>
             <% 
+                Opt opt=new Opt();  
                 String type="";
                 if (session.isNew())
                 {
@@ -80,9 +79,7 @@
             <a href="MovieDisplay">Return to movie management site</a>
         </div>
         <div id="footer">
-            <%  
-            out.println(opt.showFooter());
-            %>
+            <%@include file="/footer.jsp" %>
         </div>
         </body>
 </html>
