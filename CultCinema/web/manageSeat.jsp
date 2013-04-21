@@ -15,6 +15,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <% String action= (String)request.getAttribute("action");%>
         <form method="post" action="SectionDisplay">
             <select name="movieID">
                 <% List<Movie> movies = (List<Movie>)session.getAttribute("movies"); 
@@ -28,10 +29,10 @@
             <input type="hidden" name="action" value="selectMovie">
             <input type="submit" value="Select Movie">            
         </form>
-       <% String movieSelect= (String)request.getAttribute("selectMovie");
-       if(movieSelect.equals("selectMovie")){%>
-        <form>                    
-            <select name="section">
+      
+       <% if(!action.equals("selectMovie")){ %>
+        <form method="post" action="SeatDisplay">                    
+            <select name="sectionSelect">
                  <% List<Section> sections = (List<Section>)request.getAttribute("sections"); 
                       for (Section section: sections ){
                   %>     
@@ -42,6 +43,7 @@
                   </option>
                 <% } %>      
            </select>
+           <input type="hidden" name="action" value="selectSeat">
            <input type="submit" value="Select Section">
         </form>
         <%}%>

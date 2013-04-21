@@ -99,7 +99,7 @@
                     </option>
                 <% } %>      
                 </select> 
-     
+                <input type="hidden" name="action" value="purchase">
                 <input type="submit" value="Purchase">
         </form>
                 
