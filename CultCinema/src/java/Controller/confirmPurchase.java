@@ -73,7 +73,14 @@ public class confirmPurchase extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             HttpSession session=request.getSession();
-            int memberID=(Integer)session.getAttribute("memberID");
+            int memberID=0;
+            if(session.getAttribute("memberID")!=null)
+                memberID=(Integer)session.getAttribute("memberID");
+            else if(session.getAttribute("managerID")!=null)
+                memberID=1;
+            else if(session.getAttribute("officerID")!=null)
+                memberID=2;
+                    
             String sectionID=request.getParameter("SectionID");
             int loyaltyUse=Integer.parseInt(request.getParameter("loyaltyUse"));
             int loyaltyAdd=Integer.parseInt(request.getParameter("loyaltyAdd"));
@@ -137,12 +144,14 @@ public class confirmPurchase extends HttpServlet {
             }
             
             //update user loyalty
-            Member m=new Member();
-            m.setMemberID(memberID);
-            MemberDAO mdao=new MemberDAO();
-            mdao.getMember(m);
-            mdao.setMember(m,m.getPassword(),m.getName(),m.getAddress(),m.getTel(),m.getGender(),m.getMail(),m.getLoyalty()-loyaltyUse+loyaltyAdd);
-            
+            if(session.getAttribute("memberID")!=null)
+            {
+                Member m=new Member();
+                m.setMemberID(memberID);
+                MemberDAO mdao=new MemberDAO();
+                mdao.getMember(m);
+                mdao.setMember(m,m.getPassword(),m.getName(),m.getAddress(),m.getTel(),m.getGender(),m.getMail(),m.getLoyalty()-loyaltyUse+loyaltyAdd);
+            }
             
             request.getRequestDispatcher("CartRetrieve?action=shoppingCart").forward(request, response);
             
