@@ -167,7 +167,6 @@ public class CartRetrieve extends HttpServlet {
             request.setAttribute("movieInfo", movie);
             request.setAttribute("sectionInfo", section);
             request.setAttribute("venueInfo", venue);
-            request.setAttribute("memberInfo", mInfo);
             request.setAttribute("bookingInfo", bk);
             request.setAttribute("lsReserve", rvBooking);
             request.setAttribute("refundSec", refundSec);
