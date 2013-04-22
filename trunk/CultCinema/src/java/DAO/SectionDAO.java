@@ -78,6 +78,8 @@ public class SectionDAO {
                 int diff=rs.getInt("DiffDate");
                 if(diff>=3)
                     return true;
+                else
+                    return false;
             }
            
         } catch (SQLException ex) {
