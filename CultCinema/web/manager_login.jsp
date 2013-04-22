@@ -1,56 +1,102 @@
 <%-- 
     Document   : manager_login
-    Created on : Apr 16, 2013, 11:28:47 AM
+    Created on : Apr 16, 2013, 11:00:40 AM
     Author     : mengqwang
 --%>
 
 <%@page import="Utility.Opt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>User Login</title>
-    </head>
-    <body>
-       <div id="header">
-            <h1>
-                Cult Cinema Inc
-            </h1>  
-            
-            <% Opt opt=new Opt();%>
-            <% out.println(opt.showNotLoginNav());%>
-        </div>
-        <div id="body">
-              
-             <div id="login">
-                <form name ="frmLogin" action='login_check' method='POST'>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>User Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-                <fieldset>
-                    <input type="hidden" name="todo" id="todo" value="" />
-                    <label for="login-text">Username</label>
-                    <input type="text" name='j_username' id='j_username' />
-                    <label for="login-text">Password</label>
-                    <input type="password" name='j_password' id='j_password'/>
-                    <input type='hidden' name='user_type' value='manager' />
-                </fieldset>
+    <!-- Le styles -->
+    <link href="bst/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+      }
 
-                <input type="submit" name="submit" value="Login" />
-           
-                </form>
+      .form-signin {
+        max-width: 300px;
+        padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+
+    </style>
+    <link href="bst/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.bootcss.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.bootcss.com/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://www.bootcss.com/assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://www.bootcss.com/assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="http://www.bootcss.com/assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="http://www.bootcss.com/assets/ico/favicon.png">
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <form class="form-signin" action='login_check' method='POST'>
+	  <input type="hidden" name="todo" id="todo" value="" />
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <input class="input-block-level" placeholder="Username" type="text" name="j_username" id="j_username">
+        <input class="input-block-level" placeholder="Password" type="password" name='j_password' id='j_password'>
+		<input type='hidden' name='user_type' value='manager' />
+        <label class="checkbox">
+          <input value="remember-me" type="checkbox"> Remember me
+        </label>
+        <button class="btn btn-large btn-primary" type="submit" name="submit">Sign in</button>
+        <div style="float:right">
+        <a href='forgetPass.jsp'>Forget Password?</a></div>
+      </form>
+	  <div id='reg'>
+                
             </div>
-            
             <div id='forgetPass'>
-                <a href='forgetPass.jsp'>Forget Password?</a>
+               
             </div>
-            
-        </div>
-        
-        <div id="footer">
-            © Copyright 2013 Cult Cinema Inc
-        </div>
-        
-        
-        
-    </body>
-</html>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="bst/jquery.js"></script>
+    <script src="bst/bootstrap.js"></script>
+
+  
+
+</body></html>
