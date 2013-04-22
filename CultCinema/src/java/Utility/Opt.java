@@ -13,15 +13,17 @@ public class Opt {
     
     public String showNotLoginNav()
     {
-        String opt="<p>Login</p><ul><li><a href='index.jsp'>Main</a></li><li><a href='user_login.jsp'>Member</a></li>";
-        opt+="<li><a href='manager_login.jsp'>Manager</a></li>";
-        opt+="<li><a href='officer_login.jsp'>Officer</a></li></ul>";
+        String opt="<div class=\"navbar-wrapper\"><div class=\"container\"><div class=\"navbar navbar-inverse\"><div class=\"navbar-inner\"><button type=\"button\" class=\"btn btn-navbar\" data-toggle=\"collapse\" data-target=\".nav-collapse\"><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button><a class=\"brand\" href=\"index.jsp\">Cult Cinema</a><div class=\"nav-collapse collapse\"><ul class=\"nav\"><li class=\"active\"><a href=\"index.jsp\">Home</a></li><li><a href=\"MovieDisplay?Action=MovieDisplay\">Movies</a></li><li><a href=\"#about\">About</a></li><li><a href=\"#contact\">Contact</a></li><li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Login<b class=\"caret\"></b></a><ul class=\"dropdown-menu\"><li><a href=\"user_login.jsp\">Member</a></li><li class=\"divider\"></li><li class=\"nav-header\">Staff</li><li><a href=\"manager_login.jsp\">Manager</a></li><li><a href=\"officer_login.jsp\">Officer</a></li></ul></li></ul></div></div></div></div></div>";
+      //  opt+="<li><a href='manager_login.jsp'>Manager</a></li>";
+      //  opt+="<li><a href='officer_login.jsp'>Officer</a></li></ul>";
         return opt;
     }
     
     public String showLoginNav(int memberID)
     {
-        String opt="<p>Logged in as "+memberID+"</p>";
+        String opt="<div class=\"navbar-wrapper\"><div class=\"container\"><div class=\"navbar navbar-inverse\"><div class=\"navbar-inner\"><button type=\"button\" class=\"btn btn-navbar\" data-toggle=\"collapse\" data-target=\".nav-collapse\"><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button><a class=\"brand\" href=\"index.jsp\">Cult Cinema</a><div class=\"nav-collapse collapse\"><ul class=\"nav\"><li class=\"active\"><a href=\"index.jsp\">Home</a></li><li><a href=\"MovieDisplay?Action=MovieDisplay\">Movies</a></li><li><a href=\"#about\">About</a></li><li><a href=\"#contact\">Contact</a></li><li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">"+memberID+"<b class=\"caret\"></b></a><ul class=\"dropdown-menu\"><li><a href=\"CartRetrieve?action=bkRecord\">Booking Records</a></li><li><a href=\"CartRetrieve?action=loyalty\">Loyalty Point</a></li><li><a href=\"CartRetrieve?action=confirmInfor\">Personal Information</a></li><li><a href=\"CartRetrieve?action=shoppingCart\">Shopping Cart</a></li><li><a href=\"logoffControl\">Log off</a></li></ul></li></ul></div></div></div></div></div>";
+                
+
         return opt;
     }
     
@@ -36,7 +38,7 @@ public class Opt {
         String opt="";
         if(type.equals("member"))
         {
-            opt+="<ul><li><a href='MovieDisplay?Action=MovieDisplay'>Movie</a></li><li><a href='CartRetrieve?action=bkRecord'>Booking Records</a></li><li><a href='CartRetrieve?action=loyalty'>Loyalty Point</a></li><li><a href='CartRetrieve?action=confirmInfor'>Personal Information</a></li><li><a href='CartRetrieve?action=shoppingCart'>Shopping Cart</a></li><li><a href='logoffControl'>Log off</a></li></ul>";
+            opt+="";
         }
         else if(type.equals("manager"))
         {

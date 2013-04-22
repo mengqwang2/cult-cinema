@@ -4,15 +4,7 @@
     Author     : 52165627
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <p>Â© Copyright 2013 Cult Cinema Inc</p>
-    </body>
-</html>
+<footer>
+        <p class="pull-right"><a href="http://twitter.github.io/bootstrap/examples/carousel.html#">Back to top</a></p>
+        <p>© Copyright 2013 Cult Cinema Inc</p>
+      </footer>
