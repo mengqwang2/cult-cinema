@@ -13,7 +13,7 @@
 <%@page import="Bean.Booking"%>
 <%@page import="Bean.Venue"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%int memberID=(Integer)session.getAttribute("memberID");%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -66,17 +66,20 @@
         <div id='loginNav'>
             <% 
                 String type="";
+                boolean loginStatus=true;
                 if (session.isNew())
                 {
                     out.println(opt.showNotLoginNav());
+                    loginStatus=false;
                 }
                 else if(session.getAttribute("memberID")==null&&session.getAttribute("managerID")==null&&session.getAttribute("officerID")==null)
                 {
                     out.println(opt.showNotLoginNav());
+                    loginStatus=false;
                 }
                 else if(session.getAttribute("memberID")!=null)
                 {
-                    memberID=(Integer)session.getAttribute("memberID");
+                    int memberID=(Integer)session.getAttribute("memberID");
                     out.println(opt.showLoginNav(memberID));
                     type="member";
                 }
@@ -102,6 +105,12 @@
                 %>
         </div>
         <div id='mainContainer'>
+            <% if(loginStatus==false)
+            {  %>
+            <a href="index.jsp">Please Log in First!</a>
+            <% } %>
+            <% if(loginStatus==true)
+            {  %>
             <table>
                 <%Venue v=(Venue)request.getAttribute("selectVenue"); 
                 Section s=(Section) request.getAttribute("selectSection"); 
@@ -154,6 +163,7 @@
                 <input type='hidden' name="seats" id="seats" value='' />
                 <input type='submit' value='Preview' />
             </form>
+           <% } %>
             <a href="movie.jsp">Back to view other movies!</a>
         </div>
                 

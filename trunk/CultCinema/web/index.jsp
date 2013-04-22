@@ -61,6 +61,7 @@
                 <p>
                     Movie Information to be displayed here! :)
                 </p>
+                <a href="MovieDisplay?Action=MovieDisplay">More movies!</a>
             </div>
            
         <div id="footer">
