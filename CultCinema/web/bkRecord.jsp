@@ -20,13 +20,11 @@
     </head>
     <body>
         
-        <% List<Movie> mv=(List<Movie>)request.getAttribute("movieInfo");%>
+         <% List<Movie> mv=(List<Movie>)request.getAttribute("movieInfo");%>
  
          <% List<Venue> v=(List<Venue>)request.getAttribute("venueInfo");%>
 
          <% List<Section> s=(List<Section>)request.getAttribute("sectionInfo"); %>
- 
-         <% Member m=(Member)request.getAttribute("memberInfo"); %>
 
          <% List<Booking> bk=(List<Booking>)request.getAttribute("bookingInfo"); %>
          
@@ -80,9 +78,7 @@
             
             
             <div id="mainContainer">
-                <% int count=0; 
-            
-            %>
+                <% int count=0; %>
  
             <% for (Booking bks:bk)
 
@@ -258,6 +254,7 @@
             <form action="memberRefund" method="post">
               
             <input type="hidden" name="issueID" value="<% out.print(bks.getIssueID());%>" />
+            
             <% if(bks.getStatus().equals("P")&&bks.getPayment()>0&&refundSec[count]==true)
                { %>
                     <input type="submit" value="Ask Refund!" />
@@ -266,8 +263,10 @@
                { %>
                <p>Refund request has been submitted!</p>     
                <input type="submit" value="Cancel Request for Refund!" />
-
+               
                <% } %>
+            
+            
                </form>
             <% count++;} %>
             </div>
