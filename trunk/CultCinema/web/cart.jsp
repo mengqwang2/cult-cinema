@@ -131,7 +131,7 @@
 
                     String managerID=(String)session.getAttribute("managerID");
  
-                    out.println(opt.showLoginNav(managerID));
+                    out.println(opt.showLoginNav(managerID,0));
 
                     type="manager";
 
@@ -143,7 +143,7 @@
 
                     String officerID=(String)session.getAttribute("officerID");
 
-                    out.println(opt.showLoginNav(officerID));
+                    out.println(opt.showLoginNav(officerID,1));
 
                     type="officer";
  
