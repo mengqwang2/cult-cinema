@@ -14,7 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Section Management</title>
     </head>
     
     <body>
@@ -43,13 +43,13 @@
                 else if(session.getAttribute("managerID")!=null)
                 {
                     String managerID=(String)session.getAttribute("managerID");
-                    out.println(opt.showLoginNav(managerID));
+                    out.println(opt.showLoginNav(managerID,0));
                     type="manager";
                 }
                 else if(session.getAttribute("officerID")!=null)
                 {
                     String officerID=(String)session.getAttribute("officerID");
-                    out.println(opt.showLoginNav(officerID));
+                    out.println(opt.showLoginNav(officerID,1));
                     type="officer";
                 }
             %>
