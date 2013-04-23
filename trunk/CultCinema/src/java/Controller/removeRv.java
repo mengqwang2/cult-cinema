@@ -141,7 +141,13 @@ public class removeRv extends HttpServlet {
 
             HttpSession session=request.getSession();
 
-            int memberID=(Integer)session.getAttribute("memberID");
+            int memberID = 0;
+            if(session.getAttribute("memberID")!=null)
+                memberID=(Integer)session.getAttribute("memberID");
+            else if(session.getAttribute("managerID")!=null)
+                memberID=1;
+            else if(session.getAttribute("officerID")!=null)
+                memberID=2;
  
             int sectionID=Integer.parseInt(request.getParameter("sectionID"));
 
