@@ -66,7 +66,13 @@ public class CartRetrieve extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             HttpSession session=request.getSession();
-            int memberID=(Integer)session.getAttribute("memberID");
+            int memberID = 0;
+            if(session.getAttribute("memberID")!=null)
+                memberID=(Integer)session.getAttribute("memberID");
+            else if(session.getAttribute("managerID")!=null)
+                memberID=1;
+            else if(session.getAttribute("officerID")!=null)
+                memberID=2;
             Reserve v = new Reserve();
             Booking bking=new Booking();
             List<Reserve> rvBooking = new ArrayList<Reserve>();

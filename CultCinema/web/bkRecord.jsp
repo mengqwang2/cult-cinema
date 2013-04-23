@@ -255,7 +255,7 @@
               
             <input type="hidden" name="issueID" value="<% out.print(bks.getIssueID());%>" />
             
-            <% if(bks.getStatus().equals("P")&&bks.getPayment()>0&&refundSec[count]==true)
+            <% if(bks.getStatus().equals("P")&&bks.getPayment()>0&&refundSec[count]==true&&type=="member")
                { %>
                     <input type="submit" value="Ask Refund!" />
                <% } 
