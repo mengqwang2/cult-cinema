@@ -371,23 +371,6 @@
             
 
             <% count++;} %>
- 
-            
-
-            <p>Total Price: 
-
-                <span id="total"><% out.print(total); %></span>
-
-            </p>
-
-            <p>To Pay:
- 
-                <span id="toPay"><% out.print(total); %></span>
-
-            </p>
-
-            <input type='checkbox' name='loyalty' id='loyalty' onclick='checkToPay(<%out.print(total); %>,<%out.print(m.getLoyalty());%>)'/>Use Loyalty Point
-            
             <% int lpts=m.getLoyalty(); 
           
                         int luse=0;
@@ -403,6 +386,25 @@
                             ladd=0;
                         }
                         %>
+            
+            <% if(total!=0)
+            { %>
+            <p>Total Price: 
+
+                <span id="total"><% out.print(total); %></span>
+
+            </p>
+
+            <p>To Pay:
+ 
+                <span id="toPay"><% out.print(total); %></span>
+
+            </p>
+
+            <input type='checkbox' name='loyalty' id='loyalty' onclick='checkToPay(<%out.print(total); %>,<%out.print(m.getLoyalty());%>)'/>Use Loyalty Point
+            
+           
+            
                         
             <form action="confirmPurchase" method="post">
                 <input type='hidden' name='SectionID' value='<% out.print(sectionStr);%>' />
@@ -413,7 +415,11 @@
                 <input type="submit" value="Purchase!" />
             </form>
             
-
+             <% }  else {
+             out.println("<p>No movie item in the shopping cart! </p><a href='MovieDisplay?Action=MovieDisplay'>Choose some movies now!</a>"); }%>
+             
+                 
+             
                <%  
 
                 out.println(opt.showFooter());
