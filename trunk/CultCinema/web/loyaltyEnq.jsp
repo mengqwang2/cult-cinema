@@ -93,10 +93,13 @@
             1. Loyalty Point LP(100) can be used as 1 HKD when buying ticket(s);
             </p>
             <p>
-            2. It can only be used in the movie specified;
+            2. One HKD can be treated as LP(10) accumulated in the account;   
             </p>
             <p>
-            3. All the explanations are from Cult-Cinema Corp.
+            3. It can only be used in the movie specified;
+            </p>
+            <p>
+            4. All the explanations are from Cult-Cinema Corp.
             </p>
                <%  
             out.println(opt.showFooter());
