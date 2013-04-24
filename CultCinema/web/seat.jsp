@@ -131,11 +131,7 @@
             {  %>
             <a href="index.jsp">Please Log in First!</a>
             <% }
-            else if(type.equals("manager"))
-            {  %>
-            <span>Not eligible to purchase tickets. </span><br/>
-            <a href="index.jsp">Back to index!</a><br/>
-            <% }
+            
             else if(loginStatus==true)
             {  %>
             <table>
