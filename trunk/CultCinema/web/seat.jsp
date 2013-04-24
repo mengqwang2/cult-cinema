@@ -130,13 +130,25 @@
             <% if(loginStatus==false)
             {  %>
             <a href="index.jsp">Please Log in First!</a>
-            <% } %>
-            <% if(loginStatus==true)
+            <% }
+            else if(type.equals("manager"))
+            {  %>
+            <span>Not eligible to purchase tickets. </span><br/>
+            <a href="index.jsp">Back to index!</a><br/>
+            <% }
+            else if(loginStatus==true)
             {  %>
             <table>
                 <%Venue v=(Venue)request.getAttribute("selectVenue"); 
                 Section s=(Section) request.getAttribute("selectSection"); 
                 int count=1;%>
+                
+                <table border="1">
+                    <tr>
+                        <td>Screen</td>
+                    </tr>
+                </table>
+                
                 <table border='1'>
                 <%for (int i=0;i<v.getRow();i++) { %>
                 <tr>
@@ -170,6 +182,21 @@
                 </tr>
                 <%}%>
             </table>
+            
+            <table border="1">
+                <tr>
+                    <td>X</td>
+                </tr>
+            </table>
+            <span>Booked</span>
+            
+            <table border="1">
+                <tr>
+                    <td>O</td>
+                </tr>
+            </table>
+            <span>Available</span>
+            <br/>
             
             <input type="button" value="Select!" onclick="finalPurchase(<%out.print(count-1);%>,'<% out.print(type);%>');" />
             
