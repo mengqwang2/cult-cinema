@@ -11,15 +11,32 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+          <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="http://cdnjs.bootcss.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="./bst/index.css" rel="stylesheet">
+
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="http://twitter.github.io/bootstrap/assets/ico/favicon.png">
+  <style id="holderjs-style" type="text/css">.holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}
+
+  
+  </style>
+        <title>Personal information</title>
     </head>
         <body>
         <div id="header">
             <% Opt opt=new Opt();  
-            out.println(opt.showHeader());
+          //  out.println(opt.showHeader());
             %>
         </div>
-        <div id='loginNav'>
+       
             <% 
                 String type="";
                 if (session.isNew())
@@ -49,7 +66,7 @@
                     type="officer";
                 }
             %>
-        </div>
+       
         
         <div id="navigation">
                 
@@ -57,35 +74,59 @@
                     out.println(opt.showItem(type));
                 %>
         </div>
-        <div id="mainContainer">
+       <div class="container" style=" position:relative;top:90px;">
             <% Member member=(Member)request.getAttribute("memberInfo");%>
             <form onsubmit="return validate_form(this);" method="post" action="CartRetrieve">
                 <fieldset>
                     <legend>Your information</legend>
                     <input type="hidden" name="todo" id="todo" value="" />
                     <input type="hidden" name="action" id="action" value="editInfor"/>
-                    <label class="label">Member ID</label>
+                    <label class="">Member ID</label>
                     <label class="infor"><%=member.getMemberID()%></label><br/>
-                    <label class="label">Name</label>
+                    <label class="">Name</label>
                     <label class="infor"><%=member.getName()%></label><br/>
-                    <label class="label">Address</label>
+                    <label class="">Address</label>
                     <label class="infor"><%=member.getAddress()%></label><br/>
-                    <label class="label">Tel</label>
+                    <label class="">Tel</label>
                     <label class="infor"><%=member.getTel()%></label><br/>
-                    <label class="label">Gender</label>
+                    <label class="">Gender</label>
                     <label class="infor"><%=member.getGender()%></label><br/>
-                    <label class="label">Email</label>
+                    <label class="">Email</label>
                     <label class="infor"><%=member.getMail()%></label><br/>
-                    <label class="label">Loyalty</label>
+                    <label class="">Loyalty</label>
                     <label class="infor"><%=member.getLoyalty()%></label><br/>
                     <input type="submit" value="Edit" />
                 </fieldset>
             </form>
-        </div>
-        <div id="footer">
-            <%  
+                     <%  
             out.println(opt.showFooter());
             %>
         </div>
+                <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./bst/jquery.js"></script>
+    <script src="./bst/bootstrap-transition.js"></script>
+    <script src="./bst/bootstrap-alert.js"></script>
+    <script src="./bst/bootstrap-modal.js"></script>
+    <script src="./bst/bootstrap-dropdown.js"></script>
+    <script src="./bst/bootstrap-scrollspy.js"></script>
+    <script src="./bst/bootstrap-tab.js"></script>
+    <script src="./bst/bootstrap-tooltip.js"></script>
+    <script src="./bst/bootstrap-popover.js"></script>
+    <script src="./bst/bootstrap-button.js"></script>
+    <script src="./bst/bootstrap-collapse.js"></script>
+    <script src="./bst/bootstrap-carousel.js"></script>
+    <script src="./bst/bootstrap-typeahead.js"></script>
+    <script>
+      !function ($) {
+        $(function(){
+          // carousel demo
+          $('#myCarousel').carousel()
+        })
+      }(window.jQuery)
+    </script>
+    <script src="./bst/holder.js"></script>
+        
         </body>
 </html>
