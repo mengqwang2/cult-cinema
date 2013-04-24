@@ -39,7 +39,7 @@
                 }
             }
             
-            function finalPurchase(count)
+            function finalPurchase(count,type)
             {
                 var seatNo="";
                 for(var i=0;i<count;i++)
@@ -51,8 +51,13 @@
                     }
                     
                 }
-                document.getElementById('seats').value=seatNo;
-                document.getElementById('seat').value=seatNo;
+                if(type=="member"||type=="officer")
+                {
+                    document.getElementById('seats').value=seatNo;
+                    document.getElementById('seat').value=seatNo;
+                }
+                else
+                    document.getElementById('seat_m').value=seatNo;
             }
         </script>
         <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
@@ -165,11 +170,11 @@
                 </tr>
                 <%}%>
             </table>
-   
-            <input type="button" value="Select!" onclick="finalPurchase(<%out.print(count-1);%>);" />
             
-           
-            <form action="reserve" method="post">
+            <input type="button" value="Select!" onclick="finalPurchase(<%out.print(count-1);%>,'<% out.print(type);%>');" />
+            
+            <% if(type.equals("member")||type.equals("officer")) { %>
+                <form action="reserve" method="post">
                <input type='hidden' name='SectionID' value='<% out.print(s.getSectionID()); %>' />
                <input type='hidden' name='seat' id="seat" value='' />
                <input type="submit" value="Add to shopping cart!" />
@@ -180,6 +185,20 @@
                 <input type='hidden' name="seats" id="seats" value='' />
                 <input type='submit' value='Preview' />
             </form>
+            <%   
+            } 
+            
+            else { %>
+             <form action="markSeat" method="post">
+               <input type='hidden' name='SectionID_m' value='<% out.print(s.getSectionID()); %>' />
+               <input type='hidden' name='seat_m' id="seat_m" value='' />
+               <input type="submit" value="Mark!" />
+              </form>
+              <%  
+              
+             } %>  
+             
+             
            <% } %>
             <a href="movie.jsp">Back to view other movies!</a>
              <%  
