@@ -31,7 +31,7 @@ public class Opt {
         if(type==0){
             opt="<div class=\"navbar-wrapper\"><div class=\"container\"><div class=\"navbar navbar-inverse\"><div class=\"navbar-inner\"><button type=\"button\" class=\"btn btn-navbar\" data-toggle=\"collapse\" data-target=\".nav-collapse\"><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button><a class=\"brand\" href=\"index.jsp\">Cult Cinema</a><div class=\"nav-collapse collapse\"><ul class=\"nav\"><li class=\"active\"><a href=\"index.jsp\">Home</a></li><li><a href=\"MovieDisplay?Action=MovieDisplay\">Movies</a></li><li><a href=\"#about\">About</a></li><li><a href=\"#contact\">Contact</a></li><li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">"+user+"<b class=\"caret\"></b></a><ul class=\"dropdown-menu\"><li><a href=\"MovieDisplay?Action=ManageMovie\">Manage Movie</a></li><li><a href=\"MovieDisplay?Action=ManageSeat\">Manage seats</a></li><li><a href=\"\">View Statistics</a></li><li><a href=\"logoffControl\">Log off</a></li></ul></li></ul></div></div></div></div></div>";}
         else
-                opt="";
+                opt="<div class=\"navbar-wrapper\"><div class=\"container\"><div class=\"navbar navbar-inverse\"><div class=\"navbar-inner\"><button type=\"button\" class=\"btn btn-navbar\" data-toggle=\"collapse\" data-target=\".nav-collapse\"><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button><a class=\"brand\" href=\"index.jsp\">Cult Cinema</a><div class=\"nav-collapse collapse\"><ul class=\"nav\"><li class=\"active\"><a href=\"index.jsp\">Home</a></li><li><a href=\"MovieDisplay?Action=MovieDisplay\">Movies</a></li><li><a href=\"#about\">About</a></li><li><a href=\"#contact\">Contact</a></li><li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">"+user+"<b class=\"caret\"></b></a><ul class=\"dropdown-menu\"><li><a href='RefundControl'>Manage refund</a></li><li><a href='CartRetrieve?action=shoppingCart'>Shopping Cart</a></li><li><a href='logoffControl'>Log off</a></li></ul></div></div></div></div></div>";
         return opt;
     }
     
@@ -48,7 +48,7 @@ public class Opt {
         }
         else if(type.equals("officer"))
         {
-            opt+="<ul><li><a href='MovieDisplay?Action=MovieDisplay'>Movie</a></li><li><a href='RefundControl'>Manage refund</a></li><li><a href='CartRetrieve?action=shoppingCart'>Shopping Cart</a></li><li><a href='logoffControl'>Log off</a></li></ul>";
+            opt+="";
         }
         return opt;
     }
