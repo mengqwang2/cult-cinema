@@ -9,11 +9,12 @@
 <%@page import="Bean.Section"%>
 <%@page import="Bean.Movie"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% Movie movie=(Movie)request.getAttribute("movie");%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title><%=movie.getName()%></title>
         <script type="text/javascript">
             /*
             function getSection()
@@ -89,7 +90,7 @@
         </div>
         
         <div class="container" style=" position:relative;top:90px;">
-        <% Movie movie=(Movie)request.getAttribute("movie");%>
+       
         <ul>
             <img alt=""> 
         </ul>       
