@@ -109,7 +109,12 @@ public class MovieDAO {
 
    public void deleteMovie(int movieID) throws SQLException{
        DBConn db=new DBConn(); 
-       db.doDelete("DELETE FROM [Movie] WHERE Movie_ID =" + movieID);
+       db.doDelete("DELETE FROM [Movie] WHERE Movie_ID =" + movieID);       
+       List<Section> sections = getSectionList(movieID); 
+        for (Section section: sections ){
+            db.doDelete("DELETE FROM [Booking] WHERE Section_ID=" + section.getSectionID());
+        }
+       db.doDelete("DELETE FROM [Section] WHERE Movie_ID=" + movieID);
    }
 
    public Movie getMovieInfo(int movieID)
