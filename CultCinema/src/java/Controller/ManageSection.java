@@ -92,9 +92,7 @@ public class ManageSection extends HttpServlet {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             java.util.Date timeTemp = sdf.parse(request.getParameter("time"));           
             Timestamp time = new Timestamp(timeTemp.getTime());
-            //SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy hh:mm");   
-            //java.util.Date timeTemp = formatter.parse(request.getParameter("time"));           
-            //Timestamp time = new Timestamp(timeTemp.getTime());
+            
         
             java.lang.String priceTemp = request.getParameter("price");        
             int price = Integer.parseInt(priceTemp == null || "".equals(priceTemp)?"0":priceTemp);

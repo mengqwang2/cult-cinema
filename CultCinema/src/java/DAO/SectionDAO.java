@@ -92,7 +92,8 @@ public class SectionDAO {
     public void deleteSection(int sectionID) throws SQLException{
        DBConn db=new DBConn(); 
        db.doDelete("DELETE FROM [Section] WHERE Section_ID =" + sectionID);
-   }
+       db.doDelete("DELETE FROM [Booking] WHERE Section_ID =" + sectionID);
+    }
     public void addSection(Section section) throws SQLException{
        int movieID = section.getMovieID();
        int venueID = section.getVenueID();
