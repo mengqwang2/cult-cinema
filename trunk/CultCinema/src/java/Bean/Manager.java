@@ -28,5 +28,13 @@ public class Manager {
         this.password = password;
     }
     private String password;
-    
+    private int login;
+
+    public int getLogin() {
+        return login;
+    }
+
+    public void setLogin(int login) {
+        this.login = login;
+    }
 }

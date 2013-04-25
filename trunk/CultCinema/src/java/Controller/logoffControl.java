@@ -4,6 +4,8 @@
  */
 package Controller;
 
+import Bean.Manager;
+import DAO.ManagerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -51,6 +53,15 @@ public class logoffControl extends HttpServlet {
         try {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session=request.getSession();
+            if(session.getAttribute("managerID")!=null)
+            {
+                String managerID=(String)session.getAttribute("managerID");
+                Manager m=new Manager();
+                m.setManagerID(managerID);
+                m.setLogin(1);
+                ManagerDAO md=new ManagerDAO();
+                md.setLogin(m);
+            }
             session.invalidate();
             request.getRequestDispatcher("index.jsp").forward(request, response);
             

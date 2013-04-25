@@ -128,8 +128,9 @@ public class LoginControl extends HttpServlet {
                 Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
             }
  
-            if(bool){ 
+            if(bool&&(md.getLogin(user)==0)){ 
                 request.getSession().setAttribute("managerID",user.getManagerID());
+                md.setLogin(user);
               
             }    
        }
