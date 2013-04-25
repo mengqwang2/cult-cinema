@@ -84,6 +84,7 @@ public class forgetPass extends HttpServlet {
  
            request.setAttribute("newPass", newPass);
            request.setAttribute("action", "newPass");
+           request.getRequestDispatcher("forgetPass.jsp").forward(request, response);
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(forgetPass.class.getName()).log(Level.SEVERE, null, ex);
         } finally {            
