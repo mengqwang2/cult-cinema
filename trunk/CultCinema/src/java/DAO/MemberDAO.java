@@ -6,6 +6,8 @@ package DAO;
 
 import Bean.Member;
 import Utility.DBConn;
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -23,6 +25,10 @@ public class MemberDAO {
             try {  
                     String password=user.getPassword();
                     String password2="";
+                    MessageDigest md5 = MessageDigest.getInstance("MD5");
+                    md5.update(password.getBytes());
+                    BigInteger hash = new BigInteger(1, md5.digest());
+                    String hashPass = hash.toString(16);
                     if(!user.getPassword().equals("")||user.getPassword()!=null){
                         String sql="select [Password] from [Member] where [Member_ID]="+user.getMemberID();
                         rs=db.doSelect(sql);  
@@ -32,7 +38,7 @@ public class MemberDAO {
                         }
                         db.close(rs);
                     }
-                    boolean res=password.equals(password2);
+                    boolean res=hashPass.equals(password2);
                     return (res);
             } catch (SQLException e) {  
                 e.printStackTrace();  
@@ -55,6 +61,26 @@ public class MemberDAO {
         }
                
         return false;
+    }
+    
+    public int getMemberID(Member m)
+    {
+        int memberID=0;
+        try {
+            DBConn db=new DBConn(); 
+            String sql="SELECT [Member_ID] FROM [MEMBER] WHERE [Mail]='"+m.getMail()+"'";
+            ResultSet rs=null;
+            rs=db.doSelect(sql);
+            
+            if(rs.next())
+            {
+                memberID=rs.getInt("Member_ID");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MemberDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return memberID;
     }
     
     public void getMember(Member m)
