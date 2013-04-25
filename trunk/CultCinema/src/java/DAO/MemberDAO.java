@@ -124,8 +124,12 @@ public class MemberDAO {
     public void setMember(Member m,String pwd,String name,String adr,String tel,String gender,String mail,int loyalty)
     {
         try {
+            MessageDigest md5 = MessageDigest.getInstance("MD5");
+            md5.update(pwd.getBytes());
+            BigInteger hash = new BigInteger(1, md5.digest());
+            String hashPass = hash.toString(16);
             DBConn db=new DBConn(); 
-            String sql="UPDATE [MEMBER] SET [Password]='"+pwd+"',[Name]='"+name+"',[Address]='"+adr+"',[Tel]='"+tel+"',[Gender]='"+gender+"',[Mail]='"+mail+"',[Loyalty]="+loyalty+" WHERE [Member_ID]="+m.getMemberID();
+            String sql="UPDATE [MEMBER] SET [Password]='"+hashPass+"',[Name]='"+name+"',[Address]='"+adr+"',[Tel]='"+tel+"',[Gender]='"+gender+"',[Mail]='"+mail+"',[Loyalty]="+loyalty+" WHERE [Member_ID]="+m.getMemberID();
             db.doUpdate(sql);
             db.close();
         } catch (SQLException ex) {
