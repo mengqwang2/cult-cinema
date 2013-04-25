@@ -80,7 +80,7 @@
         <button class="btn btn-large btn-primary" type="submit" name="submit">Sign in</button>
         <div style="float:right">
 	<a href='register.jsp'>Not register yet?</a>	<br/>
-        <a href='forgetPass'>Forget Password?</a></div>
+        <a href='forgetPass.jsp'>Forget Password?</a></div>
       </form>
 	  <div id='reg'>
                 
