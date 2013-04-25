@@ -8,6 +8,9 @@ import Bean.Member;
 import DAO.MemberDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -73,7 +76,7 @@ public class RegisterControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        try {
             String name = request.getParameter("name");
             String password = request.getParameter("password");
             String address = request.getParameter("address");
@@ -81,28 +84,43 @@ public class RegisterControl extends HttpServlet {
             String gender = request.getParameter("gender");
             String email = request.getParameter("email");
             
+            MessageDigest md5 = MessageDigest.getInstance("MD5");
+            md5.update(password.getBytes());
+            BigInteger hash = new BigInteger(1, md5.digest());
+            String hashPass = hash.toString(16);
+            
             Member user=new Member();  
             user.setName(name);  
-            user.setPassword(password); 
+            user.setPassword(hashPass); 
             user.setAddress(address);
             user.setGender(gender);
             user.setTel(tel);
             user.setMail(email);  
             
-        MemberDAO md=new MemberDAO();  
+        MemberDAO md=new MemberDAO();
+        
         boolean bool = false;  
         try {
             bool = md.doUserReg(user);
+            
         } catch (SQLException ex) {
             Logger.getLogger(RegisterControl.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             Logger.getLogger(RegisterControl.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        
+        
         if(bool)  
         {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+            int memberID=md.getMemberID(user);
+            user.setMemberID(memberID);
+            request.setAttribute("member", user);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("registerSuccess.jsp");
             dispatcher.forward(request, response);
+        }
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(RegisterControl.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
