@@ -35,7 +35,7 @@
             function validate_form(thisform){
                // with(thisform){
               
-                if (document.getElementById("password").value!=document.getElementById("pword").value){
+                if (md5(document.getElementById("password").value)!=document.getElementById("pword").value){
                     document.getElementById('passwordX').style.display = "";
                      if(document.getElementById("newPassword").value!=document.getElementById("confirmedPassword").value){
                         document.getElementById('newPwordX').style.display = "";
