@@ -8,6 +8,11 @@ import Bean.Member;
 import DAO.MemberDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -68,29 +73,32 @@ public class changeInfor extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        java.lang.String IDtemp = request.getParameter("userID");
-        int memberID=Integer.parseInt(IDtemp == null || "".equals(IDtemp)?"0":IDtemp);
-        String name=request.getParameter("name");
-        String password=request.getParameter("newPassword");
-        String address=request.getParameter("address");
-        String tel=request.getParameter("tel");
-        String gender = request.getParameter("gender");
-        String email = request.getParameter("email");     
-        java.lang.String loyaltyTemp = request.getParameter("loyalty");
-        int loyalty=Integer.parseInt(loyaltyTemp == null || "".equals(loyaltyTemp)?"0":loyaltyTemp);
-        Member member = new Member();
-        member.setMemberID(memberID);
-        member.setName(name);
-        member.setAddress(address);
-        member.setPassword(password);
-        member.setGender(gender);
-        member.setTel(tel);
-        member.setMail(email);
-        member.setLoyalty(loyalty);
-        MemberDAO mDAO = new MemberDAO();
-        mDAO.setMember(member, password, name, address, tel, gender, email, loyalty);
-        request.setAttribute("memberInfo",member);
-        request.getRequestDispatcher("confirmInfor.jsp").forward(request, response);  
+ 
+            java.lang.String IDtemp = request.getParameter("userID");
+            int memberID=Integer.parseInt(IDtemp == null || "".equals(IDtemp)?"0":IDtemp);
+            String name=request.getParameter("name");
+            String password=request.getParameter("newPassword");
+            String address=request.getParameter("address");
+            String tel=request.getParameter("tel");
+            String gender = request.getParameter("gender");
+            String email = request.getParameter("email");     
+            java.lang.String loyaltyTemp = request.getParameter("loyalty");
+            int loyalty=Integer.parseInt(loyaltyTemp == null || "".equals(loyaltyTemp)?"0":loyaltyTemp);
+            Member member = new Member();
+            member.setMemberID(memberID);
+            member.setName(name);
+            member.setAddress(address);
+            member.setPassword(password);
+            member.setGender(gender);
+            member.setTel(tel);
+            member.setMail(email);
+            member.setLoyalty(loyalty);
+            MemberDAO mDAO = new MemberDAO();
+           
+            mDAO.setMember(member, password, name, address, tel, gender, email, loyalty);
+            request.setAttribute("memberInfo",member);  
+            request.getRequestDispatcher("confirmInfor.jsp").forward(request, response);
+
     }
 
     /**
