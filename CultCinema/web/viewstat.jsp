@@ -4,6 +4,7 @@
     Author     : 52165627
 --%>
 
+<%@page import="DAO.StatDAO"%>
 <%@page import="Utility.Opt"%>
 <%@page import="Bean.Section"%>
 <%@page import="Bean.Movie"%>
@@ -28,8 +29,9 @@
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-72-precomposed.png">
                     <link rel="apple-touch-icon-precomposed" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="http://twitter.github.io/bootstrap/assets/ico/favicon.png">
-  <style id="holderjs-style" type="text/css">.holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}
-
+  <style id="holderjs-style" type="text/css">
+      .holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}
+      td{padding:20px;}
   
   </style>
     </head>
@@ -79,34 +81,62 @@
                 %>
         </div>
         <div class="container" style=" position:relative;top:90px;">
-        <% String action= (String)request.getAttribute("action");%>
-        <form method="post" action="stat">
-            <input type="hidden" name="id" value="0">
-            <input type="hidden" name="action" value="show">
-            <table>
+            <% String action= (String)request.getAttribute("action");%>
+            <form method="post" action="stat">
+                <input type="hidden" name="id" value="0">
+                <input type="hidden" name="action" value="show">
+                    <select name="movieID">
+                    <%  List<Movie> movies = (List<Movie>)session.getAttribute("movies");
+                        int i=0;
+                        for(Movie movie: movies){
+                    %> 
+                    <option value="<%=movie.getMovieID()%>" 
+                            <%if(action.equals("show")) 
+                                {int id=(Integer)request.getAttribute("selectedMovie");
+                                if (movie.getMovieID()==id){%>selected="selected"<%}}%>><%=movie.getName()%>
+                    </option>                           
+                    <% i++;
+                        } %>      
+                    </select> 
+
+                        <input type="submit" class="btn" value="Select Movie" style="position: relative; top:-5px;margin:  0 5px"> 
+
+            </form>
+
+            <% if(action.equals("show")){ %>
+            <table id="ticketInfo">
                 <tr>
-                    <td>
-            <select name="movieID">
-                <%  List<Movie> movies = (List<Movie>)session.getAttribute("movies");
-                    int i=0;
-                    for(Movie movie: movies){
-                %> 
-                <option value="<%=movie.getMovieID()%>" 
-                        <%if(!action.equals("show")) 
-                            {int id=(Integer)request.getAttribute("selectedMovie");
-                            if (movie.getMovieID()==id){%>selected="selected"<%}}%>><%=movie.getName()%></option>                           
-                <% i++;
-                    } %>      
-                </select> 
-                    </td><td>
-                        <input type="submit" class="btn" value="Select Movie" style="position: relative; top:-5px;margin:  0 5px"> </td>  
-            </tr>
+                    <td>Section</td>
+                    <td>Venue</td>
+                    <td>Time</td>
+                    <td>Price</td>
+                    <td>Total Tickets</td>
+                    <td>Sold Tickets</td>
+                    <td>Available</td>
+                </tr>
+                  <% List<Section> sections = (List<Section>)request.getAttribute("sections"); 
+                    StatDAO statDAO=new StatDAO();
+                    int total;
+                    int sold;
+                    int available;
+                    for (Section section: sections ){
+                        total=statDAO.getTotalTicket(section.getSectionID())-statDAO.getReservedTicket(section.getSectionID());
+                        sold=statDAO.getSoldTicket(section.getSectionID());
+                        available=total-sold;
+                        %>     
+                       <tr> 
+                           <td><%=section.getSectionID()%></td>
+                           <td><%=section.getVenueID()%></td>
+                           <td><%=section.getTime()%> </td>
+                           <td>$<%=section.getPrice()%>  </td>     
+                           <td><%=total%></td>
+                           <td><%=sold%></td>
+                           <td><%=available%></td>
+                       </tr>
+                     <% } %>    
+             
             </table>
-        </form>
-      
-       <% if(action.equals("show")){ %>
-        
-        <%}%>
+                     <%}%>
         </div>
         
         
