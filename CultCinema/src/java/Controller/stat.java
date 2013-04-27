@@ -83,8 +83,6 @@ public class stat extends HttpServlet {
             List<Section> sections = movieDAO.getSectionList(movieID);
             request.setAttribute("sections",sections);
             List<Movie> movies = movieDAO.getMovieList();              
-            Movie selectedMovie = movies.get(id);
-            request.setAttribute("movie",selectedMovie);
             request.setAttribute("action","show");
             request.setAttribute("selectedMovie", movieID);
             request.setAttribute("id", id); 
