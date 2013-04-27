@@ -76,18 +76,13 @@ public class forgetPass extends HttpServlet {
            MemberDAO md=new MemberDAO();
            md.getMember(m);
            String newPass=m.getTel();
-           MessageDigest md5 = MessageDigest.getInstance("MD5");
-           md5.update(newPass.getBytes());
-           BigInteger hash = new BigInteger(1, md5.digest());
-           String hashPass = hash.toString(16);
-           m.setPassword(hashPass);
- 
+           m.setPassword(newPass);
+           md.setMember(m,m.getPassword() ,m.getName(),m.getAddress(),m.getTel(),m.getGender(),m.getMail(),m.getLoyalty());
            request.setAttribute("newPass", newPass);
            request.setAttribute("action", "newPass");
            request.getRequestDispatcher("forgetPass.jsp").forward(request, response);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(forgetPass.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {            
+        } 
+        finally {            
             out.close();
         }
     }
