@@ -28,7 +28,7 @@
 
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="./bst/index.css" rel="stylesheet">
-
+        <link href="./css/commonCss.css" rel="stylesheet">
 
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-144-precomposed.png">
@@ -112,6 +112,9 @@
             <input type="submit" value="Edit Movie">
         </form>
         <a href="manageMovie.jsp">Return to movie Management site</a>
+        <div id="footer">
+         <%@include file="/footer.jsp" %>
+        </div>
        </div>
             
                        <!-- Le javascript

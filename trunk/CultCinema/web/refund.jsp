@@ -99,9 +99,9 @@
         <% } %>
         </table>
         </form>
-        <%  
-            out.println(opt.showFooter());
-            %>
+        <div id="footer">
+         <%@include file="/footer.jsp" %>
+        </div> 
         </div>
        
         

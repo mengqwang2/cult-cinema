@@ -18,7 +18,7 @@
 
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="./bst/index.css" rel="stylesheet">
-
+        <link href="./css/commonCss.css" rel="stylesheet">
 
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-144-precomposed.png">
@@ -128,9 +128,9 @@
                     <a href="CartRetrieve?action=confirmInfor">Back to previous page</a>
                 </fieldset>
             </form>
-                      <%  
-            out.println(opt.showFooter());
-            %>
+            <div id="footer">
+         <%@include file="/footer.jsp" %>
+        </div>
         </div>
       
         

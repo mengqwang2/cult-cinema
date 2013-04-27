@@ -22,14 +22,14 @@
 
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="./bst/index.css" rel="stylesheet">
-
+        <link href="./css/commonCss.css" rel="stylesheet">
 
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-114-precomposed.png">
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="http://twitter.github.io/bootstrap/assets/ico/favicon.png">
+      <link rel="apple-touch-icon-precomposed" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
+      <link rel="shortcut icon" href="http://twitter.github.io/bootstrap/assets/ico/favicon.png">
   <style id="holderjs-style" type="text/css">.holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}
 
   
@@ -222,50 +222,21 @@
                        
 
                            <% out.println(bks.getSeat()); %>
-
-                        </td>
- 
-                    </tr>
-
-                    
-
+                        </td> 
+                    </tr>                  
                     <tr>
-
                         <td>
-
                             Price
-
                         </td>
- 
                         <td>
-
                            <% out.println(s.get(count).getPrice()); %>
-
                         </td>
-
-                    </tr>
-                    
+                    </tr>                    
                     <tr>
-
-                        <td>
-
-                            Pay
-
-                        </td>
- 
-                        <td>
-
-                           <% out.println(bks.getPayment()); %>
-
-                        </td>
-
+                        <td>Pay</td> 
+                        <td><% out.println(bks.getPayment()); %></td>
                     </tr>
-
-        
-
-                </tbody>
-
-                
+                </tbody>               
             </table>
               
             <form action="memberRefund" method="post">
@@ -281,14 +252,12 @@
                <p>Refund request has been submitted!</p>     
                <input type="submit" value="Cancel Request for Refund!" />
                
-               <% } %>
-            
-            
+               <% } %>            
                </form>
             <% count++;} %>
-               <%  
-            out.println(opt.showFooter());
-            %>
+               <div id="footer">
+                <%@include file="/footer.jsp" %>
+               </div>
             </div>
           <!-- Le javascript
     ================================================== -->

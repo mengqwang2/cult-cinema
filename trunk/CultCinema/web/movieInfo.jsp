@@ -28,7 +28,7 @@
         <link href="./css/commonCss.css" rel="stylesheet" type="text/css">
         <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
     <link href="http://cdnjs.bootcss.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="./css/commonCss.css" rel="stylesheet">
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="./bst/index.css" rel="stylesheet">
 
@@ -137,9 +137,9 @@
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     
-              <%  
-            out.println(opt.showFooter());
-            %>    
+       <div id="footer">
+         <%@include file="/footer.jsp" %>
+        </div>  
         </div>
        
                        <!-- Le javascript

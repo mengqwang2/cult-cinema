@@ -17,8 +17,7 @@
     <!-- Le styles -->
     <link href="./css/commonCss.css" rel="stylesheet">
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
-    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
-	<link href="./bst/index.css" rel="stylesheet">
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet"><link href="./bst/index.css" rel="stylesheet">
 
 
     <!-- Fav and touch icons -->
@@ -117,7 +116,9 @@
           <h4>Cloud Atlas</h4>
         </div><!-- /.span4 -->
       </div><!-- /.row -->
+      <div id="footer">
          <%@include file="/footer.jsp" %>
+      </div>
         </div>
          <!-- Le javascript
     ================================================== -->
