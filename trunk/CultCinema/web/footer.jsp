@@ -5,6 +5,6 @@
 --%>
 
 <footer>
-        <p class="pull-right"><a href="http://twitter.github.io/bootstrap/examples/carousel.html#">Back to top</a></p>
+        <p class="pull-right"><a href="#navigation">Back to top</a></p>
         <p>© Copyright 2013 Cult Cinema Inc</p>
       </footer>
