@@ -30,8 +30,11 @@
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-72-precomposed.png">
                     <link rel="apple-touch-icon-precomposed" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="http://twitter.github.io/bootstrap/assets/ico/favicon.png">
-  <style id="holderjs-style" type="text/css">.holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}
-
+  <style id="holderjs-style" type="text/css">
+      .holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}
+      td{
+          padding:20px;
+      }
   
   </style></head>
     <body>      
@@ -86,10 +89,10 @@
         %>
         
         <tr>
-            <td><img style="width: 100px; height: 130px;" src="<%=movie.getSrc()%>"></td>
+            <td><img style="width: 80px; height: 110px;" src="<%=movie.getSrc()%>"></td>
             <td><%=movie.getName()%> language <%=movie.getLanguage()%></td>
            
-            <td><a href="SectionDisplay?id=<%= movie.getUid()%>&movieID=<%= movie.getMovieID()%>&action=ViewSection">Buy Tickets</a></td>
+            <td><a href="SectionDisplay?id=<%= movie.getUid()%>&movieID=<%= movie.getMovieID()%>&action=ViewSection">More information</a></td>
         
         </tr>
         <% } %>

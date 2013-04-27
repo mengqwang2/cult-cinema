@@ -85,6 +85,8 @@
             <input type="text" name="Language"><br/>
             <label>Poster</label>
             <input type="file" name="Poster"><br/>
+            <label> Poster name </label>
+            <input type="text" name="src"><br/>
             <input type="hidden" name="action" value="AddMovie">
             <input type="submit" value="Add Movie">
         </form>

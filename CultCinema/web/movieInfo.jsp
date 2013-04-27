@@ -25,6 +25,7 @@
             }
             */
         </script>
+        <link href="./css/commonCss.css" rel="stylesheet" type="text/css">
         <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
     <link href="http://cdnjs.bootcss.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
 
@@ -43,6 +44,8 @@
           font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}
       img{float: left;margin-right:100px}
       #disqus_thread{clear:both;}
+      select{width: 400px;}
+      
   </style>
     </head>
     <body>

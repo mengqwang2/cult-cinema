@@ -15,6 +15,7 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
+    <link href="./css/commonCss.css" rel="stylesheet">
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="./bst/index.css" rel="stylesheet">
@@ -73,40 +74,24 @@
           
            
 <!---->
-
-    
-    
+     
  <div id="myCarousel" class="carousel slide">
       <div class="carousel-inner">
         <div class="item active">
-          <img src="./bst/slide-01.jpg" alt="">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Example headline.</h1>
-              <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <a class="btn btn-large btn-primary" href="#">Sign up today</a>
-            </div>
-          </div>
+          <img src="./img/slide-01.jpg" alt="">
         </div>
         <div class="item">
-          <img src="./bst/slide-02.jpg" alt="">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <a class="btn btn-large btn-primary" href="#">Learn more</a>
-            </div>
-          </div>
+          <img src="./img/slide-02.jpg" alt="">
         </div>
         <div class="item">
-          <img src="./bst/slide-03.jpg" alt="">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>One more for good measure.</h1>
-              <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <a class="btn btn-large btn-primary" href="#">Browse gallery</a>
-            </div>
-          </div>
+          <img src="./img/slide-03.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./img/slide-04.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./img/slide-05.jpg" alt="">
+        </div>
         </div>
       </div>
       <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>

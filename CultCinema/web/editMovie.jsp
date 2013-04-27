@@ -107,6 +107,8 @@
             <input type="text" name="Poster" value="<%=movie.getPoster()%>"><br/>
             <input type="hidden" name="action" value="UpdateMovie">
             <input type="hidden" name="movieID" value="<%=movie.getMovieID()%>">
+            <label> Poster name</label>
+            <input type="text" name="src" value="<%=movie.getSrc()%>"><br/>
             <input type="submit" value="Edit Movie">
         </form>
         <a href="manageMovie.jsp">Return to movie Management site</a>
