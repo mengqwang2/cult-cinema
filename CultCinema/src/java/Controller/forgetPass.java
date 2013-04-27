@@ -11,12 +11,15 @@ import java.io.PrintWriter;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.catalina.Authenticator;
+import org.apache.catalina.Session;
 
 /**
  *
@@ -78,9 +81,9 @@ public class forgetPass extends HttpServlet {
            String newPass=m.getTel();
            m.setPassword(newPass);
            md.setMember(m,m.getPassword() ,m.getName(),m.getAddress(),m.getTel(),m.getGender(),m.getMail(),m.getLoyalty());
-           request.setAttribute("newPass", newPass);
-           request.setAttribute("action", "newPass");
-           request.getRequestDispatcher("forgetPass.jsp").forward(request, response);
+           
+           //email to member about the new password
+           
         } 
         finally {            
             out.close();
@@ -96,4 +99,7 @@ public class forgetPass extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }
+
+ 
