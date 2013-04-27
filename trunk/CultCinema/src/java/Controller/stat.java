@@ -5,6 +5,7 @@
 package Controller;
 
 import Bean.Movie;
+import Bean.Section;
 import DAO.MovieDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,8 +38,7 @@ public class stat extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here. You may use following sample code. */
-            
+            doPost(request, response);
         } finally {            
             out.close();
         }
@@ -72,25 +72,23 @@ public class stat extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        MovieDAO movieDAO = new DAO.MovieDAO();
-        java.lang.String action=request.getParameter("Action");
-        if (action==null)
-            action="";
-        try {
-            HttpSession session = request.getSession();
-            List<Movie> movies = movieDAO.getMovieList();            
-            session.setAttribute("movies", movies);
-            if(action!=null & action.equals("viewstat")){
-                request.setAttribute("action", "selectMovie");
-                request.getRequestDispatcher("viewstat.jsp").forward(request, response);
-            }
-            else if(action!=null & action.equals("show")){
-                 request.setAttribute("action", "selectMovie");
-                request.getRequestDispatcher("viewstat.jsp").forward(request, response);
-          
-            }
-          //  else
-            //    request.getRequestDispatcher("manageMovie.jsp").forward(request, response);            
+        java.lang.String idTemp = request.getParameter("id");
+        int id=Integer.parseInt(idTemp == null || "".equals(idTemp)?"0":idTemp);
+        java.lang.String movieIDtemp = request.getParameter("movieID");
+        int movieID=Integer.parseInt(movieIDtemp == null || "".equals(movieIDtemp)?"0":movieIDtemp);
+        java.lang.String action=request.getParameter("action");
+        DAO.MovieDAO movieDAO = new DAO.MovieDAO();
+ 
+        try{
+            List<Section> sections = movieDAO.getSectionList(movieID);
+            request.setAttribute("sections",sections);
+            List<Movie> movies = movieDAO.getMovieList();              
+            Movie selectedMovie = movies.get(id);
+            request.setAttribute("movie",selectedMovie);
+            request.setAttribute("action","show");
+            request.setAttribute("selectedMovie", movieID);
+            request.setAttribute("id", id); 
+            request.getRequestDispatcher("viewstat.jsp").forward(request, response); 
         } catch (SQLException e) {
         throw new ServletException("Cannot obtain products from DB", e);
     }
