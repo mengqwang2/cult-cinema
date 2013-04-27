@@ -20,7 +20,7 @@
 
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="./bst/index.css" rel="stylesheet">
-
+        <link href="./css/commonCss.css" rel="stylesheet" >
 
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-144-precomposed.png">
@@ -28,8 +28,11 @@
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-72-precomposed.png">
                     <link rel="apple-touch-icon-precomposed" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="http://twitter.github.io/bootstrap/assets/ico/favicon.png">
-  <style id="holderjs-style" type="text/css">.holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}
-
+  <style id="holderjs-style" type="text/css">
+      .holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}
+      td{
+          padding:20px;
+      }
   
   </style>
     </head>
@@ -107,10 +110,10 @@
                 
             </table>
             <a href="addSection.jsp?action=AddSection&movieID=${movie.movieID}&name=${movie.name}&id=${movie.uid}">Add Section</a><br/>
-            <a href="MovieDisplay">Return to movie management site</a>
-        <%  
-            out.println(opt.showFooter());
-            %>
+            <a href="MovieDisplay">Return to movie management site</a><br/><br/>
+            <div id="footer">
+                <%@include file="/footer.jsp" %>
+            </div>
             
         </div>
             
@@ -139,6 +142,8 @@
       }(window.jQuery)
     </script>
     <script src="./bst/holder.js"></script>
-       
-        </body>
+    <div id="footer">
+         <%@include file="/footer.jsp" %>
+        </div>   
+    </body>
 </html>

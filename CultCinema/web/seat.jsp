@@ -62,7 +62,7 @@
         </script>
         <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
     <link href="http://cdnjs.bootcss.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="./css/commonCss.css" rel="stylesheet">
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="./bst/index.css" rel="stylesheet">
 
@@ -258,9 +258,9 @@
              
              
            <% } %>
-             <%  
-                out.println(opt.showFooter());
-            %>
+             <div id="footer">
+            <%@include file="/footer.jsp" %>
+           </div> 
         </div>
                 
         

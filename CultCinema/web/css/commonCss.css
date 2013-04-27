@@ -13,3 +13,7 @@ root {
 #disqus_thread{
     clear:both;
 }
+footer{
+    clear:both;
+    margin-top:40px
+}

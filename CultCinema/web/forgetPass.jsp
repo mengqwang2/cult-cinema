@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Forget Password</title>
+        <link href="./css/commonCss.css" rel="stylesheet">
     </head>
     <body>
         <% String action=(String)request.getAttribute("action");
@@ -24,6 +25,8 @@
         <p>Your new password is set as your telephone number!</p>
         <a href="index.jsp">Back to Index!</a>
         <% } %>
-        
+        <div id="footer">
+         <%@include file="/footer.jsp" %>
+        </div>
     </body>
 </html>

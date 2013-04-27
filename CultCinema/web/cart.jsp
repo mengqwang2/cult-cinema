@@ -38,7 +38,7 @@
         <title>Shopping Cart</title>
          <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
     <link href="http://cdnjs.bootcss.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="./css/commonCss.css" rel="stylesheet">
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="./bst/index.css" rel="stylesheet">
 
@@ -62,27 +62,14 @@
   </style>
  
         <script type='text/javascript'>
-
             function checkToPay(topay,lpts)
-
-            {
-
-                
-
+            {               
                 if((document.getElementById("loyalty").checked == true)&&(lpts/100<=topay))
- 
-                    document.getElementById('toPay').innerHTML=topay-lpts/100;
-
+                     document.getElementById('toPay').innerHTML=topay-lpts/100;
                 else if((document.getElementById("loyalty").checked == true)&&(lpts/100>topay))
- 
                     document.getElementById('toPay').innerHTML=0;
-
                 else
-
                     document.getElementById("toPay").innerHTML=topay;
-
-                
- 
             }
 
     </script>
@@ -101,16 +88,11 @@
 
          <% List<Reserve> rvBooking=(List<Reserve>)request.getAttribute("lsReserve"); %>
  
-         <% int total=0; 
-
-         %>
+         <% int total=0;%>
 
          <div id="header">
-
             <% Opt opt=new Opt();  
-
-              //  out.println(opt.showHeader());
- 
+              //  out.println(opt.showHeader()); 
             %>
 
         </div>
@@ -150,49 +132,27 @@
                 }
 
                 else if(session.getAttribute("managerID")!=null)
-
                 {
-
                     String managerID=(String)session.getAttribute("managerID");
- 
                     out.println(opt.showLoginNav(managerID,0));
-
                     type="manager";
-
                 }
-
-                else if(session.getAttribute("officerID")!=null)
- 
+                else if(session.getAttribute("officerID")!=null) 
                 {
-
                     String officerID=(String)session.getAttribute("officerID");
-
                     out.println(opt.showLoginNav(officerID,1));
-
-                    type="officer";
- 
+                    type="officer"; 
                 }
 
             %>
-
-        </div>
-
-        
-
-        <div id="navigation">
-
-                
-
-                <% 
- 
+        </div>      
+        <div id="navigation">                
+                <%  
                     out.println(opt.showItem(type));
-
                 %>
 
         </div>
-
         
-
         <div class="container" style=" position:relative;top:90px;">
 
             <% int count=0; 
@@ -309,10 +269,7 @@
  
                         </td>
 
-                    </tr>
-
-                    
-
+                    </tr>                    
                     <tr>
 
                         <td>
@@ -330,9 +287,6 @@
                         </td>
  
                     </tr>
-
-                    
-
                     <tr>
 
                         <td>
@@ -348,9 +302,6 @@
                         </td>
 
                     </tr>
-
-        
-
                 </tbody>
 
                 <% total+=s.get(count).getPrice(); 
@@ -378,10 +329,6 @@
             </table>
 
                
-
-                
-
-            
 
             <% count++;} %>
             <% int lpts=m.getLoyalty(); 
@@ -431,17 +378,13 @@
             
              <% }  else {
              out.println("<p>No movie item in the shopping cart! </p><a href='MovieDisplay?Action=MovieDisplay'>Choose some movies now!</a>"); }%>
-             
-                 
-             
-               <%  
-
-                out.println(opt.showFooter());
- 
-            %>
+                            
+            <div id="footer">
+         <%@include file="/footer.jsp" %>
+        </div>
             </div>
         </div>
-
+        
         
 
                                         <!-- Le javascript

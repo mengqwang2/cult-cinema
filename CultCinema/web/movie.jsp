@@ -19,7 +19,7 @@
         <!-- Le styles -->
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
     <link href="http://cdnjs.bootcss.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="./css/commonCss.css" rel="stylesheet">
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="./bst/index.css" rel="stylesheet">
 
@@ -90,7 +90,7 @@
         
         <tr>
             <td><img style="width: 80px; height: 110px;" src="<%=movie.getSrc()%>"></td>
-            <td><%=movie.getName()%> language <%=movie.getLanguage()%></td>
+            <td><%=movie.getName()%> </td>
            
             <td><a href="SectionDisplay?id=<%= movie.getUid()%>&movieID=<%= movie.getMovieID()%>&action=ViewSection">More information</a></td>
         
@@ -98,9 +98,9 @@
         <% } %>
         </table>
         </form>
-          <%  
-            out.println(opt.showFooter());
-            %>
+        <div id="footer">
+         <%@include file="/footer.jsp" %>
+      </div>
         </div>
         
        

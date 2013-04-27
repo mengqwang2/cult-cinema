@@ -12,6 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="Refresh" content="5;url=index.jsp">
         <title>Register Successfully!</title>
+        <link href="./css/commonCss.css" rel="stylesheet">
     </head>
     <body>
         <% Member m=(Member)request.getAttribute("member"); %>
@@ -19,6 +20,8 @@
         <% out.print(m.getMemberID()); %>
         
         <p>Send you to index page in 5 seconds!</p>
-        
+        <div id="footer">
+         <%@include file="/footer.jsp" %>
+        </div> 
     </body>
 </html>

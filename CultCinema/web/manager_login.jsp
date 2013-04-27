@@ -17,6 +17,7 @@
 
     <!-- Le styles -->
     <link href="bst/bootstrap.css" rel="stylesheet">
+    <link href="./css/commonCss.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 40px;
@@ -88,7 +89,9 @@
             <div id='forgetPass'>
                
             </div>
-
+        <div id="footer">
+         <%@include file="/footer.jsp" %>
+        </div>
     </div> <!-- /container -->
 
     <!-- Le javascript
