@@ -34,11 +34,7 @@
           margin:20px;
           
       }
-      tr{
-          border-style: solid;
-          border-color: #08c;
-          border-width: 1px;
-      }      
+    
   
   </style>
     </head>
