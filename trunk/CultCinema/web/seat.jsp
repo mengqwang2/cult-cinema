@@ -74,9 +74,36 @@
                     <link rel="apple-touch-icon-precomposed" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="http://twitter.github.io/bootstrap/assets/ico/favicon.png">
   <style id="holderjs-style" type="text/css">.holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}
-
+      td{
+          padding:10px;
+          background-color: #f9f9d2;
+          font-size:15px;
+      }
+      
+      #ex{
+          margin-left: auto;
+          margin-right: auto;
+      }
+      
+      table{
+          margin-left: auto;
+          margin-right: auto;
+      }
+      
+      .screen td{
+          padding-left:50px;
+          padding-right:50px;
+          padding-top:20px;
+          padding-bottom:20px;
+      }
+      .example td{
+          padding:10px;
+      }
+     
   
   </style>
+  
+ 
     </head>
     <body>
         
@@ -139,12 +166,12 @@
                 Section s=(Section) request.getAttribute("selectSection"); 
                 int count=1;%>
                 
-                <table border="1">
+                <table border="1" class="screen">
                     <tr>
                         <td>Screen</td>
                     </tr>
                 </table>
-                
+                <br/><br/>
                 <table border='1'>
                 <%for (int i=0;i<v.getRow();i++) { %>
                 <tr>
@@ -178,26 +205,34 @@
                 </tr>
                 <%}%>
             </table>
-            
-            <table border="1">
+            <br/><br/>
+
+            <table border="1" class="example">
                 <tr>
-                    <td>X</td>
+                    <td style="font-weight:bold;">X</td>
+                    <td>Booked</td>
+                    
+                    <td style="font-weight:bold;">O</td>
+                    <td>Available</td>
                 </tr>
+                
+                
             </table>
-            <span>Booked</span>
-            
-            <table border="1">
-                <tr>
-                    <td>O</td>
-                </tr>
-            </table>
-            <span>Available</span>
+
             <br/>
             
-            <input type="button" value="Select!" onclick="finalPurchase(<%out.print(count-1);%>,'<% out.print(type);%>');" />
+            <table border="1" class="example">
+             
+                <tr>
+                    <td><input type="button" value="Select!" onclick="finalPurchase(<%out.print(count-1);%>,'<% out.print(type);%>');" /></td>
+                </tr>
+                
+            </table>
+            
+            
             
             <% if(type.equals("member")||type.equals("officer")) { %>
-                <form action="reserve" method="post">
+            <form action="reserve" method="post">
                <input type='hidden' name='SectionID' value='<% out.print(s.getSectionID()); %>' />
                <input type='hidden' name='seat' id="seat" value='' />
                <input type="submit" value="Add to shopping cart!" />
@@ -223,7 +258,6 @@
              
              
            <% } %>
-            <a href="movie.jsp">Back to view other movies!</a>
              <%  
                 out.println(opt.showFooter());
             %>
