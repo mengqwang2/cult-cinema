@@ -81,9 +81,9 @@ public class forgetPass extends HttpServlet {
            String newPass=m.getTel();
            m.setPassword(newPass);
            md.setMember(m,m.getPassword() ,m.getName(),m.getAddress(),m.getTel(),m.getGender(),m.getMail(),m.getLoyalty());
-           
+           request.setAttribute("action", "newPass");
            //email to member about the new password
-           
+           request.getRequestDispatcher("forgetPass.jsp").forward(request, response);
         } 
         finally {            
             out.close();
