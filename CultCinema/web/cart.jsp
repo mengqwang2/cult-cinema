@@ -50,7 +50,14 @@
                     <link rel="apple-touch-icon-precomposed" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="http://twitter.github.io/bootstrap/assets/ico/favicon.png">
   <style id="holderjs-style" type="text/css">.holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}
-
+      table{
+          float:left;
+          margin:10px;
+      }
+      
+      #foot{
+          clear:both;
+      }
   
   </style>
  
@@ -352,11 +359,10 @@
                 payStr=payStr+s.get(count).getPrice()+",";
                 %>
 
-                
-
-            </table>
-
-                <form action="removeRv" method="post">
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td> <form action="removeRv" method="post">
  
                     <input type="hidden" name="sectionID" value="<% out.print(s.get(count).getSectionID());%>" />
 
@@ -364,7 +370,14 @@
 
                     <input type="submit" value="Remove" />
 
-                </form>
+                    </form>
+                        </td>
+                    </tr>
+                </tfoot>
+
+            </table>
+
+               
 
                 
 
@@ -389,6 +402,7 @@
             
             <% if(total!=0)
             { %>
+            <div id="foot">
             <p>Total Price: 
 
                 <span id="total"><% out.print(total); %></span>
@@ -425,7 +439,7 @@
                 out.println(opt.showFooter());
  
             %>
-
+            </div>
         </div>
 
         
