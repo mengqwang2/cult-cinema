@@ -87,7 +87,8 @@ public class SectionDisplay extends HttpServlet {
                 request.getRequestDispatcher("movieInfo.jsp").forward(request, response);
             else if(action.equals("selectMovie")){
                 request.setAttribute("action", "selectSection");
-                request.getRequestDispatcher("manageSeat.jsp?").forward(request, response);
+                request.setAttribute("selectedMovie",movieID);
+                request.getRequestDispatcher("manageSeat.jsp").forward(request, response);
             }
             else
                 request.getRequestDispatcher("manageSection.jsp").forward(request, response);  

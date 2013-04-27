@@ -82,11 +82,16 @@
         <% String action= (String)request.getAttribute("action");%>
         <form method="post" action="SectionDisplay">
             <select name="movieID">
-                <% List<Movie> movies = (List<Movie>)session.getAttribute("movies"); 
+                <%  List<Movie> movies = (List<Movie>)session.getAttribute("movies");
+                    int i=0;
                     for(Movie movie: movies){
                 %> 
-                  <option value="<%=movie.getMovieID()%>"><%=movie.getName()%></option>                           
-                <% } %>      
+                <option value="<%=movie.getMovieID()%>" 
+                        <%if(!action.equals("selectMovie")) 
+                            {int id=(Integer)request.getAttribute("selectedMovie");
+                            if (movie.getMovieID()==id){%>selected="selected"<%}}%>><%=movie.getName()%></option>                           
+                <% i++;
+                    } %>      
                 </select>        
             </select>
             <input type="hidden" name="id" value="0">
