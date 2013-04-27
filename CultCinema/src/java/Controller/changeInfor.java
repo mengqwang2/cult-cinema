@@ -94,7 +94,6 @@ public class changeInfor extends HttpServlet {
             member.setMail(email);
             member.setLoyalty(loyalty);
             MemberDAO mDAO = new MemberDAO();
-           
             mDAO.setMember(member, password, name, address, tel, gender, email, loyalty);
             request.setAttribute("memberInfo",member);  
             request.getRequestDispatcher("confirmInfor.jsp").forward(request, response);

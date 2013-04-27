@@ -31,7 +31,14 @@
       <link rel="apple-touch-icon-precomposed" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
       <link rel="shortcut icon" href="http://twitter.github.io/bootstrap/assets/ico/favicon.png">
   <style id="holderjs-style" type="text/css">.holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}
-
+      table{
+          float:left;
+          margin:10px;
+      }
+      
+      #footer{
+          clear:both;
+      }
   
   </style>
     </head>
@@ -101,7 +108,7 @@
 
             { %>
 
-            <table border="1">
+            <table border="1" style="height:350px">
 
                 <caption>Ticket Information</caption>
 
@@ -236,10 +243,14 @@
                         <td>Pay</td> 
                         <td><% out.println(bks.getPayment()); %></td>
                     </tr>
-                </tbody>               
-            </table>
-              
-            <form action="memberRefund" method="post">
+                </tbody>    
+                <tfoot>
+                    <tr>
+                        <td>
+                            
+                        </td>
+                        <td>
+                            <form action="memberRefund" method="post">
               
             <input type="hidden" name="issueID" value="<% out.print(bks.getIssueID());%>" />
             
@@ -254,6 +265,12 @@
                
                <% } %>            
                </form>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+              
+            
             <% count++;} %>
                <div id="footer">
                 <%@include file="/footer.jsp" %>
