@@ -117,17 +117,15 @@
                     <input type="text" name='address' id='address' value="<%=member.getAddress()%>"/><br/>
                     <label >Tel</label>
                     <input type="text" name='tel' id='tel' value="<%=member.getTel()%>"/><br/>
-                    <label >Gender</label>
-                    <%String g=member.getGender();%>
-                    <label >Male</label>
-                    <input type="radio" name="gender" value="male" id="male" <%if (g.equals("male")){%> checked="checked" <%}%>/>
-                    <label >Female</label>
-                    <input type="radio" name="gender" value="male" id="female" <%if (g.equals("female")){%> checked="checked" <%}%>/><br/>
+                    <label >Gender</label> <%String g=member.getGender();%>
+                    <input type="radio" name="gender" value="male" id="male" <%if (g.equals("male")){%> checked="checked" <%}%>/> Male 
+                    <input type="radio" name="gender" value="male" id="female" <%if (g.equals("female")){%> checked="checked" <%}%>/> Female<br/>
                     <label >Email</label>
                     <input type="text" name='email' id='email' value="<%=member.getMail()%>"/><br/>
                     <label>Loyalty</label>
                     <input type="text" name="loyalty" id="loyalty" value="<%=member.getLoyalty()%>" readonly="readonly"/><br/>
-                    <input type="submit" value="Confirm Change" />
+                    <input type="submit" value="Confirm Change" /><br/>
+                    <a href="CartRetrieve?action=confirmInfor">Back to previous page</a>
                 </fieldset>
             </form>
                       <%  

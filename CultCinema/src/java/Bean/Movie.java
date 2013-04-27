@@ -83,6 +83,13 @@ public class Movie {
         this.language = language;
     }
     
+    public String getSrc() {
+        return src;
+    }
+
+    public void setSrc(String src) {
+        this.src = src;
+    }
     public int getUid(){
         return uid;
     }
@@ -100,4 +107,5 @@ public class Movie {
     private String category;
     private String language;
     private int uid;
+    private String src;
 }

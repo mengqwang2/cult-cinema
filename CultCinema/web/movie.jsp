@@ -34,8 +34,7 @@
 
   
   </style></head>
-    <body>
-       
+    <body>      
       
             <% Opt opt=new Opt();  
                 String type="";
@@ -80,14 +79,14 @@
                 (List<Movie>)session.getAttribute("movies"); 
         %>
         <form name="movie">
+            <h3>Movies</h3>
             <table id="movie_table">
-        <thead>Movies</thead>
         <%
         for (Movie movie: movies ){
         %>
         
         <tr>
-            <td><img alt=""></td>
+            <td><img style="width: 100px; height: 130px;" src="<%=movie.getSrc()%>"></td>
             <td><%=movie.getName()%> language <%=movie.getLanguage()%></td>
            
             <td><a href="SectionDisplay?id=<%= movie.getUid()%>&movieID=<%= movie.getMovieID()%>&action=ViewSection">Buy Tickets</a></td>

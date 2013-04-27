@@ -39,6 +39,7 @@ public class MovieDAO {
          String cast=rs.getString("cast");
          String category = rs.getString("category");
          String language = rs.getString("language");
+         String src=rs.getString("src");
 
          Movie movie=new Movie();
          movie.setMovieID(movieID);
@@ -50,6 +51,7 @@ public class MovieDAO {
          movie.setCast(cast);
          movie.setCategory(category);
          movie.setLanguage(language);
+         movie.setSrc(src);
          movie.setUid(uid);
          movieList.add(movie);
          uid++;

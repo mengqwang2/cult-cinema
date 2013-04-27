@@ -38,9 +38,11 @@
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-72-precomposed.png">
                     <link rel="apple-touch-icon-precomposed" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="http://twitter.github.io/bootstrap/assets/ico/favicon.png">
-  <style id="holderjs-style" type="text/css">.holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}
-
-  
+  <style id="holderjs-style" type="text/css">
+      .holderjs-fluid{ 
+          font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}
+      img{float: left;margin-right:100px}
+      #disqus_thread{clear:both;}
   </style>
     </head>
     <body>
@@ -90,13 +92,9 @@
         </div>
         
         <div class="container" style=" position:relative;top:90px;">
-       
-        <ul>
-            <img alt=""> 
-        </ul>       
-        <ul>
-            <%=movie.getName()%>
-        </ul>
+        <img style="width: 200px; height: 240px;" src="<%=movie.getSrc()%>">    
+        <div id="movie_Info">
+            <h5><%=movie.getName()%></h5>
         <ul>
             <li>Language: <%=movie.getLanguage()%></li>
             <li>Duration: <%=movie.getDuration()%></li>
@@ -120,6 +118,7 @@
                 <input type="hidden" name="action" value="purchase">
                 <input type="submit" value="Purchase">
         </form>
+        </div>
                     <div id="disqus_thread"></div>
     <script type="text/javascript">
         /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */

@@ -77,24 +77,38 @@
        <div class="container" style=" position:relative;top:90px;">
             <% Member member=(Member)request.getAttribute("memberInfo");%>
             <form onsubmit="return validate_form(this);" method="post" action="CartRetrieve">
-                <fieldset>
-                    <legend>Your information</legend>
-                    <input type="hidden" name="todo" id="todo" value="" />
+                <h3>Your information</h3>
+                 <table>
+                    <tr>
+                        <td>Member ID</td>
+                        <td><%=member.getMemberID()%></td>
+                    </tr>
+                    <tr>
+                        <td>Member</td>
+                        <td><%=member.getName()%></td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td><%=member.getAddress()%></td>
+                    </tr>
+                    <tr>
+                        <td>Tel</td>
+                        <td><%=member.getTel()%></td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td><%=member.getGender()%></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><%=member.getMail()%></td>
+                    </tr>
+                    <tr>
+                        <td>Loyalty</td>
+                        <td><%=member.getLoyalty()%></td>
+                    </tr>
+                </table>  
                     <input type="hidden" name="action" id="action" value="editInfor"/>
-                    <label class="">Member ID</label>
-                    <label class="infor"><%=member.getMemberID()%></label><br/>
-                    <label class="">Name</label>
-                    <label class="infor"><%=member.getName()%></label><br/>
-                    <label class="">Address</label>
-                    <label class="infor"><%=member.getAddress()%></label><br/>
-                    <label class="">Tel</label>
-                    <label class="infor"><%=member.getTel()%></label><br/>
-                    <label class="">Gender</label>
-                    <label class="infor"><%=member.getGender()%></label><br/>
-                    <label class="">Email</label>
-                    <label class="infor"><%=member.getMail()%></label><br/>
-                    <label class="">Loyalty</label>
-                    <label class="infor"><%=member.getLoyalty()%></label><br/>
                     <input type="submit" value="Edit" />
                 </fieldset>
             </form>
