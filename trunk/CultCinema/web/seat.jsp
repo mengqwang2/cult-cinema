@@ -39,9 +39,26 @@
                 }
             }
             
+            function saveMark(current,id)
+            {
+                
+                if(current==0)
+                {
+                    document.getElementById('t'+id).innerHTML="<a href=\"javascript:saveMark(1,"+id+")\">M</a>";
+                    seatBuy[id-1]=1;
+                }
+                else
+                {
+                    document.getElementById('t'+id).innerHTML="<a href=\"javascript:saveMark(0,"+id+")\">O</a>";
+                    seatBuy[id-1]=0;
+                }
+            }
+            
             function finalPurchase(count,type)
             {
+                
                 var seatNo="";
+                var unMark="";
                 for(var i=0;i<count;i++)
                 {
                     if(seatBuy[i]==1)
@@ -49,15 +66,25 @@
                         var num=i+1;
                         seatNo=seatNo+num+",";
                     }
+                    else if(seatBuy[i]==0)
+                    {
+                        var num=i+1;
+                        unMark=unMark+num+",";
+                    }
                     
                 }
+                
                 if(type=="member"||type=="officer")
                 {
                     document.getElementById('seats').value=seatNo;
                     document.getElementById('seat').value=seatNo;
                 }
                 else
+                {
                     document.getElementById('seat_m').value=seatNo;
+                    document.getElementById("unmark").value=unMark;
+                }
+                    
             }
         </script>
         <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
@@ -163,7 +190,8 @@
             {  %>
             <table>
                 <%Venue v=(Venue)request.getAttribute("selectVenue"); 
-                Section s=(Section) request.getAttribute("selectSection"); 
+                Section s=(Section) request.getAttribute("selectSection");
+                String bks="";
                 int count=1;%>
                 
                 <table border="1" class="screen">
@@ -178,21 +206,31 @@
                     <%for (int j=0;j<v.getColumn();j++) { %>
                     <td id='t<% out.print(count); %>'>
                         <% boolean fd=false;
+                        
                         List<Booking> bkings = (List<Booking>)request.getAttribute("lsBooking");
                         List<Reserve> rvs= (List<Reserve>)request.getAttribute("lsReserve");
                       for (Booking bking: bkings ){  
-                         if(bking.getSeat()==count)
+                         if((bking.getSeat()==count)&&(bking.getMemberID()==1)&&(type.equals("manager")))
+                         {
+                             out.println("<a href='javascript:saveMark(1,"+count+")'>M</a>");
+                             fd=true;
+                             bks=bks+count+",";
+                             break;
+                         }
+                         else if(bking.getSeat()==count)
                          {
                              out.println("X");
                              fd=true;
+                             bks=bks+count+",";
                              break;
-                         } 
+                         }
                       }
                       for (Reserve rv: rvs ){  
                          if(rv.getSeat()==count)
                          {
                              out.println("X");
                              fd=true;
+                             bks=bks+count+",";
                              break;
                          } 
                       }
@@ -229,8 +267,18 @@
                 
             </table>
             
-            
-            
+                <form action="cart.jsp" method="post">
+                    <input type="hidden" name="occupy" id="occupy" value="<% out.print(bks); %>" />
+                </form>
+                <script type="text/javascript">
+                    var occupy=document.getElementById("occupy").value;
+                    var result=occupy.split(",");
+                    var n=result.length;
+                    for(var i=0;i<n;i++)
+                    {
+                        seatBuy[parseInt(result[i])-1]=3;
+                    }
+                </script>
             <% if(type.equals("member")||type.equals("officer")) { %>
             <form action="reserve" method="post">
                <input type='hidden' name='SectionID' value='<% out.print(s.getSectionID()); %>' />
@@ -250,6 +298,7 @@
              <form action="markSeat" method="post">
                <input type='hidden' name='SectionID_m' value='<% out.print(s.getSectionID()); %>' />
                <input type='hidden' name='seat_m' id="seat_m" value='' />
+               <input type='hidden' name='unmark' id="unmark" value='' />
                <input type="submit" value="Mark!" />
               </form>
               <%  

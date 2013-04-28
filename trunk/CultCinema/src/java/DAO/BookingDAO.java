@@ -97,6 +97,20 @@ public class BookingDAO {
            
        }
        
+       public void deleteMarking(Booking bk)
+       {
+        try {
+            DBConn db=new DBConn(); 
+            String sql="DELETE FROM [BOOKING] WHERE [Section_ID]="+bk.getSectionID()+" AND [Seat]="+bk.getSeat();
+            db.doDelete(sql);
+            db.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(BookingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(BookingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       }
+       
        public void changeRefundStatus(Booking bk)
        {
         try {
