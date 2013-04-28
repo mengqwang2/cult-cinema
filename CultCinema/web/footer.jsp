@@ -7,4 +7,6 @@
 <footer>
         <p class="pull-right"><a href="#navigation">Back to top</a></p>
         <p>© Copyright 2013 Cult Cinema Inc</p>
-      </footer>
+        <p>This web site exists to fulfill the coursework requirement of CS4280.</p>
+        <p>Do not use your real personal data as input.</p>  
+<footer>
