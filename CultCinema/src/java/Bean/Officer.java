@@ -10,6 +10,15 @@ package Bean;
  */
 public class Officer {
     private String officerID;
+    private int login;
+
+    public int getLogin() {
+        return login;
+    }
+
+    public void setLogin(int login) {
+        this.login = login;
+    }
 
     public String getOfficerID() {
         return officerID;
