@@ -40,6 +40,8 @@
 
   
   </style>
+   <script type="text/javascript" src="./editor/ckeditor.js"></script>
+<script type="text/javascript" src="./editor/adapters/jquery.js"></script>
     </head>
     
     <body>
@@ -94,7 +96,11 @@
             <label>Duration (Minutes) </label>
             <input type="text" name="Duration" value="<%=movie.getDuration()%>"><br/>
             <label>Description</label>
-            <input type="text" name="Description" value="<%=movie.getDescription()%>"><br/>
+             <textarea id="editor1" name="Description"><%=movie.getDescription()%></textarea>
+            <script type="text/javascript">
+            CKEDITOR.replace( 'editor1' );
+            </script>
+       <br/>
             <label>Director</label>
             <input type="text" name="Director" value="<%=movie.getDirector()%>"><br/>
             <label>Cast</label>

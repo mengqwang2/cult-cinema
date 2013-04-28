@@ -25,9 +25,12 @@
                     <link rel="apple-touch-icon-precomposed" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="http://twitter.github.io/bootstrap/assets/ico/favicon.png">
   <style id="holderjs-style" type="text/css">.holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}
-
+      
   
-  </style></head>
+  </style>
+    <script type="text/javascript" src="./editor/ckeditor.js"></script>
+<script type="text/javascript" src="./editor/adapters/jquery.js"></script>
+    </head>
     <body>
        
       
@@ -74,7 +77,11 @@
             <label>Duration (Minutes) </label>
             <input type="text" name="Duration"><br/>
             <label>Description</label>
-            <input type="text" name="Description"><br/>
+            <textarea id="editor1" name="Description"></textarea>
+            <script type="text/javascript">
+            CKEDITOR.replace( 'editor1' );
+            </script>
+            
             <label>Director</label>
             <input type="text" name="Director"><br/>
             <label>Cast</label>
@@ -83,18 +90,18 @@
             <input type="text" name="Category"><br/>
             <label>Language</label>
             <input type="text" name="Language"><br/>
-            <label>Poster</label>
-            <input type="file" name="Poster"><br/>
+            
             <label> Poster name </label>
             <input type="text" name="src"><br/>
             <input type="hidden" name="action" value="AddMovie">
             <input type="submit" value="Add Movie">
         </form>
         <a href="manageMovie.jsp">Return to movie Management site</a>
+          <%@include file="/footer.jsp" %>
          </div>
-            <div id="footer">
-         <%@include file="/footer.jsp" %>
-        </div>
+           
+       
+
              <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
