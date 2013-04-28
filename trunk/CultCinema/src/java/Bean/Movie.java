@@ -64,7 +64,7 @@ public class Movie {
     }
 
     public void setCast(String cast) {
-        this.description = cast;
+        this.cast = cast;
     }
     
     public String getCategory() {
