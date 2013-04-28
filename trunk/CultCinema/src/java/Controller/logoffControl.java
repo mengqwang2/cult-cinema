@@ -5,7 +5,9 @@
 package Controller;
 
 import Bean.Manager;
+import Bean.Officer;
 import DAO.ManagerDAO;
+import DAO.OfficerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -61,6 +63,15 @@ public class logoffControl extends HttpServlet {
                 m.setLogin(1);
                 ManagerDAO md=new ManagerDAO();
                 md.setLogin(m);
+            }
+            if(session.getAttribute("officerID")!=null)
+            {
+                String officerID=(String)session.getAttribute("officerID");
+                Officer o=new Officer();
+                o.setOfficerID(officerID);
+                o.setLogin(1);
+                OfficerDAO od=new OfficerDAO();
+                od.setLogin(o);
             }
             session.invalidate();
             request.getRequestDispatcher("index.jsp").forward(request, response);
