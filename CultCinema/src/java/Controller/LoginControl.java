@@ -149,7 +149,7 @@ public class LoginControl extends HttpServlet {
  
             if(bool&&(od.getLogin(user)==0)){ 
                 request.getSession().setAttribute("officerID",user.getOfficerID());
-              
+                od.setLogin(user);
             }   
            
        }
