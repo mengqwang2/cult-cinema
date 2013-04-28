@@ -8,6 +8,8 @@ import Bean.Officer;
 import Utility.DBConn;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -39,5 +41,36 @@ public class OfficerDAO {
             return false;
           
     }  
+    
+    public int getLogin(Officer user)
+    {
+        int login = 0;
+        try {
+            ResultSet rs=null;
+            DBConn db=new DBConn();
+            String sql="SELECT [Login] FROM [OFFICER] WHERE [Officer_ID]='"+user.getOfficerID()+"'";
+            rs=db.doSelect(sql);
+            if(rs.next())
+            {
+                login=rs.getInt("Login");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ManagerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return login;
+    }
+    
+    public void setLogin(Officer user)
+    {
+            DBConn db=new DBConn();
+            int login=0;
+            if(user.getLogin()==0)
+                login=1;
+            else
+                login=0;
+            String sql="UPDATE [OFFICER] SET [Login]="+login+" WHERE [Officer_ID]='"+user.getOfficerID()+"'";
+            db.doUpdate(sql);
+    }
     
 }
