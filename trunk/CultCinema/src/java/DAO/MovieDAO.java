@@ -106,7 +106,8 @@ public class MovieDAO {
        String language = movie.getLanguage();
        int movieID = movie.getMovieID();
        DBConn db=new DBConn(); 
-       db.doUpdate("UPDATE [MOVIE] SET Name = '"+name+"', Duration ='"+duration+"',Description='"+description+"',Director='"+director+"',Cast='"+cast+"',Category='"+category+"',Language='"+language+"' WHERE Movie_Id="+movieID);
+       String sqls="UPDATE [MOVIE] SET Name = '"+name+"', Duration ='"+duration+"',Description='"+description+"',Director='"+director+"',Cast='"+cast+"',Category='"+category+"',Language='"+language+"' WHERE Movie_Id="+movieID;
+       db.doUpdate(sqls);
    }
 
    public void deleteMovie(int movieID) throws SQLException{
