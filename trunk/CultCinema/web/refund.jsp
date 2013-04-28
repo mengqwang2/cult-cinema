@@ -15,7 +15,7 @@
         <title>Refund</title>
             <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
     <link href="http://cdnjs.bootcss.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="./css/commonCss.css" rel="stylesheet">
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="./bst/index.css" rel="stylesheet">
 
@@ -26,9 +26,9 @@
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-72-precomposed.png">
                     <link rel="apple-touch-icon-precomposed" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="http://twitter.github.io/bootstrap/assets/ico/favicon.png">
-  <style id="holderjs-style" type="text/css">.holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}
-
-  
+  <style id="holderjs-style" type="text/css">
+      .holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}
+      td{padding:20px;}
   </style>
     </head>
     <body>
@@ -80,7 +80,13 @@
          <div class="container" style=" position:relative;top:90px;">
         <form action="" method="post">
             <table>
-                
+                <tr>
+                    <td>Issue ID</td>
+                    <td>Section ID</td>
+                    <td>Seat</td>
+                    <td>Payment</td>
+                    <td>Member ID</td>
+                </tr>
             
             <% 
             List<Booking> Refunds= 
@@ -89,11 +95,11 @@
         <%
         for (Booking refund: Refunds ){
         %><tr>
-            <td>Issue ID: <%=refund.getIssueID()%></td>
-            <td>Section ID: <%=refund.getSectionID()%></td>
-            <td>Seat: <%=refund.getSeat()%></td>
-            <td>Payment: <%=refund.getPayment()%></td>
-            <td>Member ID: <%=refund.getMemberID()%></td>
+            <td><%=refund.getIssueID()%></td>
+            <td><%=refund.getSectionID()%></td>
+            <td><%=refund.getSeat()%></td>
+            <td><%=refund.getPayment()%></td>
+            <td><%=refund.getMemberID()%></td>
             <td><a href="ConfirmRefund?IssueID=<%=refund.getIssueID()%>">Confirm Refund</td>
         </tr> 
         <% } %>
