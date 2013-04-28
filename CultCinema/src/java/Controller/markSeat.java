@@ -79,6 +79,7 @@ public class markSeat extends HttpServlet {
                     
             int sectionID=Integer.parseInt(request.getParameter("SectionID_m"));
             String seatNo=request.getParameter("seat_m");
+            String unmark=request.getParameter("unmark");
             
             int nSeats=0;
             String[] indiSeats=seatNo.split(",");
@@ -108,6 +109,34 @@ public class markSeat extends HttpServlet {
             {
                 BookingDAO bkdao=new BookingDAO();
                 bkdao.addBkRecord(bk);
+            }
+            
+            nSeats=0;
+            String[] unmarkSeat=unmark.split(",");
+            nSeats=unmarkSeat.length;
+            
+            int[] unMark;
+            unMark=new int[nSeats];
+            for(int i=0;i<nSeats;i++)
+            {
+                unMark[i]=Integer.parseInt(unmarkSeat[i]);
+            }
+            
+           bkInfo=new ArrayList<Booking>();
+            
+            for(int i=0;i<nSeats;i++)
+            {
+                Booking indibk=new Booking();
+                indibk.setSeat(unMark[i]);
+                indibk.setSectionID(sectionID);
+                
+                bkInfo.add(indibk);
+            }
+            
+            for(Booking bk:bkInfo)
+            {
+                BookingDAO bkdao=new BookingDAO();
+                bkdao.deleteMarking(bk);
             }
             
             request.getRequestDispatcher("MovieDisplay?Action=MovieDisplay").forward(request, response);
