@@ -113,8 +113,6 @@
             <input type="text" name="Category" value="<%=movie.getCategory()%>"><br/>
             <label>Language</label>
             <input type="text" name="Language" value="<%=movie.getLanguage()%>"><br/>
-            <label>Poster</label>
-            <input type="text" name="Poster" value="<%=movie.getPoster()%>"><br/>
             <input type="hidden" name="action" value="UpdateMovie">
             <input type="hidden" name="movieID" value="<%=movie.getMovieID()%>">
             <label> Poster name</label>
