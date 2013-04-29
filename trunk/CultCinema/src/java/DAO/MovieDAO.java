@@ -58,7 +58,41 @@ public class MovieDAO {
         }   
        return movieList;
        }
+public List<Movie> getMovieListByDate(String date) throws SQLException {   
+    List<Movie> movieList=new ArrayList<Movie>(); 
+    DBConn db=new DBConn(); 
+    ResultSet rs = null;
+    int uid=0;
+    String sql="select * from MOVIE where Movie_ID in (select Movie_ID FROM SECTION where Time>='"+date+"' and Time-1<'"+date+"')"; 
+    rs=db.doSelect(sql); 
+         while(rs.next()){        
+         int movieID=rs.getInt("movie_id");
+         String name=rs.getString("name");
+         int duration=rs.getInt("duration");
+         String description=rs.getString("description");
+         String director = rs.getString("director");
+         String cast=rs.getString("cast");
+         String category = rs.getString("category");
+         String language = rs.getString("language");
+         String src=rs.getString("src");
 
+         Movie movie=new Movie();
+         movie.setMovieID(movieID);
+         movie.setName(name);
+         movie.setDuration(duration);
+         movie.setDescription(description);
+         //movie.setPoster;
+         movie.setDirector(director);
+         movie.setCast(cast);
+         movie.setCategory(category);
+         movie.setLanguage(language);
+         movie.setSrc(src);
+         movie.setUid(uid);
+         movieList.add(movie);
+         uid++;
+        }   
+       return movieList;
+       }
 
    public List<Section> getSectionList(int movieID) throws SQLException {      
         int uid=0;

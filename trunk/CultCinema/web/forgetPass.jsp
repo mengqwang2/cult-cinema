@@ -22,7 +22,7 @@
         </form>
         <% }
         else if(action.equals("newPass")){ %>
-        <p>Your new password is set as your telephone number!</p>
+        <p>Your new password is already send to your email box!</p>
         <a href="index.jsp">Back to Index!</a>
         <% } %>
         <div id="footer">

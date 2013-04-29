@@ -6,6 +6,7 @@ package Controller;
 
 import Bean.Member;
 import DAO.MemberDAO;
+import Utility.Email;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigInteger;
@@ -14,6 +15,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -83,6 +86,14 @@ public class forgetPass extends HttpServlet {
            md.setMember(m,m.getPassword() ,m.getName(),m.getAddress(),m.getTel(),m.getGender(),m.getMail(),m.getLoyalty());
            request.setAttribute("action", "newPass");
            //email to member about the new password
+           Email em=new Email();
+           try {
+               em.Send(m.getMail(), "This is your new password for cult cinima website", "Your new password is "+newPass);
+           } catch (AddressException ex) {
+               Logger.getLogger(forgetPass.class.getName()).log(Level.SEVERE, null, ex);
+           } catch (MessagingException ex) {
+               Logger.getLogger(forgetPass.class.getName()).log(Level.SEVERE, null, ex);
+           }
            request.getRequestDispatcher("forgetPass.jsp").forward(request, response);
         } 
         finally {            
