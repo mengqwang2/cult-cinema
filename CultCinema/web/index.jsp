@@ -29,7 +29,7 @@
   <style id="holderjs-style" type="text/css">.holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}</style></head>
     <body>
        
-            
+        <%@include file="/header.jsp" %>
             <% Opt opt=new Opt();
                 String type="";
                 if (session.isNew())

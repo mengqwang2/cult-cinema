@@ -49,6 +49,7 @@
     </script>
     </head>
     <body>
+         <%@include file="/header.jsp" %>
          <% Movie mv=(Movie)request.getAttribute("movieInfo");%>
          <% List<Booking> bk=(List<Booking>)request.getAttribute("bookingInfo");%>
          <% Venue v=(Venue)request.getAttribute("venueInfo");%>

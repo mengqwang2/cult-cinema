@@ -15,6 +15,7 @@
         <link href="./css/commonCss.css" rel="stylesheet">
     </head>
     <body>
+         <%@include file="/header.jsp" %>
         <% Member m=(Member)request.getAttribute("member"); %>
         <h1>Your Member ID is: </h1>
         <% out.print(m.getMemberID()); %>

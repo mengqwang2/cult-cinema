@@ -52,6 +52,7 @@
         </script>
     </head>
         <body>
+             <%@include file="/header.jsp" %>
         <div id="header">
             <% Opt opt=new Opt();  
             //out.println(opt.showHeader());

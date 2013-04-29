@@ -13,6 +13,7 @@
         <link href="./css/commonCss.css" rel="stylesheet">
     </head>
     <body>
+         <%@include file="/header.jsp" %>
         <% String action=(String)request.getAttribute("action");
         if(action==null){
         %>

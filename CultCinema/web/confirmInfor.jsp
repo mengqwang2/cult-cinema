@@ -31,6 +31,7 @@
         <title>Personal information</title>
     </head>
         <body>
+             <%@include file="/header.jsp" %>
         <div id="header">
             <% Opt opt=new Opt();  
             boolean display=false;

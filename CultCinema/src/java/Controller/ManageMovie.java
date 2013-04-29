@@ -92,7 +92,7 @@ public class ManageMovie extends HttpServlet {
         java.lang.String category=request.getParameter("Category");
         java.lang.String language=request.getParameter("Language");
         //java.lang.String poster=request.getParameter("poster");
-        java.lang.String src=(request.getParameter("src")==null?request.getParameter("src"):"");
+        java.lang.String src="./img/"+(request.getParameter("src")==null?request.getParameter("src"):"");
         Movie movie = new Movie();
         movie.setName(name);
         movie.setDuration(duration);
