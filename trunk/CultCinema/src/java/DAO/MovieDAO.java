@@ -126,9 +126,10 @@ public List<Movie> getMovieListByDate(String date) throws SQLException {
        String cast = movie.getCast();
        String category = movie.getCategory();
        String language = movie.getLanguage();
+       String src=movie.getSrc();
        
        DBConn db=new DBConn(); 
-       db.doInsert("INSERT INTO [MOVIE](Name,Duration,Description,Director,Cast,Category,Language) VALUES('"+name+"','"+duration+"','"+description+"','"+director+"','"+cast+"','"+category+"','"+language+"')");
+       db.doInsert("INSERT INTO [MOVIE](Name,Duration,Description,Director,Cast,Category,Language,src) VALUES('"+name+"','"+duration+"','"+description+"','"+director+"','"+cast+"','"+category+"','"+language+"'"+src+"')");
    }
    public void editMovie (Movie movie) throws SQLException{
        String name = movie.getName();
@@ -138,9 +139,10 @@ public List<Movie> getMovieListByDate(String date) throws SQLException {
        String cast = movie.getCast();
        String category = movie.getCategory();
        String language = movie.getLanguage();
+       String src=movie.getSrc();
        int movieID = movie.getMovieID();
        DBConn db=new DBConn(); 
-       String sqls="UPDATE [MOVIE] SET Name = '"+name+"', Duration ='"+duration+"',Description='"+description+"',Director='"+director+"',Cast='"+cast+"',Category='"+category+"',Language='"+language+"' WHERE Movie_Id="+movieID;
+       String sqls="UPDATE [MOVIE] SET Name = '"+name+"', Duration ='"+duration+"',Description='"+description+"',Director='"+director+"',Cast='"+cast+"',Category='"+category+"',Language='"+language+"',src='"+src+"' WHERE Movie_Id="+movieID;
        db.doUpdate(sqls);
    }
 
