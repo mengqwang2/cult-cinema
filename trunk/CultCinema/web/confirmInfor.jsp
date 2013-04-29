@@ -33,6 +33,7 @@
         <body>
         <div id="header">
             <% Opt opt=new Opt();  
+            boolean display=false;
           //  out.println(opt.showHeader());
             %>
         </div>
@@ -51,6 +52,7 @@
                 {
                     int memberID=(Integer)session.getAttribute("memberID");
                     out.println(opt.showLoginNav(memberID));
+                    display=true;
                     type="member";
                 }
                 else if(session.getAttribute("managerID")!=null)
@@ -75,6 +77,7 @@
                 %>
         </div>
        <div class="container" style=" position:relative;top:90px;">
+           <%if(display){%>
             <% Member member=(Member)request.getAttribute("memberInfo");%>
             <form onsubmit="return validate_form(this);" method="post" action="CartRetrieve">
                 <h3>Your information</h3>
@@ -112,6 +115,10 @@
                     <input type="submit" value="Edit" />
                 </fieldset>
             </form>
+                    <%}else{%>
+        
+        <img src="http://c0016417.cdn2.cloudfiles.rackspacecloud.com/Bx.jpg"style="margin:0 auto"/>
+                <%}%>
             <div id="footer">
          <%@include file="/footer.jsp" %>
         </div>

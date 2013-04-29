@@ -39,6 +39,7 @@
     <body>
         <div id="header">
             <% Opt opt=new Opt();  
+                boolean display=false;
            // out.println(opt.showHeader());
             %>
         </div>
@@ -63,6 +64,7 @@
                 {
                     String managerID=(String)session.getAttribute("managerID");
                     out.println(opt.showLoginNav(managerID,0));
+                    display=true;
                     type="manager";
                 }
                 else if(session.getAttribute("officerID")!=null)
@@ -81,6 +83,7 @@
                 %>
         </div>
         <div class="container" style=" position:relative;top:90px;">
+            <%if(display){%>
             <% String action= (String)request.getAttribute("action");%>
             <form method="post" action="stat">
                 <input type="hidden" name="id" value="0">
@@ -137,6 +140,12 @@
              
             </table>
                      <%}%>
+                        <%}else{%>
+        
+        <img src="http://c0016417.cdn2.cloudfiles.rackspacecloud.com/Bx.jpg"style="margin:0 auto"/>
+                <%}%>
+                         <%@include file="/footer.jsp" %>
+
         </div>
         
         

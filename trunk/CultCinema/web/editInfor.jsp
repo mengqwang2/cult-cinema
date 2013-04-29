@@ -60,6 +60,7 @@
        
             <% 
                 String type="";
+                boolean display=false;
                 if (session.isNew())
                 {
                     out.println(opt.showNotLoginNav());
@@ -73,6 +74,7 @@
                     int memberID=(Integer)session.getAttribute("memberID");
                     out.println(opt.showLoginNav(memberID));
                     type="member";
+                    display=true;
                 }
                 else if(session.getAttribute("managerID")!=null)
                 {
@@ -95,7 +97,7 @@
                 %>
         </div>
       <div class="container" style=" position:relative;top:90px;">
-            
+            <%if(display){%>
             <form onsubmit="return validate_form(this);" method="post" action="changeInfor">
                 <fieldset>
                     <input type="hidden" name="todo" id="todo" value="" />
@@ -128,6 +130,10 @@
                     <a href="CartRetrieve?action=confirmInfor">Back to previous page</a>
                 </fieldset>
             </form>
+                       <%}else{%>
+        
+        <img src="http://c0016417.cdn2.cloudfiles.rackspacecloud.com/Bx.jpg"style="margin:0 auto"/>
+                <%}%>
             <div id="footer">
          <%@include file="/footer.jsp" %>
         </div>

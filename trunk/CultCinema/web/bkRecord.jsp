@@ -55,6 +55,7 @@
          <% boolean []refundSec=(boolean [])request.getAttribute("refundSec"); %>
         <div id="header">
             <% Opt opt=new Opt();  
+            boolean display=false;
             //out.println(opt.showHeader());
             %>
             
@@ -74,6 +75,7 @@
                 {
                     int memberID=(Integer)session.getAttribute("memberID");
                     out.println(opt.showLoginNav(memberID));
+                    display=true;
                     type="member";
                 }
                 else if(session.getAttribute("managerID")!=null)
@@ -102,6 +104,7 @@
             
             
          <div class="container" style=" position:relative;top:90px;">
+             <%if(display){%>
                 <% int count=0; %>
  
             <% for (Booking bks:bk)
@@ -272,6 +275,11 @@
               
             
             <% count++;} %>
+            
+            <%}else{%>
+        
+        <img src="http://c0016417.cdn2.cloudfiles.rackspacecloud.com/Bx.jpg"style="margin:0 auto"/>
+                <%}%>
                <div id="footer">
                 <%@include file="/footer.jsp" %>
                </div>
