@@ -82,6 +82,10 @@ public class MovieDisplay extends HttpServlet {
             session.setAttribute("movies", movies);
             if(action!=null & action.equals("MovieDisplay"))
                 request.getRequestDispatcher("movie.jsp").forward(request, response);
+            else if(action!=null & action.equals("bydate")){
+                movies = movieDAO.getMovieListByDate(request.getParameter("date"));
+                  session.setAttribute("movies", movies);
+                request.getRequestDispatcher("movie.jsp").forward(request, response);}
             else if(action!=null & action.equals("ManageSeat")){
                 request.setAttribute("action", "selectMovie");
                 request.getRequestDispatcher("manageSeat.jsp").forward(request, response);

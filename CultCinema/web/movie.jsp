@@ -16,6 +16,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Movie list</title>
+         <script language="javascript" type="text/javascript" src="js/WdatePicker.js"></script>
         <!-- Le styles -->
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
     <link href="http://cdnjs.bootcss.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
@@ -78,6 +79,12 @@
 
         
             <div class="container" style=" position:relative;top:90px;">
+                <form action="MovieDisplay?Action=bydate"method="POST">
+                    Date:&nbsp;&nbsp;
+                     <input type="text" name="date" onFocus="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy/MM/dd',alwaysUseStartDate:true})"/>
+
+                    &nbsp;&nbsp;<input type="submit" value="Show" class="btn" style="position: relative; top:-5px"/>
+                </form>
         <% List<Movie> movies = 
                 (List<Movie>)session.getAttribute("movies"); 
         %>
@@ -96,6 +103,9 @@
         
         </tr>
         <% } %>
+        <% if(movies.size()==0){%>
+        <tr><td>No movie available!</td></tr>
+        <%}%>
         </table>
         </form>
         <div id="footer">
