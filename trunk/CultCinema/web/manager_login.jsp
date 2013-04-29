@@ -79,7 +79,10 @@
         <label class="checkbox">
           <input value="remember-me" type="checkbox"> Remember me
         </label>
+                 <%String s= ((request.getAttribute("error")!=null)?(String)request.getAttribute("error"):"");%>               
+                <%=s%>
         <button class="btn btn-large btn-primary" type="submit" name="submit">Sign in</button>
+        
         <div style="float:right">
         <a href='forgetPass.jsp'>Forget Password?</a></div>
       </form>

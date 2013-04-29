@@ -98,22 +98,33 @@ public class LoginControl extends HttpServlet {
        try
        {
        if(user_type.equals("member"))
-       {
+       {    boolean bool;
             Member user=new Member();  
+           try { 
             user.setMemberID(Integer.parseInt(username));
             user.setPassword(password);
             MemberDAO md=new MemberDAO();  
-            boolean bool = false;  
-            try {
+            bool = false;  
+            
                 bool = md.checkUserLogin(user);
             } catch (Exception ex) {
                 Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("user_login.jsp");
+                request.setAttribute("error", "The input username or password is wrong.");
+                dispatcher.forward(request, response);
+                return;
             }
  
             if(bool){ 
                 request.getSession().setAttribute("memberID",user.getMemberID());
               
             }    
+            else{
+             RequestDispatcher dispatcher = request.getRequestDispatcher("user_login.jsp");
+              request.setAttribute("error", "The input username or password is wrong.");
+             dispatcher.forward(request, response);
+             return;
+            }
        }
        else if(user_type.equals("manager"))
        {
@@ -126,13 +137,29 @@ public class LoginControl extends HttpServlet {
                 bool = md.checkUserLogin(user);
             } catch (Exception ex) {
                 Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
+                 RequestDispatcher dispatcher = request.getRequestDispatcher("manager_login.jsp");
+                 request.setAttribute("error", "The input username or password is wrong.");
+                dispatcher.forward(request, response);
             }
  
             if(bool&&(md.getLogin(user)==0)){ 
                 request.getSession().setAttribute("managerID",user.getManagerID());
                 md.setLogin(user);
               
-            }    
+            }
+             else if(bool&&(md.getLogin(user)!=0)){
+                RequestDispatcher dispatcher = request.getRequestDispatcher("manager_login.jsp");
+                 request.setAttribute("error", "You have already sign in in another place.");
+                 dispatcher.forward(request, response);
+                 return;
+                
+            }
+            else{
+                 RequestDispatcher dispatcher = request.getRequestDispatcher("manager_login.jsp");
+                 request.setAttribute("error", "The input username or password is wrong.");
+                 dispatcher.forward(request, response);
+                 return;
+            }
        }
        else if(user_type.equals("officer"))
        {
@@ -145,12 +172,28 @@ public class LoginControl extends HttpServlet {
                 bool = od.checkUserLogin(user);
             } catch (Exception ex) {
                 Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("officer_login.jsp");
+                request.setAttribute("error", "The input username or password is wrong.");
+                dispatcher.forward(request, response);
             }
  
             if(bool&&(od.getLogin(user)==0)){ 
                 request.getSession().setAttribute("officerID",user.getOfficerID());
                 od.setLogin(user);
-            }   
+            }
+            else if(bool&&(od.getLogin(user)!=0)){
+                RequestDispatcher dispatcher = request.getRequestDispatcher("officer_login.jsp");
+                 request.setAttribute("error", "You have already sign in in another place.");
+                 dispatcher.forward(request, response);
+                 return;
+                
+            }
+            else{
+                 RequestDispatcher dispatcher = request.getRequestDispatcher("officer_login.jsp");
+                 request.setAttribute("error", "The input username or password is wrong.");
+                 dispatcher.forward(request, response);
+                 return;
+            }
            
        }
        }catch(Exception e)
