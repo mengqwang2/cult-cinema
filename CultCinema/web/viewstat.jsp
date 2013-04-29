@@ -121,7 +121,9 @@
                   <% List<Section> sections = (List<Section>)request.getAttribute("sections"); 
                     StatDAO statDAO=new StatDAO();
                     int total;
-                    int sold;
+                    int sold=0;
+                    int count=0;
+                    int cc=1;
                     int available;
                     for (Section section: sections ){
                         total=statDAO.getTotalTicket(section.getSectionID())-statDAO.getReservedTicket(section.getSectionID());
@@ -137,9 +139,28 @@
                            <td><%=sold%></td>
                            <td><%=available%></td>
                        </tr>
-                     <% } %>    
+                     <%count+=1; } %>    
              
             </table>
+                     
+            <APPLET codebase="classes" code="Asg1/BarChartJApplet.class" width="800" height="600">
+                        <param name="AxisTitleH" value="Section" />
+                        <param name="AxisTitleV" value="Data" />
+                        <param name="ChartTitle" value="Stat information graph." />
+                        <param name="NumOfDataSeries" value="<%=count%>" />
+                        <% for (Section section: sections ){
+                        sold=statDAO.getSoldTicket(section.getSectionID());%>
+                        <param name="Data<%=cc++%>" value="<%=sold%>" />
+                        
+                        <%}%>
+                         
+                        <param name="AxisValueH" value="Sold" />
+                        <param name="AxisValueV" value="<% for (Section section: sections ){%><%=section.getSectionID()%>,<%}%>" />
+                        <param name="ShowChartTitle" value="1" />
+                        <param name="ShowAxisTitles" value="1" />
+                        <param name="ShowDataLabels" value="1" />
+                        <param name="ShowLegend" value="1" />
+            </APPLET>
                      <%}%>
                         <%}else{%>
         

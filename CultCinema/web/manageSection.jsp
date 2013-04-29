@@ -150,8 +150,6 @@
       }(window.jQuery)
     </script>
     <script src="./bst/holder.js"></script>
-    <div id="footer">
-         <%@include file="/footer.jsp" %>
-        </div>   
+    
     </body>
 </html>
