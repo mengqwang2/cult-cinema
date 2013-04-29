@@ -45,6 +45,7 @@
     </head>
         <% Section s=(Section)request.getAttribute("section"); %>
         <body>
+             <%@include file="/header.jsp" %>
      
        
             <% 

@@ -39,7 +39,7 @@
   
   </style></head>
     <body>      
-      
+       <%@include file="/header.jsp" %>
             <% Opt opt=new Opt();  
                 String type="";
                 if (session.isNew())

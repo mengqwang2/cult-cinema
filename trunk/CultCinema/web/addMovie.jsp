@@ -32,7 +32,7 @@
 <script type="text/javascript" src="./editor/adapters/jquery.js"></script>
     </head>
     <body>
-       
+        <%@include file="/header.jsp" %>
       
             <% Opt opt=new Opt();  
                 String type="";

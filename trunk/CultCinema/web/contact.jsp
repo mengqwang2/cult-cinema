@@ -48,7 +48,8 @@
         }
     </script>
     </head>
-    <body onload ="hide()">      
+    <body onload ="hide()">    
+         <%@include file="/header.jsp" %>
       
             <% Opt opt=new Opt();  
                 String type="";

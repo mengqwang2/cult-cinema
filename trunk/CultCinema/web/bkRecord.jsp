@@ -43,7 +43,7 @@
   </style>
     </head>
     <body>
-        
+         <%@include file="/header.jsp" %>
          <% List<Movie> mv=(List<Movie>)request.getAttribute("movieInfo");%>
  
          <% List<Venue> v=(List<Venue>)request.getAttribute("venueInfo");%>
