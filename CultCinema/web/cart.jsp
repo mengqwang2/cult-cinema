@@ -92,6 +92,7 @@
 
          <div id="header">
             <% Opt opt=new Opt();  
+            boolean display=false;
               //  out.println(opt.showHeader()); 
             %>
 
@@ -126,6 +127,7 @@
                     int memberID=(Integer)session.getAttribute("memberID");
 
                     out.println(opt.showLoginNav(memberID));
+                    display=true;
 
                     type="member";
  
@@ -141,6 +143,7 @@
                 {
                     String officerID=(String)session.getAttribute("officerID");
                     out.println(opt.showLoginNav(officerID,1));
+                    display=true;
                     type="officer"; 
                 }
 
@@ -154,7 +157,7 @@
         </div>
         
         <div class="container" style=" position:relative;top:90px;">
-
+            <%if(display){%>
             <% int count=0; 
             String sectionStr="";
             String seatStr="";
@@ -380,6 +383,10 @@
              out.println("<p>No movie item in the shopping cart! </p><a href='MovieDisplay?Action=MovieDisplay'>Choose some movies now!</a>"); }%>
                             
             <div id="footer">
+                <%}else{%>
+        
+        <img src="http://c0016417.cdn2.cloudfiles.rackspacecloud.com/Bx.jpg"style="margin:0 auto"/>
+                <%}%>
          <%@include file="/footer.jsp" %>
         </div>
             </div>

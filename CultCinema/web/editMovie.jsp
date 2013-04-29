@@ -47,6 +47,7 @@
     <body>
         <div id="header">
             <% Opt opt=new Opt();  
+            boolean display=false;
            // out.println(opt.showHeader());
             %>
         </div>
@@ -71,6 +72,7 @@
                 {
                     String managerID=(String)session.getAttribute("managerID");
                     out.println(opt.showLoginNav(managerID,0));
+                    display=true;
                     type="manager";
                 }
                 else if(session.getAttribute("officerID")!=null)
@@ -89,6 +91,7 @@
                 %>
         </div>
        <div class="container" style=" position:relative;top:90px;">
+           <%if(display){%>
         <% Movie movie=(Movie)request.getAttribute("movie");%>
         <form action="ManageMovie" method="post">
             <label>Name</label>
@@ -118,6 +121,10 @@
             <input type="submit" value="Edit Movie">
         </form>
         <a href="manageMovie.jsp">Return to movie Management site</a>
+           <%}else{%>
+        
+        <img src="http://c0016417.cdn2.cloudfiles.rackspacecloud.com/Bx.jpg"style="margin:0 auto"/>
+                <%}%>
         <div id="footer">
          <%@include file="/footer.jsp" %>
         </div>

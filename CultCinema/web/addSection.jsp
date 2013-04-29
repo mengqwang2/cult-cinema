@@ -41,6 +41,7 @@
         <div id='loginNav'>
             <% 
                 String type="";
+                boolean display=false;
                 if (session.isNew())
                 {
                     out.println(opt.showNotLoginNav());
@@ -59,6 +60,7 @@
                 {
                     String managerID=(String)session.getAttribute("managerID");
                     out.println(opt.showLoginNav(managerID,0));
+                    display=true;
                     type="manager";
                 }
                 else if(session.getAttribute("officerID")!=null)
@@ -78,7 +80,7 @@
         </div>
         
         <div class="container" style=" position:relative;top:90px;">
-       
+         <%if(display){%>
          <form action="ManageSection" method="POST">
             <label>Name</label>
             <input type="text" name="name" readonly="readonly" value="<%=request.getParameter("name")%>"><br/>
@@ -95,10 +97,14 @@
             <input type="submit" value="Add Section">
         </form>
         <a href="MovieDisplay">Return to movie Management site</a>
-    </div>
-            <div id="footer">
+         <%}else{%>
+        <img src="http://c0016417.cdn2.cloudfiles.rackspacecloud.com/Bx.jpg"style="margin:0 auto"/>
+                <%}%>
+                 <div id="footer">
          <%@include file="/footer.jsp" %>
         </div>
+    </div>
+           
         
           <!-- Le javascript
     ================================================== -->

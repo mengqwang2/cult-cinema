@@ -34,7 +34,8 @@
     <body>
         
         <div id="header">
-            <% Opt opt=new Opt();  
+            <% Opt opt=new Opt();
+            boolean display=false;
            // out.println(opt.showHeader());
             %>
         </div>
@@ -65,6 +66,7 @@
                 {
                     String officerID=(String)session.getAttribute("officerID");
                     out.println(opt.showLoginNav(officerID,1));
+                    display=true;
                     type="officer";
                 }
             %>
@@ -78,6 +80,7 @@
         </div>
         
          <div class="container" style=" position:relative;top:90px;">
+             <%if(display){%>
         <form action="" method="post">
             <table>
                 <tr>
@@ -104,7 +107,10 @@
         </tr> 
         <% } %>
         </table>
-        </form>
+        </form>   <%}else{%>
+        
+        <img src="http://c0016417.cdn2.cloudfiles.rackspacecloud.com/Bx.jpg"style="margin:0 auto"/>
+                <%}%>
         <div id="footer">
          <%@include file="/footer.jsp" %>
         </div> 

@@ -45,6 +45,7 @@
     <body>
         <div id="header">
             <% Opt opt=new Opt();  
+             boolean display=false;
            // out.println(opt.showHeader());
             %>
         </div>
@@ -63,6 +64,7 @@
                 {
                     int memberID=(Integer)session.getAttribute("memberID");
                     out.println(opt.showLoginNav(memberID));
+                    display=true;
                     type="member";
                 }
                 else if(session.getAttribute("managerID")!=null)
@@ -87,6 +89,7 @@
                 %>
         </div>
        <div class="container" style=" position:relative;top:90px;">
+           <%if(display){%>
             <% Member m=(Member)request.getAttribute("memberInfo"); %>
             <h1>Available Loyalty Point to Use is: <% out.print(m.getLoyalty()); %></h1>
             <h2>Rules for Loyalty Point</h2>
@@ -102,7 +105,12 @@
             <p>
             4. All the explanations are from Cult-Cinema Corp.
             </p>
+               <%}else{%>
+        
+        <img src="http://c0016417.cdn2.cloudfiles.rackspacecloud.com/Bx.jpg"style="margin:0 auto"/>
+                <%}%>
             <div id="footer">
+                
             <%@include file="/footer.jsp" %>
            </div>
         </div>

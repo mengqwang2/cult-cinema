@@ -36,6 +36,7 @@
       
             <% Opt opt=new Opt();  
                 String type="";
+                boolean display=false;
                 if (session.isNew())
                 {
                     out.println(opt.showNotLoginNav());
@@ -55,6 +56,7 @@
                     String managerID=(String)session.getAttribute("managerID");
                     out.println(opt.showLoginNav(managerID,0));
                     type="manager";
+                    display=true;
                 }
                 else if(session.getAttribute("officerID")!=null)
                 {
@@ -71,6 +73,7 @@
                 %>
             </div>
          <div class="container" style=" position:relative;top:90px;">
+             <%if(display){%>
         <form action="ManageMovie" method="POST">
             <label>Name</label>
             <input type="text" name="Name"><br/>
@@ -97,6 +100,10 @@
             <input type="submit" value="Add Movie">
         </form>
         <a href="manageMovie.jsp">Return to movie Management site</a>
+        <%}else{%>
+        
+        <img src="http://c0016417.cdn2.cloudfiles.rackspacecloud.com/Bx.jpg"style="margin:0 auto"/>
+                <%}%>
           <%@include file="/footer.jsp" %>
          </div>
            

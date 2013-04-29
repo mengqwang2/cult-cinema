@@ -46,6 +46,7 @@
         <div id='loginNav'>
             <% 
                 String type="";
+                boolean display=false;
                 if (session.isNew())
                 {
                     out.println(opt.showNotLoginNav());
@@ -64,6 +65,7 @@
                 {
                     String managerID=(String)session.getAttribute("managerID");
                     out.println(opt.showLoginNav(managerID,0));
+                    display=true;
                     type="manager";
                 }
                 else if(session.getAttribute("officerID")!=null)
@@ -82,6 +84,7 @@
                 %>
         </div>
         <div class="container" style=" position:relative;top:90px;">
+            <%if(display){%>
             <table>
                 <tr>
                     <td>Movie</td>                      
@@ -111,6 +114,10 @@
             </table>
             <a href="addSection.jsp?action=AddSection&movieID=${movie.movieID}&name=${movie.name}&id=${movie.uid}">Add Section</a><br/>
             <a href="MovieDisplay">Return to movie management site</a><br/><br/>
+               <%}else{%>
+        
+        <img src="http://c0016417.cdn2.cloudfiles.rackspacecloud.com/Bx.jpg"style="margin:0 auto"/>
+                <%}%>
             <div id="footer">
                 <%@include file="/footer.jsp" %>
             </div>
