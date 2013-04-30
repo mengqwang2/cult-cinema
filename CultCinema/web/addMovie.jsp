@@ -94,7 +94,7 @@
             <label>Language</label>
             <input type="text" name="Language"><br/>
             
-            <label> Poster name </label>
+            <label> Poster src </label>
             <input type="text" name="src" value=""><br/>
             <input type="hidden" name="action" value="AddMovie">
             <input type="submit" value="Add Movie">
