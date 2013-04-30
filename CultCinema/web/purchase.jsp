@@ -54,10 +54,9 @@
          <% List<Booking> bk=(List<Booking>)request.getAttribute("bookingInfo");%>
          <% Venue v=(Venue)request.getAttribute("venueInfo");%>
          <% Section s=(Section)request.getAttribute("sectionInfo"); %>
-         <% Member m=(Member)request.getAttribute("memberInfo"); %>
          <% Integer nSeats=(Integer)request.getAttribute("nSeats"); %>
          <% String seatNo=(String)request.getAttribute("seats");%>
-         
+         <% Member m=new Member(); %>
          
       
             <% Opt opt=new Opt();  
@@ -80,18 +79,21 @@
                     int memberID=(Integer)session.getAttribute("memberID");
                     out.println(opt.showLoginNav(memberID));
                     type="member";
+                    m=(Member)request.getAttribute("memberInfo");
                 }
                 else if(session.getAttribute("managerID")!=null)
                 {
                     String managerID=(String)session.getAttribute("managerID");
                     out.println(opt.showLoginNav(managerID,0));
                     type="manager";
+                    m=(Member)request.getAttribute("memberInfo");
                 }
                 else if(session.getAttribute("officerID")!=null)
                 {
                     String officerID=(String)session.getAttribute("officerID");
                     out.println(opt.showLoginNav(officerID,1));
                     type="officer";
+                    m=(Member)request.getAttribute("memberInfo");
                 }
             %>
         </div>
@@ -198,7 +200,8 @@
                 </tbody>
                 
             </table>
-                        <% int lpts=m.getLoyalty(); 
+                            <% if(type.equals("member")){
+                        int lpts=m.getLoyalty(); 
                         int price=s.getPrice();
                         int luse=0;
                         int ladd=0;
@@ -215,15 +218,16 @@
                             ladd=0;
                             payment=0;
                         }
- 
+                        }
                         %>
-                        
+                        <% if (type.equals("member")||type.equals("manager")||type.equals("officer")){ %>
                         <form action='reserve' method='post'>                           
                             <input type='hidden' name='SectionID' value='<% out.print(s.getSectionID());%>' />
                             <input type="hidden" name="seat" value="<% out.print(seatNo);%>">
                             <input type='submit' value='Go to Shopping Cart to Purchase!' />
                             
                         </form>
+                         <% } %>
                         <a href="movie.jsp">View Other Movies!</a>
                   <div id="footer">
                     <%@include file="/footer.jsp" %>

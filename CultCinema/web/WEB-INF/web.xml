@@ -73,6 +73,10 @@
         <servlet-class>Controller.memberRefund</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>vstPurchase</servlet-name>
+        <servlet-class>Controller.vstPurchase</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>markSeat</servlet-name>
         <servlet-class>Controller.markSeat</servlet-class>
     </servlet>
@@ -163,6 +167,10 @@
     <servlet-mapping>
         <servlet-name>forgetPass</servlet-name>
         <url-pattern>/forgetPass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>vstPurchase</servlet-name>
+        <url-pattern>/vstPurchase</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>stat</servlet-name>

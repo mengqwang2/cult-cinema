@@ -98,6 +98,8 @@ public class SeatDisplay extends HttpServlet {
             List<Reserve> rvBooking = null;
             Reserve v = new Reserve();
             v.setSectionID(selectSection.getSectionID());
+            SectionDAO sdao=new SectionDAO();
+            int isToday=sdao.isTodaySection(selectSection);
             
             lsBooking=bkDAO.getBookingList(selectSection);
             rvBooking=rvDAO.getReserveList(v);
@@ -105,7 +107,7 @@ public class SeatDisplay extends HttpServlet {
             request.setAttribute("lsReserve", rvBooking);
             request.setAttribute("selectVenue", selectVenue);
             request.setAttribute("selectSection", selectSection);
-            
+            request.setAttribute("isToday", isToday);
             //if(action.equals("purchase"))
             request.getRequestDispatcher("seat.jsp").forward(request, response);
             //else

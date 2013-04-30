@@ -79,6 +79,22 @@ public class PurchaseControl extends HttpServlet {
 
         try {
             HttpSession session=request.getSession();
+            String type=request.getParameter("type");
+            int memberID=0;
+            if(type.equals("member"))
+            {
+                memberID=(Integer)session.getAttribute("memberID");
+                Member mInfo=new Member();
+                mInfo.setMemberID(memberID);
+                 //mInfo.setMemberID(session.getAttribute("memberID"));
+                MemberDAO mdao =new MemberDAO();
+                mdao.getMember(mInfo);
+                request.setAttribute("memberInfo", mInfo);
+            }
+            else if(type.equals("officer"))
+            {
+                memberID=2;
+            }
             int sectionID=Integer.parseInt(request.getParameter("sectionID"));
             String seats=request.getParameter("seats");
             int nSeats=0;
@@ -113,18 +129,16 @@ public class PurchaseControl extends HttpServlet {
             VenueDAO vdao=new VenueDAO();
             vdao.setVenueObj(vInfo);
             
-            Member mInfo=new Member();
-            mInfo.setMemberID((Integer)session.getAttribute("memberID"));
-            //mInfo.setMemberID(session.getAttribute("memberID"));
-            MemberDAO mdao =new MemberDAO();
-            mdao.getMember(mInfo);
+            
+           
+           
             
             
             request.setAttribute("bookingInfo", bkInfo);
             request.setAttribute("movieInfo", mvInfo);
             request.setAttribute("sectionInfo", selectSection);
             request.setAttribute("venueInfo", vInfo);
-            request.setAttribute("memberInfo", mInfo);
+            
             request.setAttribute("nSeats", nSeats);
             request.setAttribute("seats", seats);
             request.getRequestDispatcher("purchase.jsp").forward(request, response);
