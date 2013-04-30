@@ -72,12 +72,6 @@ public class ManageMovie extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         MovieDAO movieDAO = new DAO.MovieDAO();
-        //////////////////////////////////////////////////////////
-
-        
-        
-        
-        //////////////////////////////////////////////////////////
         java.lang.String idTemp = request.getParameter("id");
         int id=Integer.parseInt(idTemp == null || "".equals(idTemp)?"0":idTemp);
         java.lang.String movieIDtemp = request.getParameter("movieID");
@@ -91,8 +85,7 @@ public class ManageMovie extends HttpServlet {
         java.lang.String cast=request.getParameter("Cast");
         java.lang.String category=request.getParameter("Category");
         java.lang.String language=request.getParameter("Language");
-        //java.lang.String poster=request.getParameter("poster");
-        java.lang.String src="./img/"+(request.getParameter("src")!=null?request.getParameter("src"):"");
+        java.lang.String src=(request.getParameter("src")!=null?request.getParameter("src"):"");
         Movie movie = new Movie();
         movie.setName(name);
         movie.setDuration(duration);
