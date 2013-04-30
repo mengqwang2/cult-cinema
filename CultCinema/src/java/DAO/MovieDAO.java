@@ -129,7 +129,8 @@ public List<Movie> getMovieListByDate(String date) throws SQLException {
        String src=movie.getSrc();
        
        DBConn db=new DBConn(); 
-       db.doInsert("INSERT INTO [MOVIE](Name,Duration,Description,Director,Cast,Category,Language,src) VALUES('"+name+"','"+duration+"','"+description+"','"+director+"','"+cast+"','"+category+"','"+language+"'"+src+"')");
+       String sql="INSERT INTO [MOVIE](Name,Duration,Description,Director,Cast,Category,Language,src) VALUES('"+name+"','"+duration+"','"+description+"','"+director+"','"+cast+"','"+category+"','"+language+"','"+src+"')";
+       db.doInsert(sql);
    }
    public void editMovie (Movie movie) throws SQLException{
        String name = movie.getName();
