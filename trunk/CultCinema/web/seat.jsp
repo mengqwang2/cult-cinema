@@ -4,6 +4,7 @@
     Author     : 52165627
 --%>
 
+<%@page import="DAO.SectionDAO"%>
 <%@page import="Bean.Reserve"%>
 <%@page import="Utility.Opt"%>
 <%@page import="java.util.Enumeration"%>
@@ -79,10 +80,15 @@
                     document.getElementById('seats').value=seatNo;
                     document.getElementById('seat').value=seatNo;
                 }
-                else
+                else if(type=="manager")
                 {
                     document.getElementById('seat_m').value=seatNo;
                     document.getElementById("unmark").value=unMark;
+                }
+                else
+                {
+                    
+                    document.getElementById("seat_v").value=seatNo;
                 }
                     
             }
@@ -142,7 +148,7 @@
         </div>
         <div id='loginNav'>
             <% 
-                String type="";
+                String type="123";
                 boolean loginStatus=true;
                 if (session.isNew())
                 {
@@ -182,16 +188,19 @@
                 %>
         </div>
         <div class="container" style=" position:relative;top:90px;">
-            <% if(loginStatus==false)
+            <% Section s=(Section) request.getAttribute("selectSection"); 
+            int isToday=(Integer) request.getAttribute("isToday");
+            %>
+            <% if(loginStatus==false&&(isToday==0))
             {  %>
             <a href="index.jsp">Please Log in First!</a>
             <% }
             
-            else if(loginStatus==true)
+            else if(loginStatus==true||loginStatus==false)
             {  %>
             <table>
                 <%Venue v=(Venue)request.getAttribute("selectVenue"); 
-                Section s=(Section) request.getAttribute("selectSection");
+                
                 String bks="";
                 int count=1;%>
                 
@@ -284,18 +293,20 @@
             <form action="reserve" method="post">
                <input type='hidden' name='SectionID' value='<% out.print(s.getSectionID()); %>' />
                <input type='hidden' name='seat' id="seat" value='' />
+               
                <input type="submit" value="Add to shopping cart!" />
             </form>
             
             <form action="purchase" method="post">
                 <input type='hidden' name='sectionID' value='<% out.print(s.getSectionID()); %>' />
                 <input type='hidden' name="seats" id="seats" value='' />
+                <input type="hidden" name="type" value="<% out.print(type); %>" />
                 <input type='submit' value='Preview' />
             </form>
             <%   
             } 
             
-            else { %>
+            else if(type.equals("manager")){ %>
              <form action="markSeat" method="post">
                <input type='hidden' name='SectionID_m' value='<% out.print(s.getSectionID()); %>' />
                <input type='hidden' name='seat_m' id="seat_m" value='' />
@@ -304,7 +315,18 @@
               </form>
               <%  
               
-             } %>  
+             } 
+             else
+             { %>
+                  <form action="vstPurchase" method="post">
+                    <input type='hidden' name='secid' value='<% out.print(s.getSectionID()); %>' />
+                    <input type='hidden' name='seat_v' id="seat_v" value='' />
+                    <input type="hidden" name="pay" value="<% out.print(s.getPrice()); %>" />
+                    <input type="submit" value="Purchase!" />
+                 </form>      
+             
+             <% }
+             %>  
              
              
            <% } %>

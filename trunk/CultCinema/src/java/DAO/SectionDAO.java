@@ -33,6 +33,28 @@ public class SectionDAO {
         return venueID;
     }
     
+    public int isTodaySection(Section s)
+    {
+        try {
+            DBConn db=new DBConn();
+            String sql="SELECT DATEDIFF(day,[Time],GETDATE()) AS DiffDate FROM [SECTION] WHERE [Section_ID]="+s.getSectionID();
+            ResultSet rs=null;
+            rs=db.doSelect(sql);
+            int days=0;
+            if(rs.next())
+            {
+                days=rs.getInt("DiffDate");
+            }
+            if(days==0)
+                return 1;
+            else
+                return 0;
+        } catch (SQLException ex) {
+            Logger.getLogger(SectionDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    
     public void getSection(int sid,Section s)
     {
         
@@ -52,7 +74,7 @@ public class SectionDAO {
                 mid=rs.getInt("Movie_ID");
                 time=rs.getTimestamp("Time");
                 vid=rs.getInt("Venue_ID");
-                price=rs.getInt("price");
+                price=rs.getInt("Price");
             }
             s.setMovieID(mid);
             s.setSectionID(sid);
