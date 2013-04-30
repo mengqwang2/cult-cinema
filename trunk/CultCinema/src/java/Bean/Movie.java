@@ -43,14 +43,6 @@ public class Movie {
         this.description = description;
     }
 
-    public Byte[] getPoster() {
-        return poster;
-    }
-
-    public void setPoster(Byte[] poster) {
-        this.poster = poster;
-    }
-    
     public String getDirector() {
         return director;
     }
@@ -101,7 +93,6 @@ public class Movie {
     private String name;
     private int duration;
     private String description;
-    private Byte[] poster;
     private String director;
     private String cast;
     private String category;
